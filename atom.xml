@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2019-06-18T13:33:32.075Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="https://yhk15978.github.io/"/>
+  <updated>2019-06-19T03:48:44.027Z</updated>
+  <id>https://yhk15978.github.io/</id>
   
   <author>
     <name>姚恒康</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com//posts/4a17b156/"/>
-    <id>http://yoursite.com//posts/4a17b156/</id>
+    <link href="https://yhk15978.github.io//posts/4a17b156/"/>
+    <id>https://yhk15978.github.io//posts/4a17b156/</id>
     <published>2019-06-18T13:33:32.075Z</published>
-    <updated>2019-06-18T13:33:32.075Z</updated>
+    <updated>2019-06-19T03:48:44.027Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+          &lt;p&gt;Welcome
         
       
     
