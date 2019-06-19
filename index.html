@@ -191,6 +191,54 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-Vue基础语法"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a href="/posts/4a17b157/">vue基础语法</a>
+    </h3>
+  
+
+
+
+
+     <div class="post-meta">
+        <time class="post-time" title="2019-06-19 19:59:36" datetime="2019-06-19T11:59:36.232Z"  itemprop="datePublished">2019-06-19</time>
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        <h1 id="vue基础语法"><a href="#vue基础语法" class="headerlink" title="vue基础语法"></a>vue基础语法</h1><h2 id="mutache-语法糖"><a href="#mutache-语法糖" class="headerlink" title="mutache 语法糖"></a>mutache 语法糖</h2><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag"><<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ this.msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ this.$data.msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ this._data.msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line"><span class="tag"></<span class="name">div</span>></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>jsx</code>: javascript + xml<br>可以让我们在dom结构中输写javascript</p>
+
+<p>是 this.msg 简写<br>this.$data.msg -> this.msg -> msg</p>
+<h4 id="mustache语法糖对数据类型的支持（-js语法的支持-）"><a href="#mustache语法糖对数据类型的支持（-js语法的支持-）" class="headerlink" title="mustache语法糖对数据类型的支持（ js语法的支持 ）"></a>mustache语法糖对数据类型的支持（ js语法的支持 ）</h4><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag"><<span class="name">body</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> number: {{ num }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> string: {{ str }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> boolean: {{ bool }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> null: {{ nul?'1':'2' }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> undefined: {{ und && 1 || 2 }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> object: {{ obj.name }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> array: {{ arr[0] }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> fn: {{ fn() }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="comment"><!-- <p> console.log: {{ console.log( 1 ) }} </p></span></span><br><span class="line"><span class="comment">    <p> alert: {{ alert( 2 ) }} </p> --></span></span><br><span class="line">    <span class="tag"></<span class="name">div</span>></span></span><br><span class="line"><span class="tag"></<span class="name">body</span>></span></span><br><span class="line"><span class="tag"><<span class="name">script</span>></span></span><br><span class="line">    /*</span><br><span class="line">    数据类型：</span><br><span class="line">    第一种划分：</span><br><span class="line">    基础数据类型： number string boolean</span><br><span class="line">    复杂数据类型: Object( array function )</span><br><span class="line">    特殊数据类型: null undefined</span><br><span class="line">    第二种划分：</span><br><span class="line">    初始数据类型: number string boolean null undefined</span><br><span class="line">    引用数据类型: object( array function )</span><br><span class="line">    结论： mustache支持我们js的数据类型的</span><br><span class="line">    conosle.log 和 alert 在我们mustache语法中是不支持的</span><br><span class="line">    */</span><br><span class="line">var vm = new Vue({</span><br><span class="line">    el: '#app',</span><br><span class="line">    data: {</span><br><span class="line">        num: 100,</span><br><span class="line">        str: 'hello Vue.js',</span><br><span class="line">        bool: true,</span><br><span class="line">        nul: null,</span><br><span class="line">        und: undefined,</span><br><span class="line">        obj: {</span><br><span class="line">             name: 'yhk'</span><br><span class="line">        },</span><br><span class="line">        arr: [1,2,3,4],</span><br><span class="line">        fn: function () {</span><br><span class="line">            alert( 2 )</span><br><span class="line">            return '这是一个函数'</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">})</span><br><span class="line"><span class="tag"></<span class="name">script</span>></span></span><br></pre></td></tr></tbody></table></figure>
+    
+        <div class="post-more-div">
+            <a href="/posts/4a17b157/" class="post-more waves-button">
+                Continue reading...
+            </a>
+        </div>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-hello-world"
   class="article-card article-type-post" itemprop="blogPost">
 
