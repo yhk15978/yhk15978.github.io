@@ -6,7 +6,7 @@
     
     
     
-    <title>yhkhome</title>
+    <title>No title | yhkhome</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
     <meta name="theme-color" content="#77AAFF">
@@ -39,16 +39,17 @@
 
 
     
-    <meta name="description" content="姚恒康的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yhkhome">
-<meta property="og:url" content="https://yhk15978.github.io/index.html">
+    <meta name="description" content="vue基础语法mutache 语法糖123456     {{ this.msg }}      {{ this.$data.msg }}      {{ this._data.msg }}      {{ msg }}   jsx: javascript + xml可以让我们在dom结构中输写javascript    是 this.msg 简写this.$data.msg -&amp;gt; this.ms">
+<meta property="og:type" content="article">
+<meta property="og:title" content="No title">
+<meta property="og:url" content="https://yhk15978.github.io/posts/0/index.html">
 <meta property="og:site_name" content="yhkhome">
-<meta property="og:description" content="姚恒康的博客">
+<meta property="og:description" content="vue基础语法mutache 语法糖123456     {{ this.msg }}      {{ this.$data.msg }}      {{ this._data.msg }}      {{ msg }}   jsx: javascript + xml可以让我们在dom结构中输写javascript    是 this.msg 简写this.$data.msg -&amp;gt; this.ms">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-06-19T09:22:41.119Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yhkhome">
-<meta name="twitter:description" content="姚恒康的博客">
+<meta name="twitter:title" content="No title">
+<meta name="twitter:description" content="vue基础语法mutache 语法糖123456     {{ this.msg }}      {{ this.$data.msg }}      {{ this._data.msg }}      {{ msg }}   jsx: javascript + xml可以让我们在dom结构中输写javascript    是 this.msg 简写this.$data.msg -&amp;gt; this.ms">
     
         <link rel="alternate" type="application/atom+xml" title="yhkhome" href="/atom.xml">
     
@@ -63,7 +64,7 @@
 
 <body>
     <div id="loading" class="active"></div>
-    <aside id="menu"   >
+    <aside id="menu"  class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -84,7 +85,7 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
-              <li class="waves-block waves-effect active">
+              <li class="waves-block waves-effect">
                   <a href="/"  >
                     <i class="icon icon-lg icon-home"></i>
                     <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
@@ -150,7 +151,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">yhkhome</div>
+        <div class="flex-col header-title ellipsis">No title</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -167,19 +168,16 @@
         </a>
     </div>
 </header>
-<header class="content-header index-header">
+<header class="content-header post-header">
     
     
     <div class="container fade-scale">
         <div id="myheader">
             <h1 class="title">
-                 
-                    yhkhome
                 
             </h1>
             <h5 class="subtitle">
                 
-                    在Web全栈的道路上努力前行
                 
             </h5>
         </div>
@@ -187,34 +185,47 @@
 
 </header>
 
+
 <div class="container body-wrap">
-    <ul class="post-list">
     
-        <li class="post-list-item fade">
-            <article id="post-vue基础语法"
-  class="article-card article-type-post" itemprop="blogPost">
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#vue基础语法"><span class="post-toc-number">1.</span> <span class="post-toc-text">vue基础语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#mutache-语法糖"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">mutache 语法糖</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mustache语法糖对数据类型的支持（-js语法的支持-）"><span class="post-toc-number">1.1.0.1.</span> <span class="post-toc-text">mustache语法糖对数据类型的支持（ js语法的支持 ）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mustache-绑定-dom的属性"><span class="post-toc-number">1.1.0.2.</span> <span class="post-toc-text">mustache 绑定 dom的属性</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#指令：-是绑定在dom属性上"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">指令： ( 是绑定在dom属性上 )</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#v-html"><span class="post-toc-number">1.2.0.1.</span> <span class="post-toc-text">v-html:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#v-text："><span class="post-toc-number">1.2.0.2.</span> <span class="post-toc-text">v-text：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#v-show"><span class="post-toc-number">1.2.0.3.</span> <span class="post-toc-text">v-show</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#v-if"><span class="post-toc-number">1.2.0.4.</span> <span class="post-toc-text">v-if</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#v-else"><span class="post-toc-number">1.2.0.5.</span> <span class="post-toc-text">v-else</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#v-else-if"><span class="post-toc-number">1.2.0.6.</span> <span class="post-toc-text">v-else-if</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#v-for"><span class="post-toc-number">1.2.0.7.</span> <span class="post-toc-text">v-for</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key"><span class="post-toc-number">1.2.0.8.</span> <span class="post-toc-text">key:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#vue中如何给dom添加类名"><span class="post-toc-number">1.2.0.9.</span> <span class="post-toc-text">vue中如何给dom添加类名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#事件"><span class="post-toc-number">1.2.0.10.</span> <span class="post-toc-text">事件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#v-model"><span class="post-toc-number">1.2.0.11.</span> <span class="post-toc-text">v-model</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-vue基础语法"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
-    
+    <div class="post-card">
+        <h1 class="post-card-title">No title</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2019-06-19 17:22:59" datetime="2019-06-19T09:22:59.724Z"  itemprop="datePublished">2019-06-19</time>
+
+            <br id="mybreak"/>
+            
+<script>
+	mybreak.style="display:none";
+</script>
 
 
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/0/">No title</a>
-    </h3>
-  
+            <i>·</i>
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>次浏览
+</span>
 
 
-
-
-     <div class="post-meta">
-        <time class="post-time" title="2019-06-19 17:22:59" datetime="2019-06-19T09:22:59.724Z"  itemprop="datePublished">2019-06-19</time>
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <h1 id="vue基础语法"><a href="#vue基础语法" class="headerlink" title="vue基础语法"></a>vue基础语法</h1><h2 id="mutache-语法糖"><a href="#mutache-语法糖" class="headerlink" title="mutache 语法糖"></a>mutache 语法糖</h2><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag"><<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ this.msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ this.$data.msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ this._data.msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line"><span class="tag"></<span class="name">div</span>></span></span><br></pre></td></tr></tbody></table></figure>
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">7</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="vue基础语法"><a href="#vue基础语法" class="headerlink" title="vue基础语法"></a>vue基础语法</h1><h2 id="mutache-语法糖"><a href="#mutache-语法糖" class="headerlink" title="mutache 语法糖"></a>mutache 语法糖</h2><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag"><<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ this.msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ this.$data.msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ this._data.msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">p</span>></span> {{ msg }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line"><span class="tag"></<span class="name">div</span>></span></span><br></pre></td></tr></tbody></table></figure>
 
 <p><code>jsx</code>: javascript + xml<br>可以让我们在dom结构中输写javascript<br>    是 this.msg 简写<br>this.$data.msg -> this.msg -> msg</p>
 <h4 id="mustache语法糖对数据类型的支持（-js语法的支持-）"><a href="#mustache语法糖对数据类型的支持（-js语法的支持-）" class="headerlink" title="mustache语法糖对数据类型的支持（ js语法的支持 ）"></a>mustache语法糖对数据类型的支持（ js语法的支持 ）</h4><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag"><<span class="name">body</span>></span></span><br><span class="line">    <span class="tag"><<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">p</span>></span> number: {{ num }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">p</span>></span> string: {{ str }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">p</span>></span> boolean: {{ bool }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">p</span>></span> null: {{ nul?'1':'2' }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">p</span>></span> undefined: {{ und && 1 || 2 }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">p</span>></span> object: {{ obj.name }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">p</span>></span> array: {{ arr[0] }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">        <span class="tag"><<span class="name">p</span>></span> fn: {{ fn() }} <span class="tag"></<span class="name">p</span>></span></span><br><span class="line">        <span class="comment"><!-- <p> console.log: {{ console.log( 1 ) }} </p></span></span><br><span class="line"><span class="comment">        <p> alert: {{ alert( 2 ) }} </p> --></span></span><br><span class="line">    <span class="tag"></<span class="name">div</span>></span></span><br><span class="line"><span class="tag"></<span class="name">body</span>></span></span><br><span class="line"><span class="tag"><<span class="name">script</span>></span></span><br><span class="line">/*</span><br><span class="line">数据类型：</span><br><span class="line">第一种划分：</span><br><span class="line">基础数据类型： number string boolean</span><br><span class="line">复杂数据类型: Object( array function )</span><br><span class="line">特殊数据类型: null undefined</span><br><span class="line">第二种划分：</span><br><span class="line">初始数据类型: number string boolean null undefined</span><br><span class="line">引用数据类型: object( array function )</span><br><span class="line">结论： mustache支持我们js的数据类型的</span><br><span class="line">conosle.log 和 alert 在我们mustache语法中是不支持的</span><br><span class="line">*/</span><br><span class="line">var vm = new Vue({</span><br><span class="line">    el: '#app',</span><br><span class="line">    data: {</span><br><span class="line">        num: 100,</span><br><span class="line">        str: 'hello Vue.js',</span><br><span class="line">        bool: true,</span><br><span class="line">        nul: null,</span><br><span class="line">        und: undefined,</span><br><span class="line">        obj: {</span><br><span class="line">            name: 'yhk'</span><br><span class="line">        },</span><br><span class="line">        arr: [1,2,3,4],</span><br><span class="line">        fn: function () {</span><br><span class="line">            alert( 2 )</span><br><span class="line">            return '这是一个函数'</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">})</span><br><span class="line"><span class="tag"></<span class="name">script</span>></span></span><br></pre></td></tr></tbody></table></figure>
@@ -299,89 +310,115 @@
             document.body.appendChild(img);
           });
       </script>
-    
-        <div class="post-more-div">
-            <a href="/posts/0/" class="post-more waves-button">
-                続きを読む…
-            </a>
         </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-06-19T09:22:41.119Z" itemprop="dateUpdated">2019-06-19 17:22:41</time>
+</span>
+
+
+        
+        原文链接：<a href="/posts/0/" target="_blank" rel="external">https://yhk15978.github.io/posts/0/</a>
+        
     </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-hello-world"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a href="/posts/4a17b156/">Hello World</a>
-    </h3>
-  
-
-
-
-
-     <div class="post-meta">
-        <time class="post-time" title="2019-06-18 21:33:32" datetime="2019-06-18T13:33:32.075Z"  itemprop="datePublished">2019-06-18</time>
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-    
-        <div class="post-more-div">
-            <a href="/posts/4a17b156/" class="post-more waves-button">
-                続きを読む…
-            </a>
+    <footer>
+        <div onclick="location.href='https://yhk15978.github.io'">
+            <img src="/img/avatar.jpg" alt="姚恒康">
+            <a>姚恒康</a>
         </div>
-    </div>
-    
-</article>
+    </footer>
+</blockquote>
 
-        </li>
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
     
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/0/&title=《No title》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/0/&title=《No title》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — yhkhome&url=https://yhk15978.github.io/posts/0/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
     </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
 
     
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/4a17b156/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：Hello World">下一篇：Hello World</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+
+    
+
+    
+
+
+</article>
 
 </div>
 
@@ -427,8 +464,83 @@
 
     </main>
     
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
     <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/0/&title=《No title》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/0/&title=《No title》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/0/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — yhkhome&url=https://yhk15978.github.io/posts/0/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/0/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABuUlEQVR42u3ay26EMAwFUP7/p9t1NQKubZKh0smqEkNy0oXlB8cRr5/i+nz3bM9jxcLFxR1zk4MnvzkjVvfHxcXdz70ONPkx1XfLwQ4XF/eV3E/oU4EMFxf3v3PzOiV5iouL+05uUthMrjEvrnBxcXdyqyFpxd9L+ru4uLgtbm9A0iuKeif+2Q0XF3cLNw8o10nJNSt5mp+Li4u7mttLRKqBqZc23fxfcXFxF3OTNGUS2nrjlpuMDBcXdzG397FFMvaoNklvwhwuLu4Wbm/rvCGSPG3uiYuLu4w7KWyeqkeatRouLu5ibpKyzGe51QucBjJcXNzF3GrR0kt05oNVXFzc73LzgDUZo1abI7i4uPu5eQjrBaw8oSmnU7i4uMu4vYFKtbzJRyk3AREXF3cjNx919BKXXnP2tPjBxcXdwq2ON/ICJm+YFrIwXFzcZdxe+7L3UUXvkri4uPu5kxFpHpIm3ZrmZXBxccfc6pgzR+SUQoDDxcXdyK0GmvwC8+Ln5msRXFzcl3Gvw1BOKVdsuLi4r+c+m/rcvIuLi7uRWx2WTFaViIuLu59bDiWtRmqvCTLq7+Li4na4vwMTSOe2Jb2wAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
 
 
     <!-- waves按钮特效 -->
@@ -436,7 +548,7 @@
 
 <!-- 主题配置脚本 -->
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 </script>
 
 <!-- jquery -->
