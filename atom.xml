@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yhk15978.github.io/"/>
-  <updated>2019-06-19T09:26:08.475Z</updated>
+  <updated>2019-06-19T10:54:52.746Z</updated>
   <id>https://yhk15978.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://yhk15978.github.io//posts/4a17b157/"/>
     <id>https://yhk15978.github.io//posts/4a17b157/</id>
     <published>2019-06-19T09:22:59.724Z</published>
-    <updated>2019-06-19T09:26:08.475Z</updated>
+    <updated>2019-06-19T10:54:52.746Z</updated>
     
     <summary type="html">
     
@@ -35,6 +35,10 @@
     
     </summary>
     
+    
+      <category term="Vue" scheme="https://yhk15978.github.io/tags/Vue/"/>
+    
+      <category term="前端" scheme="https://yhk15978.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
