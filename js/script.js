@@ -641,7 +641,7 @@ function getHitokoto() {
 						id: 'yiyanmotto',
 						duration: 100,
 						effact: 'easeOut',
-						content: '为了德玛西亚！'
+						content: '兽人永不为奴！'
 					})
 				} else {
 					getHitokoto()
@@ -652,7 +652,7 @@ function getHitokoto() {
 					id: 'yiyanmotto',
 					duration: 100,
 					effact: 'easeOut',
-					content: data.hitokoto
+					content: '为了德玛西亚！'
 				})
 			}
 		},
