@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>npm scripts  npm脚本 | yhkhome | 姚恒康的博客</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="yhk,姚恒康,姚恒康的博客,yhkhome">
+   
+    <meta name="Robots" content="All">
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="转载自：阮一峰http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html 一、什么是 npm 脚本？npm 允许在package.json文件里面，使用scripts字段定义脚本命令。 12345{// ...&quot;scripts&quot;: {&quot;build&quot;: &quot;node build.js&quot;}}  上面代码是package.json文件的一个片段，里面的s">
+<meta name="keywords" content="前端,js,nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="npm scripts  npm脚本">
+<meta property="og:url" content="https://yhk15978.github.io/posts/4a17b235/index.html">
+<meta property="og:site_name" content="yhkhome">
+<meta property="og:description" content="转载自：阮一峰http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html 一、什么是 npm 脚本？npm 允许在package.json文件里面，使用scripts字段定义脚本命令。 12345{// ...&quot;scripts&quot;: {&quot;build&quot;: &quot;node build.js&quot;}}  上面代码是package.json文件的一个片段，里面的s">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-06-21T14:24:16.549Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="npm scripts  npm脚本">
+<meta name="twitter:description" content="转载自：阮一峰http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html 一、什么是 npm 脚本？npm 允许在package.json文件里面，使用scripts字段定义脚本命令。 12345{// ...&quot;scripts&quot;: {&quot;build&quot;: &quot;node build.js&quot;}}  上面代码是package.json文件的一个片段，里面的s">
+    
+        <link rel="alternate" type="application/atom+xml" title="yhkhome" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon-20190619114346159.ico">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=3.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">姚恒康</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:954123860@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/yhk15978" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">npm scripts  npm脚本</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、什么是-npm-脚本？"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、什么是 npm 脚本？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、原理"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、通配符"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、通配符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、传参"><span class="post-toc-number">4.</span> <span class="post-toc-text">四、传参</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#五、执行顺序"><span class="post-toc-number">5.</span> <span class="post-toc-text">五、执行顺序</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#六、默认值"><span class="post-toc-number">6.</span> <span class="post-toc-text">六、默认值</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#七、钩子"><span class="post-toc-number">7.</span> <span class="post-toc-text">七、钩子</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#八、简写形式"><span class="post-toc-number">8.</span> <span class="post-toc-text">八、简写形式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#九、变量"><span class="post-toc-number">9.</span> <span class="post-toc-text">九、变量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十、常用脚本示例"><span class="post-toc-number">10.</span> <span class="post-toc-text">十、常用脚本示例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十一、-npm-scripts-npm脚本"><span class="post-toc-number">11.</span> <span class="post-toc-text">十一、 npm scripts npm脚本</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#十一、参考链接"><span class="post-toc-number">12.</span> <span class="post-toc-text">十一、参考链接</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#http-www-ruanyifeng-com-blog-2016-10-npm-scripts-htmlby-ruanyifeng"><span class="post-toc-number">12.0.0.1.</span> <span class="post-toc-text">* http://www.ruanyifeng.com/blog/2016/10/npm_scripts.htmlby ruanyifeng</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-npm 脚本"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">npm scripts  npm脚本</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2019-06-21 20:38:25" datetime="2019-06-21T12:38:25.690Z"  itemprop="datePublished">2019-06-21</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/nodejs/">nodejs</a></li></ul></li></ul>
+
+
+            <i>·</i>
+            
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">9</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>转载自：阮一峰<a href="http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html</a></p>
+<h2 id="一、什么是-npm-脚本？"><a href="#一、什么是-npm-脚本？" class="headerlink" title="一、什么是 npm 脚本？"></a>一、什么是 npm 脚本？</h2><p>npm 允许在<code>package.json</code>文件里面，使用<code>scripts</code>字段定义脚本命令。</p>
+<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">// ...</span><br><span class="line">"scripts": {</span><br><span class="line">"build": "node build.js"</span><br><span class="line">}}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>上面代码是<code>package.json</code>文件的一个片段，里面的<code>scripts</code>字段是一个对象。它的每一个属性，对应一段脚本。比如，<code>build</code>命令对应的脚本是<code>node build.js</code>。</p>
+<p>命令行下使用<code>npm run</code>命令，就可以执行这段脚本。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br><span class="line"># 等同于执行</span><br><span class="line">$ node build.js</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这些定义在<code>package.json</code>里面的脚本，就称为 npm 脚本。它的优点很多。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">项目的相关脚本，可以集中在一个地方。</span><br><span class="line">不同项目的脚本命令，只要功能相同，就可以有同样的对外接口。用户不需要知道怎么测试你的项目，只要运行npm run test即可。</span><br><span class="line">可以利用 npm 提供的很多辅助功能。</span><br></pre></td></tr></tbody></table></figure>
+
+<p>查看当前项目的所有 npm 脚本命令，可以使用不带任何参数的<code>npm run</code>命令。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="二、原理"><a href="#二、原理" class="headerlink" title="二、原理"></a>二、原理</h2><p>npm 脚本的原理非常简单。每当执行<code>npm run</code>，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。</p>
+<p>比较特别的是，<code>npm run</code>新建的这个 Shell，会将当前目录的<code>node_modules/.bin</code>子目录加入<code>PATH</code>变量，执行结束后，再将PATH变量恢复原样。</p>
+<p>这意味着，当前目录的<code>node_modules/.bin</code>子目录里面的所有脚本，都可以直接用脚本名调用，而不必加上路径。比如，当前项目的依赖里面有<code>Mocha</code>，只要直接写<code>mocha test</code>就可以了。</p>
+<figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"test": "mocha test"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>而不用写成下面这样。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"test": "./node_modules/.bin/mocha test"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>由于 npm 脚本的唯一要求就是可以在 Shell 执行，因此它不一定是 Node 脚本，任何可执行文件都可以写在里面。<br>npm 脚本的退出码，也遵守 Shell 脚本规则。如果退出码不是<code>0</code>，npm 就认为这个脚本执行失败。</p>
+<h2 id="三、通配符"><a href="#三、通配符" class="headerlink" title="三、通配符"></a>三、通配符</h2><p>由于 npm 脚本就是 Shell 脚本，因为可以使用 Shell 通配符。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"lint": "jshint *.js"</span><br><span class="line">"lint": "jshint **/*.js"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>上面代码中，<code>*</code>表示任意文件名，<code>**</code>表示任意一层子目录。<br>如果要将通配符传入原始命令，防止被 Shell 转义，要将星号转义。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"test": "tap test/\*.js"</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="四、传参"><a href="#四、传参" class="headerlink" title="四、传参"></a>四、传参</h2><p>向 npm 脚本传入参数，要使用<code>--</code>标明</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"lint": "jshint **.js"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>向上面的<code>npm run lint</code>命令传入参数，必须写成下面这样。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run lint --  --reporter checkstyle > checkstyle.xml</span><br></pre></td></tr></tbody></table></figure>
+
+<p>也可以在package.json里面再封装一个命令。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"lint": "jshint **.js",</span><br><span class="line">"lint:checkstyle": "npm run lint -- --reporter checkstyle > checkstyle.xml"</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="五、执行顺序"><a href="#五、执行顺序" class="headerlink" title="五、执行顺序"></a>五、执行顺序</h2><p>如果 npm 脚本里面需要执行多个任务，那么需要明确它们的执行顺序。<br>如果是并行执行（即同时的平行执行），可以使用<code>&</code>符号。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run script1.js & npm run script2.js</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果是继发执行（即只有前一个任务成功，才执行下一个任务），可以使用<code>&&</code>符号。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run script1.js && npm run script2.js</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这两个符号是 Bash 的功能。此外，还可以使用 node 的任务管理模块：<a href="https://github.com/paulpflug/script-runner" target="_blank" rel="noopener">script-runner</a>、<a href="https://github.com/mysticatea/npm-run-all" target="_blank" rel="noopener">npm-run-all</a>、<a href="https://github.com/coderaiser/redrun" target="_blank" rel="noopener">redrun</a>。</p>
+<h2 id="六、默认值"><a href="#六、默认值" class="headerlink" title="六、默认值"></a>六、默认值</h2><p>一般来说，npm 脚本由用户提供。但是，npm 对两个脚本提供了默认值。也就是说，这两个脚本不用定义，就可以直接使用。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"start":"node sever.js",</span><br><span class="line">"install":"node-gyp rebuild"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>上面代码中，<code>npm run start</code>的默认值是<code>node server.js</code>，前提是项目根目录下有<code>server.js</code>这个脚本；<code>npm run install</code>的默认值是<code>node-gyp rebuild</code>，前提是项目根目录下有<code>binding.gyp</code>文件。</p>
+<h2 id="七、钩子"><a href="#七、钩子" class="headerlink" title="七、钩子"></a>七、钩子</h2><p>npm 脚本有<code>pre</code>和<code>post</code>两个钩子。举例来说，<code>build</code>脚本命令的钩子就是<code>prebuild</code>和<code>postbuild</code>。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"prebuild": "echo I run before the build script",</span><br><span class="line">"build": "cross-env NODE_ENV=production webpack",</span><br><span class="line">"postbuild": "echo I run after the build script"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>用户执行<code>npm run build</code>的时候，会自动按照下面的顺序执行。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run prebuild && npm run build && npm run postbuild</span><br></pre></td></tr></tbody></table></figure>
+
+<p>因此，可以在这两个钩子里面，完成一些准备工作和清理工作。下面是一个例子。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"clean": "rimraf ./dist && mkdir dist",</span><br><span class="line">"prebuild": "npm run clean",</span><br><span class="line">"build": "cross-env NODE_ENV=production webpack"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>npm 默认提供下面这些钩子</p>
+<ul>
+<li>prepublish，postpublish</li>
+<li>preinstall，postinstallpreuninstall，</li>
+<li>postuninstallpreversion，postversionpretest</li>
+<li>posttestprestop，poststopprestart，</li>
+<li>poststartprerestart，postrestart</li>
+</ul>
+<p>自定义的脚本命令也可以加上<code>pre</code>和<code>post</code>钩子。比如，<code>myscript</code>这个脚本命令，也有<code>premyscript</code>和<code>postmyscript</code>钩子。不过，双重的<code>pre</code>和<code>post</code>无效，比如<code>prepretest</code>和<code>postposttest</code>是无效的。<br>npm 提供一个<code>npm_lifecycle_event</code>变量，返回当前正在运行的脚本名称，比如<code>pretest</code>、<code>test</code>、<code>posttest</code>等等。所以，可以利用这个变量，在同一个脚本文件里面，为不同的<code>npm scripts</code>命令编写代码。请看下面的例子。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> TARGET = process.env.npm_lifecycle_event;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (TARGET === <span class="string">'test'</span>) {</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Running the test task!`</span>);}</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (TARGET === <span class="string">'pretest'</span>) {</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Running the pretest task!`</span>);}</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (TARGET === <span class="string">'posttest'</span>) {</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Running the posttest task!`</span>);}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>注意，<code>prepublish</code>这个钩子不仅会在<code>npm publish</code>命令之前运行，还会在<code>npm install</code>（不带任何参数）命令之前运行。这种行为很容易让用户感到困惑，所以 npm 4 引入了一个新的钩子<code>prepare</code>，行为等同于<code>prepublish</code>，而从 npm 5 开始，<code>prepublish</code>将只在<code>npm publish</code>命令之前运行。</p>
+<h2 id="八、简写形式"><a href="#八、简写形式" class="headerlink" title="八、简写形式"></a>八、简写形式</h2><p>四个常用的 npm 脚本有简写形式。</p>
+<ul>
+<li>npm start是npm run start</li>
+<li>npm stop是npm run stop的简写</li>
+<li>npm test是npm run test的简写</li>
+<li>npm restart是npm run stop && npm run restart && npm run start的简写</li>
+</ul>
+<p><code>npm start</code>、<code>npm stop</code>和<code>npm restart</code>都比较好理解，而<code>npm restart</code>是一个复合命令，实际上会执行三个脚本命令：<code>stop</code>、<code>restart</code>、<code>start</code>。具体的执行顺序如下。</p>
+<ol>
+<li>prerestart</li>
+<li>prestop</li>
+<li>stop</li>
+<li>poststop</li>
+<li>restart</li>
+<li>prestart</li>
+<li>start</li>
+<li>poststart</li>
+<li>postrestart</li>
+</ol>
+<h2 id="九、变量"><a href="#九、变量" class="headerlink" title="九、变量"></a>九、变量</h2><p>npm 脚本有一个非常强大的功能，就是可以使用 npm 的内部变量。<br>首先，通过<code>npm_package_</code>前缀，npm 脚本可以拿到<code>package.json</code>里面的字段。比如，下面是一个<code>package.json</code>。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  "name": "foo", </span><br><span class="line">  "version": "1.2.5",</span><br><span class="line">  "scripts": {</span><br><span class="line">    "view": "node view.js"</span><br><span class="line">  }}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>那么，变量<code>npm_package_name</code>返回<code>foo</code>，变量<code>npm_package_version</code>返回<code>1.2.5</code>。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// view.js</span></span><br><span class="line"><span class="built_in">console</span>.log(process.env.npm_package_name); <span class="comment">// foo</span></span><br><span class="line"><span class="built_in">console</span>.log(process.env.npm_package_version); <span class="comment">// 1.2.5</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>上面代码中，我们通过环境变量<code>process.env</code>对象，拿到<code>package.json</code>的字段值。如果是 Bash 脚本，可以用<code>$npm_package_name</code>和<code>$npm_package_version</code>取到这两个值。</p>
+<p><code>npm_package_</code>前缀也支持嵌套的<code>package.json</code>字段。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">"repository": {</span><br><span class="line">   "type": "git",</span><br><span class="line">   "url": "xxx"</span><br><span class="line"> },</span><br><span class="line"> scripts: {</span><br><span class="line">   "view": "echo $npm_package_repository_type"</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
+
+<p>上面代码中，<code>repository</code>字段的<code>type</code>属性，可以通过<code>npm_package_repository_type</code>取到。下面是另外一个例子。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"scripts": {</span><br><span class="line">  "install": "foo.js"}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>上面代码中，<code>npm_package_scripts_install</code>变量的值等于<code>foo.js</code>。</p>
+<p>然后，npm 脚本还可以通过<code>npm_config_</code>前缀，拿到 npm 的配置变量，即<code>npm config get xxx</code>命令返回的值。比如，当前模块的发行标签，可以通过<code>npm_config_tag</code>取到。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"view": "echo $npm_config_tag",</span><br></pre></td></tr></tbody></table></figure>
+
+<p>注意，<code>package.json</code>里面的<code>config</code>对象，可以被环境变量覆盖。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">{ </span><br><span class="line">  "name" : "foo",</span><br><span class="line">  "config" : { "port" : "8080" },</span><br><span class="line">  "scripts" : { "start" : "node server.js" }}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>上面代码中，<code>npm_package_config_port</code>变量返回的是8080。这个值可以用下面的方法覆盖。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm config set foo:port 80</span><br></pre></td></tr></tbody></table></figure>
+
+<p>最后，<code>env</code>命令可以列出所有环境变量。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"env": "env"</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="十、常用脚本示例"><a href="#十、常用脚本示例" class="headerlink" title="十、常用脚本示例"></a>十、常用脚本示例</h2><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 删除目录</span><br><span class="line">"clean": "rimraf dist/*",</span><br><span class="line">// 本地搭建一个 HTTP 服务</span><br><span class="line">"serve": "http-server -p 9090 dist/",</span><br><span class="line">// 打开浏览器</span><br><span class="line">"open:dev": "opener http://localhost:9090",</span><br><span class="line">// 实时刷新</span><br><span class="line"> "livereload": "live-reload --port 9091 dist/",</span><br><span class="line">// 构建 HTML 文件</span><br><span class="line">"build:html": "jade index.jade > dist/index.html",</span><br><span class="line">// 只要 CSS 文件有变动，就重新执行构建</span><br><span class="line">"watch:css": "watch 'npm run build:css' assets/styles/",</span><br><span class="line">// 只要 HTML 文件有变动，就重新执行构建</span><br><span class="line">"watch:html": "watch 'npm run build:html' assets/html",</span><br><span class="line">// 部署到 Amazon S3</span><br><span class="line">"deploy:prod": "s3-cli sync ./dist/ s3://example-com/prod-site/",</span><br><span class="line">// 构建 favicon</span><br><span class="line">"build:favicon": "node scripts/favicon.js",</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="十一、-npm-scripts-npm脚本"><a href="#十一、-npm-scripts-npm脚本" class="headerlink" title="十一、 npm scripts npm脚本"></a>十一、 npm scripts npm脚本</h2><ol>
+<li>明白为什么要使用npm脚本 集中存储当前项目的所有脚本命令</li>
+<li>npm脚本使用 npm run xxx</li>
+<li>npm多脚本执行 npm run xxx & npm run xxx npm run xxx && npm run xxx</li>
+<li>npm脚本可以简写，但是仅限一下几个<br>npm start<br>npm stop<br>npm test<br>npm restart</li>
+</ol>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line"><span class="attr">"name"</span>: <span class="string">"scripts"</span>,</span><br><span class="line"><span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line"><span class="attr">"description"</span>: <span class="string">""</span>,</span><br><span class="line"><span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line"><span class="attr">"scripts"</span>: {</span><br><span class="line"><span class="attr">"pretest"</span>: <span class="string">"echo pretest"</span>,</span><br><span class="line"><span class="attr">"test"</span>: <span class="string">"echo test"</span>,</span><br><span class="line"><span class="attr">"posttest"</span>: <span class="string">"echo posttest"</span>,</span><br><span class="line"><span class="attr">"dev"</span>: <span class="string">"node server.js"</span>,</span><br><span class="line"><span class="attr">"build"</span>: <span class="string">"npm run dev"</span>,</span><br><span class="line"><span class="attr">"app"</span>: <span class="string">"node app.js"</span>,</span><br><span class="line"><span class="attr">"yyb"</span>: <span class="string">"npm run app&npm run dev"</span>,</span><br><span class="line"><span class="attr">"junge"</span>: <span class="string">"npm run app&&npm run dev"</span>,</span><br><span class="line"><span class="attr">"env"</span>: <span class="string">"env"</span></span><br><span class="line">},</span><br><span class="line"><span class="attr">"keywords"</span>: [],</span><br><span class="line"><span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line"><span class="attr">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="十一、参考链接"><a href="#十一、参考链接" class="headerlink" title="十一、参考链接"></a>十一、参考链接</h2><h5 id="http-www-ruanyifeng-com-blog-2016-10-npm-scripts-htmlby-ruanyifeng"><a href="#http-www-ruanyifeng-com-blog-2016-10-npm-scripts-htmlby-ruanyifeng" class="headerlink" title="* http://www.ruanyifeng.com/blog/2016/10/npm_scripts.htmlby ruanyifeng"></a>* <a href="http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html</a>by ruanyifeng</h5><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新：<time datetime="2019-06-21T14:24:16.549Z" itemprop="dateUpdated">2019-06-21 22:24:16</time>
+</span>
+
+
+        
+        原文链接：<a href="/posts/4a17b235/" target="_blank" rel="external">https://yhk15978.github.io/posts/4a17b235/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://yhk15978.github.io'">
+            <img src="/img/avatar.jpg" alt="姚恒康">
+            <a>姚恒康</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/4a17b235/&title=《npm scripts  npm脚本》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/4a17b235/&title=《npm scripts  npm脚本》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/4a17b235/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《npm scripts  npm脚本》 — yhkhome&url=https://yhk15978.github.io/posts/4a17b235/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/4a17b235/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/4a17b109/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：Node.js 常用模块">下一篇：Node.js 常用模块</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2019
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://yhk15978.github.io">https://yhk15978.github.io/</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+
+        </span>
+        <br/>
+
+        <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/4a17b235/&title=《npm scripts  npm脚本》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/4a17b235/&title=《npm scripts  npm脚本》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/4a17b235/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《npm scripts  npm脚本》 — yhkhome&url=https://yhk15978.github.io/posts/4a17b235/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/4a17b235/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxklEQVR42u3ay4rDMAwF0Pz/T3e2A6GZK8n2tHC8CqE4x10IPXxd8Xrd1u/3757vv7/vee1YuLi4Y+7rcd1/M/lwfry3X8TFxT3I7W39vE818EV/BC4u7gdzdwQyXFzc7+UmYes5JcLFxf0WblL8JOnO84eT4mpZrYaLizvgrkpNJs9b+ru4uLgt7qu48uTmOcz1Fi4u7hluHlDy5KOXGCXfxcXFPcOdjEPyAmk+cL16vRlcXNwBd3LN4vlNnuJEQRMXF/cgNw9PeQJULY2SY+Pi4p7n9oag1XFpxMqLH1xc3A3c3gA1b4j0DhnNhHFxcbdxe63P8lWq1gHexl1cXNwj3LytWW1/rBqs4uLinuROglev2VHNv/4If7i4uJu5eejpFU6TEHlVT4yLizvmVq9QVNsl82schYYpLi7uBu6CSxLFHfLdcHFx/5dbvWCxqmEaeXBxcTdze+3LwvBj3EDBxcU9z81Xb+vJELca/nBxcddye2POtRcyCk0WXFzcg9zmBKY4WN1Yq+Hi4n4Ad37xYlSx4eLifjC3V+rkjdrCKAUXF3cDtzo0fT5StfFa+LNwcXGPcMuhpLVFb6Ay6u/i4uJ2uD+4zhTjPMLqMQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=3.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=3.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=3.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2019/6/11");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "姚恒康");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 敢问路在何方 %c  © Timer  https://yhk15978.github.io \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+
+</body>
+</html>
