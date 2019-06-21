@@ -9,8 +9,6 @@
     <title>categories | yhkhome | 姚恒康的博客</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     
-    <meta name="theme-color" content="#77AAFF">
-    
     
     <meta name="keywords" content="yhk,姚恒康,姚恒康的博客,yhkhome">
    
@@ -54,7 +52,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="yhkhome" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/img/favicon-20190619114346159.ico">
+    <link rel="shortcut icon" href="/">
     <link id="style" rel="stylesheet" href="/css/style.css?v=3.0">
     <script>window.lazyScripts=[]</script>
 
@@ -73,7 +71,7 @@
     <div class="brand-wrap" >
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg" alt="avatar">
+          <img src="/" alt="avatar">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname" id="name">姚恒康</h5>
@@ -86,54 +84,7 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
-              <li class="waves-block waves-effect">
-                  <a href="/"  >
-                    <i class="icon icon-lg icon-home"></i>
-                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
-                  </a>
-              </li>
-            
-              <li class="waves-block waves-effect">
-                  <a href="/archives"  >
-                    <i class="icon icon-lg icon-archives"></i>
-                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
-                  </a>
-              </li>
-            
-              <li class="waves-block waves-effect active">
-                  <a href="/categories"  >
-                    <i class="icon icon-lg icon-th-list"></i>
-                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
-                  </a>
-              </li>
-            
-              <li class="waves-block waves-effect">
-                  <a href="/tags"  >
-                    <i class="icon icon-lg icon-tags"></i>
-                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
-                  </a>
-              </li>
-            
-              <li class="waves-block waves-effect">
-                  <a href="/about"  >
-                    <i class="icon icon-lg icon-smile-o"></i>
-                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
-                  </a>
-              </li>
-            
       <div class="nav2">
-          
-              <a class="nav2item" data-title="Email" href="mailto:954123860@qq.com" target="_parent"title="Email" >
-                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
-              </a>
-          
-              <a class="nav2item" data-title="Github" href="https://github.com/yhk15978" target="_blank"title="Github" >
-                <i class="icon icon-lg icon-github github"></i>
-              </a>
-          
-              <a class="nav2item" data-title="微博" href="https://weibo.com" target="_blank"title="微博" >
-                <i class="icon icon-lg icon-weibo weibo"></i>
-              </a>
           
 
             </div>
@@ -152,17 +103,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">分类</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
+        <div class="flex-col header-title ellipsis"></div>
         
         <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
             <i class="icon icon-lg icon-rss"></i>
@@ -182,13 +123,13 @@
                     <h1 id="pagetitle" class="archivestitle"></h1>
                     <script>
                         if(location.href.indexOf('about')!=-1){
-                            pagetitle.textContent = '俺老孙来也';
+                            pagetitle.textContent = '';
                         }else if(location.href.indexOf('tags')!=-1||location.href.indexOf('categories')!=-1){
                             var a=location.href.substring(location.href.length-5,location.href.length-1);
                             if(a==='tags'){
-                                pagetitle.textContent = '不积小流无以成江海';
+                                pagetitle.textContent = '';
                             }else if(a==='ries'){
-                                pagetitle.textContent = '不积跬步无以至千里';
+                                pagetitle.textContent = '';
                             }
                         }
                     </script>
@@ -203,7 +144,7 @@
     
     	<h5 class="tag-tip">
             <i class="icon icon-lg icon-th-list"></i>
-            目前共&nbsp;1&nbsp;大分类
+            目前共&nbsp;3&nbsp;大分类
         </h5>
         <div class="card-pool">
             
@@ -211,6 +152,30 @@
     <div class="card-card">
         <div class="card-container">
             <span href="/categories/前端/" class="card-link">前端</span>
+            <span class="card-count">
+                (2)
+            </span>
+        </div>
+    </div>
+</a>
+
+                    
+                    <a class="MyTagLink" href="/categories/前端/js/" itemprop="url">
+    <div class="card-card">
+        <div class="card-container">
+            <span href="/categories/前端/js/" class="card-link">js</span>
+            <span class="card-count">
+                (1)
+            </span>
+        </div>
+    </div>
+</a>
+
+                    
+                    <a class="MyTagLink" href="/categories/前端/js/node/" itemprop="url">
+    <div class="card-card">
+        <div class="card-container">
+            <span href="/categories/前端/js/node/" class="card-link">node</span>
             <span class="card-count">
                 (1)
             </span>
@@ -228,9 +193,9 @@
     <div class="footer-content">
         <span class="power">
             <i class="icon icon-lg icon-copyright"></i>
-            2018
+            
             <i class="icon icon-lg icon-heart"></i>
-            <a href="https://yhk15978.github.io">https://yhk15978.github.io/</a>
+            <a href="https://yhk15978.github.io"></a>
             <br/>
             Power by
             <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
@@ -245,22 +210,11 @@
 
         <span>
             
-	<i class="icon icon-lg icon-user">
-<span id="busuanzi_container_site_uv" style='display:none'>
-       访问用户：<span id="busuanzi_value_site_uv"></span>
-    </span>人</i>
-    ·
-    <i class="icon icon-lg icon-eye">
-    <span id="busuanzi_container_site_pv" style='display:none'>
-      访问次数：<span id="busuanzi_value_site_pv"></span>
-    </span>次
-    </i>
-
 
         </span>
         <br/>
 
-        <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span>
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
     </div>
 </footer>
 
@@ -275,7 +229,7 @@
 
 <!-- 主题配置脚本 -->
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 </script>
 
 <!-- jquery -->
@@ -356,7 +310,7 @@ $("#name").bumpyText();
 
 /* 网站运行时间 */
 setInterval(function () {
-	setTime("2019/6/11");
+	setTime("");
 }, 1000);
 
 /* 文章块的淡出 */
@@ -389,8 +343,6 @@ if (window.console && window.console.log) {
 
 
 <!-- 不蒜子 -->
-
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 </body>
