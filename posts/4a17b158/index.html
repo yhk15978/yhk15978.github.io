@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>前端异步流程 | yhkhome | 姚恒康的博客</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="yhk,姚恒康,姚恒康的博客,yhkhome">
+   
+    <meta name="Robots" content="All">
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="前端异步流程1. 传统的原生异步- 回调函数 - 事件2. 使用异步流程工具（ 别人封装好的东西 ）- es6 Promise   1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253/* Promise 是异步编程的一种解决方案，比传统的解决方案–回调函数">
+<meta name="keywords" content="前端,node,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端异步流程">
+<meta property="og:url" content="https://yhk15978.github.io/posts/4a17b158/index.html">
+<meta property="og:site_name" content="yhkhome">
+<meta property="og:description" content="前端异步流程1. 传统的原生异步- 回调函数 - 事件2. 使用异步流程工具（ 别人封装好的东西 ）- es6 Promise   1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253/* Promise 是异步编程的一种解决方案，比传统的解决方案–回调函数">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-06-21T11:25:03.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端异步流程">
+<meta name="twitter:description" content="前端异步流程1. 传统的原生异步- 回调函数 - 事件2. 使用异步流程工具（ 别人封装好的东西 ）- es6 Promise   1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253/* Promise 是异步编程的一种解决方案，比传统的解决方案–回调函数">
+    
+        <link rel="alternate" type="application/atom+xml" title="yhkhome" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon-20190619114346159.ico">
+    <link id="style" rel="stylesheet" href="//unpkg.com/hexo-theme-tomatoes@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">姚恒康</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:954123860@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/yhk15978" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">前端异步流程</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前端异步流程"><span class="post-toc-number">1.</span> <span class="post-toc-text">前端异步流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-传统的原生异步"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1. 传统的原生异步</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-使用异步流程工具（-别人封装好的东西-）"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2. 使用异步流程工具（ 别人封装好的东西 ）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#es6-Promise"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">- es6 Promise</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#es6-generator函数"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">- es6 generator函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#node-js中的-nextTick-setImmudiate"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">- node.js中的 nextTick setImmudiate</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第三方的-async-js-库"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">- 第三方的 async.js 库</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-前端异步流程"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">前端异步流程</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2019-06-21 19:20:20" datetime="2019-06-21T11:20:20.187Z"  itemprop="datePublished">2019-06-21</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/js/">js</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/js/node/">node</a></li></ul></li></ul></li></ul>
+
+
+            <i>·</i>
+            
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">6</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前端异步流程"><a href="#前端异步流程" class="headerlink" title="前端异步流程"></a>前端异步流程</h2><h3 id="1-传统的原生异步"><a href="#1-传统的原生异步" class="headerlink" title="1. 传统的原生异步"></a>1. 传统的原生异步</h3><pre><code>- 回调函数
+- 事件</code></pre><h3 id="2-使用异步流程工具（-别人封装好的东西-）"><a href="#2-使用异步流程工具（-别人封装好的东西-）" class="headerlink" title="2. 使用异步流程工具（ 别人封装好的东西 ）"></a>2. 使用异步流程工具（ 别人封装好的东西 ）</h3><h4 id="es6-Promise"><a href="#es6-Promise" class="headerlink" title="- es6 Promise"></a>- es6 Promise</h4>   <figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Promise 是异步编程的一种解决方案，比传统的解决方案–回调函数和事件－－更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了语法，原生提供了Promise</span></span><br><span class="line"><span class="comment"> 所谓Promise ，简单说就是一个容器，里面保存着某个未来才回结束的事件(通常是一个异步操作）的结果。从语法上说，Promise是一个对象，从它可以获取异步操作的消息。</span></span><br><span class="line"><span class="comment"> Promise 对象的状态不受外界影响</span></span><br><span class="line"><span class="comment"> 三种状态:</span></span><br><span class="line"><span class="comment"> pending：进行中</span></span><br><span class="line"><span class="comment"> fulfilled :已经成功</span></span><br><span class="line"><span class="comment"> rejected 已经失败</span></span><br><span class="line"><span class="comment"> 状态改变：</span></span><br><span class="line"><span class="comment"> Promise对象的状态改变，只有两种可能：</span></span><br><span class="line"><span class="comment"> 从pending变为fulfilled</span></span><br><span class="line"><span class="comment"> 从pending变为rejected。</span></span><br><span class="line"><span class="comment"> 这两种情况只要发生，状态就凝固了，不会再变了，这时就称为resolved（已定型）*/</span></span><br><span class="line"> </span><br><span class="line"> <span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =></span> {</span><br><span class="line"> resolve(<span class="string">'任务一'</span>)</span><br><span class="line"> }).then(<span class="function"><span class="params">data</span> =></span> {</span><br><span class="line"> <span class="built_in">console</span>.log(data);</span><br><span class="line"> <span class="keyword">return</span> data;</span><br><span class="line"> })</span><br><span class="line"> <span class="keyword">const</span> p3 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =></span> {</span><br><span class="line"> setTimeout(<span class="function"><span class="params">()</span> =></span> {</span><br><span class="line"> resolve(<span class="string">'任务三'</span>)</span><br><span class="line"> }, <span class="number">1000</span>)</span><br><span class="line"> }).then(<span class="function"><span class="params">data</span> =></span> {</span><br><span class="line"> <span class="built_in">console</span>.log(data);</span><br><span class="line"> <span class="keyword">return</span> data;</span><br><span class="line"> })</span><br><span class="line"> <span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =></span> {</span><br><span class="line"> setTimeout(<span class="function"><span class="params">()</span> =></span> {</span><br><span class="line"> resolve(<span class="string">'任务二'</span>)</span><br><span class="line"> }, <span class="number">2000</span>)</span><br><span class="line"> }).then(<span class="function"><span class="params">data</span> =></span> {</span><br><span class="line"> <span class="built_in">console</span>.log(data)</span><br><span class="line"> <span class="keyword">return</span> data</span><br><span class="line"> })</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'主线程任务'</span>) <span class="comment">//主线程任务</span></span><br><span class="line"> <span class="comment">// all race</span></span><br><span class="line"> <span class="comment">// 如果作为参数的Promise实例自身定义了catch方法，那么它被rejected是并不会触发Promise.all()的catch方法</span></span><br><span class="line">  <span class="comment">// Promise.all中都成功返回才执行</span></span><br><span class="line"> <span class="built_in">Promise</span>.all([p1, p2, p3]).then(<span class="function"><span class="params">data</span> =></span> { <span class="comment">//data为p1,p2,p3返回值组成的数组</span></span><br><span class="line"> <span class="built_in">console</span>.log(data) <span class="comment">//[ '任务一', '任务二', '任务三' ]</span></span><br><span class="line"> }).catch(<span class="function"><span class="params">e</span> =></span> <span class="built_in">console</span>.log(e))</span><br><span class="line"> <span class="comment">// Promise.race中只要有一个成功返回就执行</span></span><br><span class="line"> <span class="built_in">Promise</span>.race([p1, p2, p3]).then(<span class="function"><span class="params">data</span> =></span> { <span class="comment">//data为p1,p2,p3中最先成功的返回值</span></span><br><span class="line"> <span class="built_in">console</span>.log(data) <span class="comment">//任务一</span></span><br><span class="line"> })</span><br><span class="line"> <span class="comment">// 以上代码执行结果为</span></span><br><span class="line"> <span class="comment">// 主线程任务</span></span><br><span class="line"> <span class="comment">// 任务一</span></span><br><span class="line"> <span class="comment">// 任务一</span></span><br><span class="line"> <span class="comment">// 任务三</span></span><br><span class="line"> <span class="comment">// 任务二</span></span><br><span class="line"> <span class="comment">// [ '任务一', '任务二', '任务三' ]</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="es6-generator函数"><a href="#es6-generator函数" class="headerlink" title="- es6 generator函数"></a>- es6 generator函数</h4>   <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">generator函数</span></span><br><span class="line"><span class="comment">在function关键字后面加一个* 这样定义的函数就叫做generator函数</span></span><br><span class="line"><span class="comment">通过yield关键字来定义任务</span></span><br><span class="line"><span class="comment">通过fn().next() 来执行任务</span></span><br><span class="line"><span class="comment">value表示yield关键字后任务执行的结果</span></span><br><span class="line"><span class="comment">done表示当前定义的所有的任务是否执行完成的一个状态</span></span><br><span class="line"><span class="comment">理解：</span></span><br><span class="line"><span class="comment">多任务的定义，多任务执行</span></span><br><span class="line"><span class="comment">让自己定义的多个任务依次执行，上一个任务如果没有完成，下一个任务就不会开始</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fn</span>(<span class="params"></span>) </span>{</span><br><span class="line"><span class="keyword">yield</span> <span class="string">'任务一'</span></span><br><span class="line"><span class="keyword">yield</span> <span class="string">'任务二'</span></span><br><span class="line"><span class="keyword">return</span> <span class="string">'任务'</span></span><br><span class="line">}</span><br><span class="line"><span class="keyword">const</span> a = fn()</span><br><span class="line"><span class="built_in">console</span>.log(a.next()) <span class="comment">// { value: '任务一'，done: false }</span></span><br><span class="line"><span class="built_in">console</span>.log(a.next()) <span class="comment">//{ value: '任务二', done: false }</span></span><br><span class="line"><span class="built_in">console</span>.log(a.next()) <span class="comment">//{ value: '任务', done: true }</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'主线程任务'</span>) <span class="comment">//主线程任务</span></span><br></pre></td></tr></tbody></table></figure>
+
+<pre><code>- es6( 7 ) async 函数
+    <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">async函数</span></span><br><span class="line"><span class="comment">es6提供</span></span><br><span class="line"><span class="comment">配合关键字 await使用</span></span><br><span class="line"><span class="comment">await 表示，等待，任务一执行结束之后，才会执行任务二</span></span><br><span class="line"><span class="comment">async函数返回值为Promise对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>{</span><br><span class="line"><span class="keyword">const</span> result = <span class="keyword">await</span> <span class="string">'任务一'</span></span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'任务二'</span>)</span><br><span class="line">}</span><br><span class="line">fn()</span><br><span class="line"><span class="keyword">const</span> fn1 = <span class="keyword">async</span>() => {</span><br><span class="line"><span class="keyword">const</span> res = <span class="keyword">await</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =></span> {</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =></span> { res(<span class="string">'任务3'</span>) }, <span class="number">2000</span>)</span><br><span class="line">}).then(<span class="function"><span class="params">result</span> =></span> {</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br><span class="line"><span class="keyword">return</span> result;</span><br><span class="line">})</span><br><span class="line"><span class="keyword">let</span> req = <span class="keyword">await</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">res, rej</span>) =></span> {</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =></span> { res(<span class="string">'任务四'</span>) }, <span class="number">1000</span>)</span><br><span class="line">}).then(<span class="function"><span class="params">result</span> =></span> {</span><br><span class="line"><span class="built_in">console</span>.log(result)</span><br><span class="line"><span class="keyword">return</span> result;</span><br><span class="line">})</span><br><span class="line"><span class="built_in">console</span>.log(req)</span><br><span class="line"><span class="built_in">console</span>.log(res)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">false</span>) {</span><br><span class="line"><span class="keyword">return</span> req</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line"><span class="keyword">throw</span> res</span><br><span class="line">}</span><br><span class="line"><span class="comment">//返回值通过then()调用，抛出值通过catch()调用</span></span><br><span class="line">}</span><br><span class="line">fn1().then(<span class="function"><span class="params">re</span> =></span> <span class="built_in">console</span>.log(re)).catch(<span class="function"><span class="params">re</span> =></span> <span class="built_in">console</span>.log(re))</span><br><span class="line"><span class="comment">//结果:</span></span><br><span class="line"><span class="comment">// 任务一</span></span><br><span class="line"><span class="comment">// 任务二</span></span><br><span class="line"><span class="comment">// 任务3</span></span><br><span class="line"><span class="comment">// 任务四</span></span><br><span class="line"><span class="comment">// 任务四</span></span><br><span class="line"><span class="comment">// 任务3</span></span><br><span class="line"><span class="comment">// 任务3</span></span><br></pre></td></tr></tbody></table></figure></code></pre><h4 id="node-js中的-nextTick-setImmudiate"><a href="#node-js中的-nextTick-setImmudiate" class="headerlink" title="- node.js中的 nextTick setImmudiate"></a>- node.js中的 nextTick setImmudiate</h4> <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nextTick()的回调函数执行的优先级要高于setImmediate();</span><br><span class="line">process.nextTick()属于idle观察者,setImmediate()属于check观察者.在每一轮循环检查中,idle观察者先于I/O观察者,I/O观察者先于check观察者.</span><br><span class="line">在具体实现上,process.nextTick()的回调函数保存在一个数组中,</span><br><span class="line">setImmediate()的结果则是保存在链表中.</span><br><span class="line">在行为上,process.nextTick()在每轮循环中会将数组中的回调函数全部执行完.</span><br><span class="line">而setImmediate()在每轮循环中执行链表中的一个回调函数.</span><br><span class="line">nextTick > 回调函数 > setImmediate</span><br></pre></td></tr></tbody></table></figure>
+
+   <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Node.js提供的</span></span><br><span class="line"><span class="comment">nextTick</span></span><br><span class="line"><span class="comment">setImmediate</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">//加入2个nextTick()的回调函数</span></span><br><span class="line">process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"nextTick延迟执行A"</span>);</span><br><span class="line">});</span><br><span class="line">process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"nextTick延迟执行B"</span>);</span><br><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"setImmediate延迟执行C"</span>);</span><br><span class="line">});</span><br><span class="line">process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"nextTick延迟执行D"</span>);</span><br><span class="line">});</span><br><span class="line">});</span><br><span class="line"><span class="comment">//加入两个setImmediate()回调函数</span></span><br><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"setImmediate延迟执行E"</span>);</span><br><span class="line">process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"强势插入F"</span>);</span><br><span class="line">});</span><br><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"setImmediate延迟执行G"</span>);</span><br><span class="line">});</span><br><span class="line">});</span><br><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"setImmediate延迟执行H"</span>);</span><br><span class="line">process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"强势插入I"</span>);</span><br><span class="line">});</span><br><span class="line">process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"强势插入J"</span>);</span><br><span class="line">});</span><br><span class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"setImmediate延迟执行K"</span>);</span><br><span class="line">});</span><br><span class="line">});</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"正常执行L"</span>);</span><br><span class="line"><span class="comment">// 正常执行L</span></span><br><span class="line"><span class="comment">// nextTick延迟执行A</span></span><br><span class="line"><span class="comment">// nextTick延迟执行B</span></span><br><span class="line"><span class="comment">// nextTick延迟执行D</span></span><br><span class="line"><span class="comment">// setImmediate延迟执行E</span></span><br><span class="line"><span class="comment">// setImmediate延迟执行H</span></span><br><span class="line"><span class="comment">// setImmediate延迟执行C</span></span><br><span class="line"><span class="comment">// 强势插入F</span></span><br><span class="line"><span class="comment">// 强势插入I</span></span><br><span class="line"><span class="comment">// 强势插入J</span></span><br><span class="line"><span class="comment">// setImmediate延迟执行G</span></span><br><span class="line"><span class="comment">// setImmediate延迟执行K</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="第三方的-async-js-库"><a href="#第三方的-async-js-库" class="headerlink" title="- 第三方的 async.js 库"></a>- 第三方的 async.js 库</h4>  <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">async.js</span></span><br><span class="line"><span class="comment">第三方的库</span></span><br><span class="line"><span class="comment">案例：</span></span><br><span class="line"><span class="comment">parallel</span></span><br><span class="line"><span class="comment">series</span></span><br><span class="line"><span class="comment">功能：</span></span><br><span class="line"><span class="comment">1. 可以实现异步</span></span><br><span class="line"><span class="comment">2. 串行series和并行parallel</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">async</span> = <span class="built_in">require</span>( <span class="string">'async'</span> )</span><br><span class="line"><span class="keyword">async</span>.series({</span><br><span class="line">one: <span class="function"><span class="keyword">function</span> (<span class="params"> callback </span>) </span>{</span><br><span class="line">setTimeout( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">callback( <span class="literal">null</span>, <span class="number">1</span>)</span><br><span class="line">},<span class="number">200</span>)</span><br><span class="line">},</span><br><span class="line">two: <span class="function"><span class="keyword">function</span> (<span class="params"> callback </span>) </span>{</span><br><span class="line">setTimeout( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">callback ( <span class="literal">null</span> , <span class="number">2</span> )</span><br><span class="line">},<span class="number">100</span>)</span><br><span class="line">}</span><br><span class="line">}, <span class="function"><span class="keyword">function</span> (<span class="params"> error , results </span>) </span>{</span><br><span class="line"><span class="built_in">console</span>.log( <span class="string">'series'</span>,results )</span><br><span class="line">})</span><br><span class="line"><span class="built_in">console</span>.log( <span class="string">'主线程'</span> )</span><br><span class="line"><span class="keyword">async</span>.parallel({</span><br><span class="line">one: <span class="function"><span class="keyword">function</span> (<span class="params"> callback </span>) </span>{</span><br><span class="line">setTimeout( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">callback( <span class="literal">null</span>, <span class="number">1</span>)</span><br><span class="line">},<span class="number">200</span>)</span><br><span class="line">},</span><br><span class="line">two: <span class="function"><span class="keyword">function</span> (<span class="params"> callback </span>) </span>{</span><br><span class="line">setTimeout( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">callback ( <span class="literal">null</span> , <span class="number">2</span> )</span><br><span class="line">},<span class="number">100</span>)</span><br><span class="line">}</span><br><span class="line">}, <span class="function"><span class="keyword">function</span> (<span class="params"> error , results </span>) </span>{</span><br><span class="line"><span class="built_in">console</span>.log( <span class="string">'parallel'</span>,results )</span><br><span class="line">})        </span><br><span class="line"><span class="comment">// 主线程</span></span><br><span class="line"><span class="comment">// parallel { two: 2, one: 1 }</span></span><br><span class="line"><span class="comment">// series { one: 1, two: 2 }</span></span><br></pre></td></tr></tbody></table></figure>
+
+<pre><code>总结：
+异步流程的任务是放在异步队列中的，异步队列只有在主线程执行完之后采取执行</code></pre><ol start="3">
+<li>参考资料<ol>
+<li>Promise<br><a href="https://blog.csdn.net/MrJavaweb/article/details/79475949" target="_blank" rel="noopener">https://blog.csdn.net/MrJavaweb/article/details/79475949</a></li>
+<li>Generator<br><a href="https://www.cnblogs.com/imwtr/p/5913294.html" target="_blank" rel="noopener">https://www.cnblogs.com/imwtr/p/5913294.html</a></li>
+<li>Async-await</li>
+<li>Node.js 中的nextTick()和setimmediate()<br><a href="https://www.cnblogs.com/5ishare/p/5268273.html" target="_blank" rel="noopener">https://www.cnblogs.com/5ishare/p/5268273.html</a></li>
+<li>async库<br><a href="https://caolan.github.io/async/" target="_blank" rel="noopener">https://caolan.github.io/async/</a><br>参考文档<br>Event-loop<br><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html?bsh_bid=983729729" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2014/10/event-loop.html?bsh_bid=983729729</a><br>史上最易读懂的 Promise/A+ 完全实现<br><a href="https://zhuanlan.zhihu.com/p/21834559" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/21834559</a></li>
+</ol>
+</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新：<time datetime="2019-06-21T11:25:03.856Z" itemprop="dateUpdated">2019-06-21 19:25:03</time>
+</span>
+
+
+        
+        原文链接：<a href="/posts/4a17b158/" target="_blank" rel="external">https://yhk15978.github.io/posts/4a17b158/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://yhk15978.github.io'">
+            <img src="/img/avatar.jpg" alt="姚恒康">
+            <a>姚恒康</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/4a17b158/&title=《前端异步流程》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/4a17b158/&title=《前端异步流程》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/4a17b158/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端异步流程》 — yhkhome&url=https://yhk15978.github.io/posts/4a17b158/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/4a17b158/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/4a17b157/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：vue基础语法">下一篇：vue基础语法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2019
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://yhk15978.github.io">https://yhk15978.github.io/</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+
+        </span>
+        <br/>
+
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/4a17b158/&title=《前端异步流程》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/4a17b158/&title=《前端异步流程》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/4a17b158/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端异步流程》 — yhkhome&url=https://yhk15978.github.io/posts/4a17b158/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/4a17b158/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABx0lEQVR42u3ay4rDMAwF0P7/T2e2haHplWSbFI5XIU3jk42wHq9XvK63ld95v3//tsULFxd3zL1u1/8tq9snn5EYcHFxz3M/bZOHnvxT75/5YsPFxX0kNw9w1UCGi4v7i9wkK5mkUri4uE/jJslPEqp6ZZEtuRouLu6Am4eefddb6ru4uLgt7jVY90EquS7viIuLe4Tb26CaOCUHnaR9i4uLe547OZRUG6jVfxVqKri4uEu58+RkVcLz5RlcXNzN3OTYMTno9BoqH0MeLi7uEe58ywmlN5CBi4u7m5uPV+asauO2kPzg4uIe4VbDWU7vDViUUy9cXNwN3EkgS37NPywqsuDi4h7hVgPW2imwQmO1F31xcXFb3DyQVYckegeaL6VYXFzcI9xezMvpSZukXBDBxcXdzM0HK6vX895OoSeMi4u7lJuHoWrIy99ZLbzi4uLu5l7FdR+qkjJoUjaNzmK4uLjbuPNBq0mlNh/FwMXFPc+tBq+1H1woleLi4h7nTlqqvRLqKFfDxcV9DLf3ZHWEa9kYFi4u7hHuffDKix29kisuLu55bi/5yQe5Jseaj50fXFzcbdz8dfmr83SoWmbFxcXdzP0DWVk4v/2gIlQAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/jquery.min.js"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/main.min.js" ></script>
+
+<!-- 动画&配置 -->
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/script.min.js" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2019/6/11");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "姚恒康");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 敢问路在何方 %c  © Timer  https://yhk15978.github.io \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+
+</body>
+</html>

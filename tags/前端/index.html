@@ -6,8 +6,10 @@
     
     
     
-    <title>Tags: 前端 | yhkhome | 姚恒康的博客</title>
+    <title>标签: 前端 | yhkhome | 姚恒康的博客</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
     
     
     <meta name="keywords" content="yhk,姚恒康,姚恒康的博客,yhkhome">
@@ -51,8 +53,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="yhkhome" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/">
-    <link id="style" rel="stylesheet" href="/css/style.css?v=3.0">
+    <link rel="shortcut icon" href="/img/favicon-20190619114346159.ico">
+    <link id="style" rel="stylesheet" href="//unpkg.com/hexo-theme-tomatoes@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -70,7 +72,7 @@
     <div class="brand-wrap" >
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/" alt="avatar">
+          <img src="/img/avatar.jpg" alt="avatar">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname" id="name">姚恒康</h5>
@@ -83,7 +85,54 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect active">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
       <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:954123860@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/yhk15978" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
           
 
             </div>
@@ -102,7 +151,17 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">undefined: 前端</div>
+        <div class="flex-col header-title ellipsis">标签: 前端</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
         
         <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
             <i class="icon icon-lg icon-rss"></i>
@@ -122,13 +181,13 @@
                     <h1 id="pagetitle" class="archivestitle"></h1>
                     <script>
                         if(location.href.indexOf('about')!=-1){
-                            pagetitle.textContent = '';
+                            pagetitle.textContent = '俺老孙来也';
                         }else if(location.href.indexOf('tags')!=-1||location.href.indexOf('categories')!=-1){
                             var a=location.href.substring(location.href.length-5,location.href.length-1);
                             if(a==='tags'){
-                                pagetitle.textContent = '';
+                                pagetitle.textContent = '不积小流无以成江海';
                             }else if(a==='ries'){
-                                pagetitle.textContent = '';
+                                pagetitle.textContent = '不积跬步无以至千里';
                             }
                         }
                     </script>
@@ -217,9 +276,9 @@
     <div class="footer-content">
         <span class="power">
             <i class="icon icon-lg icon-copyright"></i>
-            
+            2019
             <i class="icon icon-lg icon-heart"></i>
-            <a href="https://yhk15978.github.io"></a>
+            <a href="https://yhk15978.github.io">https://yhk15978.github.io/</a>
             <br/>
             Power by
             <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
@@ -253,11 +312,11 @@
 
 <!-- 主题配置脚本 -->
 <script>
-var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 </script>
 
 <!-- jquery -->
-<script src="/js/jquery.min.js?v=3.0"></script>
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/jquery.min.js"></script>
 
 <!-- 搜索 -->
 
@@ -272,10 +331,10 @@ var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 
 
 <!-- main博客脚本 -->
-<script src="/js/main.min.js?v=3.0" ></script>
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/main.min.js" ></script>
 
 <!-- 动画&配置 -->
-<script src="/js/script.min.js?v=3.0" ></script>
+<script src="//unpkg.com/hexo-theme-tomatoes@latest/js/script.min.js" ></script>
 
 <!-- 脚本管理 -->
 <script>
@@ -334,7 +393,7 @@ $("#name").bumpyText();
 
 /* 网站运行时间 */
 setInterval(function () {
-	setTime("");
+	setTime("2019/6/11");
 }, 1000);
 
 /* 文章块的淡出 */
