@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>http爬虫和模块化 | yhkhome | 姚恒康的博客</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="yhk,姚恒康,姚恒康的博客,yhkhome">
+   
+    <meta name="Robots" content="All">
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="http爬虫  和 模块化 http爬虫 12345678910111213141516171819202122232425262728293031323334const https = require(&quot;https&quot;);const cheerio = require(&apos;cheerio&apos;);const req = https.get(&quot;https://www.17k.com/all&quot;, (res)">
+<meta name="keywords" content="前端,js,nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http爬虫和模块化">
+<meta property="og:url" content="https://yhk15978.github.io/posts/4a117b12/index.html">
+<meta property="og:site_name" content="yhkhome">
+<meta property="og:description" content="http爬虫  和 模块化 http爬虫 12345678910111213141516171819202122232425262728293031323334const https = require(&quot;https&quot;);const cheerio = require(&apos;cheerio&apos;);const req = https.get(&quot;https://www.17k.com/all&quot;, (res)">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-06-21T12:25:07.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http爬虫和模块化">
+<meta name="twitter:description" content="http爬虫  和 模块化 http爬虫 12345678910111213141516171819202122232425262728293031323334const https = require(&quot;https&quot;);const cheerio = require(&apos;cheerio&apos;);const req = https.get(&quot;https://www.17k.com/all&quot;, (res)">
+    
+        <link rel="alternate" type="application/atom+xml" title="yhkhome" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon-20190619114346159.ico">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=3.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">姚恒康</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:954123860@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/yhk15978" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">http爬虫和模块化</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#http爬虫-和-模块化"><span class="post-toc-number">1.</span> <span class="post-toc-text">http爬虫  和 模块化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#null"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">${ $(this).text() }</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-前端模块化"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 前端模块化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前端模块化"><span class="post-toc-number">3.</span> <span class="post-toc-text">前端模块化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-amd"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1. amd</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-cmd"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2. cmd</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-ES6-Module"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.ES6 Module</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-ES6-模块与-CommonJS-模块的差异"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">4.ES6 模块与 CommonJS 模块的差异</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-http爬虫 + http web服务器渲染数据发送前台 和 模块化"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">http爬虫和模块化</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2019-06-21 20:16:08" datetime="2019-06-21T12:16:08.207Z"  itemprop="datePublished">2019-06-21</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/nodejs/">nodejs</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/nodejs/前端模块化/">前端模块化</a></li></ul></li></ul>
+
+
+            <i>·</i>
+            
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">11</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="http爬虫-和-模块化"><a href="#http爬虫-和-模块化" class="headerlink" title="http爬虫  和 模块化"></a>http爬虫  和 模块化</h2><ol>
+<li><p>http爬虫</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> https = <span class="built_in">require</span>(<span class="string">"https"</span>);</span><br><span class="line"><span class="keyword">const</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> req = https.get(<span class="string">"https://www.17k.com/all"</span>, (res) => { <span class="comment">// res   response 响应( 回馈 )</span></span><br><span class="line"></span><br><span class="line">    res.setEncoding(<span class="string">'utf8'</span>); <span class="comment">// 得到结果的编码</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> rawData = <span class="string">''</span>;</span><br><span class="line">    res.on(<span class="string">'data'</span>, (chunk) => {</span><br><span class="line"></span><br><span class="line">        rawData += chunk;</span><br><span class="line">    });</span><br><span class="line">    res.on(<span class="string">'end'</span>, () => {</span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            <span class="comment">//console.log(rawData) // html    string</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">const</span> $ = cheerio.load(rawData)</span><br><span class="line"></span><br><span class="line">            $(<span class="string">'.td3 a'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, ele</span>) </span>{</span><br><span class="line">                <span class="built_in">console</span>.log($(<span class="keyword">this</span>).text())</span><br><span class="line">            })</span><br><span class="line"></span><br><span class="line">        } <span class="keyword">catch</span> (e) {</span><br><span class="line">            <span class="built_in">console</span>.error(e.message);</span><br><span class="line">        }</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">}).on(<span class="string">'error'</span>, (e) => {</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">`Got error: <span class="subst">${e.message}</span>`</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">req.end()</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>http web服务器渲染数据发送前台</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> https = <span class="built_in">require</span>(<span class="string">"https"</span>);</span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</span><br><span class="line"><span class="keyword">const</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">8000</span>;</span><br><span class="line"><span class="keyword">const</span> host = <span class="string">'localhost'</span>;</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>{</span><br><span class="line">    response.writeHead(<span class="number">200</span>, {</span><br><span class="line">        <span class="string">'Content-Type'</span>: <span class="string">'text/html;charset=utf8'</span></span><br><span class="line">            <span class="comment">// 'Content-Type': 'text/html'</span></span><br><span class="line">    })</span><br><span class="line">    <span class="keyword">const</span> req = https.get(<span class="string">"https://www.17k.com/all"</span>, (res) => { <span class="comment">// res   response 响应( 回馈 )</span></span><br><span class="line"></span><br><span class="line">        res.setEncoding(<span class="string">'utf8'</span>); <span class="comment">// 得到结果的编码</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> rawData = <span class="string">''</span>;</span><br><span class="line">        res.on(<span class="string">'data'</span>, (chunk) => {</span><br><span class="line"></span><br><span class="line">            rawData += chunk;</span><br><span class="line">        });</span><br><span class="line">        res.on(<span class="string">'end'</span>, () => {</span><br><span class="line">            <span class="keyword">try</span> {</span><br><span class="line">                <span class="comment">//console.log(rawData) // html    string</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">const</span> $ = cheerio.load(rawData)</span><br><span class="line"></span><br><span class="line">                $(<span class="string">'.td3 a'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, ele</span>) </span>{</span><br><span class="line">                    response.write(<span class="string">`<h4><span class="subst">${ $(<span class="keyword">this</span>).text() }</span></h4>`</span>)</span><br><span class="line">                })</span><br><span class="line">                response.end();</span><br><span class="line">            } <span class="keyword">catch</span> (e) {</span><br><span class="line">                <span class="built_in">console</span>.error(e.message);</span><br><span class="line">            }</span><br><span class="line">        });</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    }).on(<span class="string">'error'</span>, (e) => {</span><br><span class="line">        <span class="built_in">console</span>.error(<span class="string">`Got error: <span class="subst">${e.message}</span>`</span>);</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    req.end()</span><br><span class="line">}).listen(port, host, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`http://<span class="subst">${host}</span>:<span class="subst">${port}</span>`</span>)</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>中文乱码</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">  服务器： </span></span><br><span class="line"><span class="comment">    可以运行在服务端一个网站（站点） </span></span><br><span class="line"><span class="comment">    种类：  </span></span><br><span class="line"><span class="comment">        1. web服务器（ 静态服务器 ） ，可以运行在浏览器中的服务器</span></span><br><span class="line"><span class="comment">        2. api服务器 （ 后端接口 ） 后端语言暴露一个数据接口，用于前端数据请求（ ajax  fetch ）</span></span><br><span class="line"><span class="comment">  Node.js中原生创建web服务器</span></span><br><span class="line"><span class="comment">    http模块</span></span><br><span class="line"><span class="comment">      createServer( callback ) 创建服务器</span></span><br><span class="line"><span class="comment">        callback中接收三个参数   request   response</span></span><br><span class="line"><span class="comment">      listen(port,host,callback) 监听服务器（ 反馈服务器状态 ）</span></span><br><span class="line"><span class="comment">        port  端口</span></span><br><span class="line"><span class="comment">        host  域名</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  Node.js中中文乱码</span></span><br><span class="line"><span class="comment">    1. 设置请求头</span></span><br><span class="line"><span class="comment">      response.writeHead( 200, {</span></span><br><span class="line"><span class="comment">        'Content-Type': 'text/html;charset=UTF8'  // 小写也可以  utf8</span></span><br><span class="line"><span class="comment">      })</span></span><br><span class="line"><span class="comment">    2. 发送一个meta标签</span></span><br><span class="line"><span class="comment">      response.write('<meta charset="UTF-8">')</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    3. toString()  在当前应用场景中还不行</span></span><br><span class="line"><span class="comment">      二进制有效</span></span><br><span class="line"><span class="comment">      将二进制  --- 》 string</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      名词： chunk  分片</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    我们刚才发送了一个html给前台，那么这种渲染数据的形式我们称之为： ‘后端渲染’，也称之为：‘服务端渲染’，英文叫法： ‘ssr’</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ol>
+<h2 id="2-前端模块化"><a href="#2-前端模块化" class="headerlink" title="2. 前端模块化"></a>2. 前端模块化</h2><p>   问题： 为什么前端要使用模块化？</p>
+<pre><code>      模块化： 是具有特定功能的一个对象（ 广义理解 ）
+
+  模块定义的流程：
+
+        1.定义模块（对象）
+
+        2.导出模块 
+
+        3.引用模块
+
+好处： </code></pre><ol>
+<li><p>可以存储多个独立的功能块</p>
+<ol start="2">
+<li>复用性高</li>
+</ol>
+</li>
+<li><p>种类</p>
+<ol>
+<li>AMD（ require.js）</li>
+<li>CMD ( sea.js )</li>
+<li>Common.js</li>
+</ol>
+</li>
+<li><p>AMD定义一个模块</p>
+<p>define</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// AMD</span><br><span class="line">/*</span><br><span class="line">	目录</span><br><span class="line">		admDir</span><br><span class="line">			a.js</span><br><span class="line">			index.js</span><br><span class="line">*/</span><br><span class="line">// AMD定义  a.js</span><br><span class="line">    define ({</span><br><span class="line">        a: 1,</span><br><span class="line">        b: 2,</span><br><span class="line">        add: function(){}</span><br><span class="line">    })</span><br><span class="line">// AMD引用 index.js</span><br><span class="line">	require([./a.js],function( moduleA ){</span><br><span class="line">        //moduleA指的就是定义来的对象</span><br><span class="line">	})</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>CMD定义模块</p>
+<p>define</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//CMD</span><br><span class="line">/*</span><br><span class="line">	目录结构</span><br><span class="line">		b.js</span><br><span class="line">		index.js</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">// 模块定义  b.js</span><br><span class="line">	define(function(require, exports, module) {</span><br><span class="line"></span><br><span class="line">    	// 模块代码</span><br><span class="line"></span><br><span class="line">    });</span><br><span class="line">//模块引用 index.js</span><br><span class="line">	require('./b.js',function( moduleB ){</span><br><span class="line">        //moduleB就是b模块中导出的内容</span><br><span class="line">	})</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>Common.js</p>
+<p><strong>Node.js使用了Common.js的规范</strong></p>
+<p>易错的理解：</p>
+<pre><code>common.js是属于node的   ×
+
+node属于common.js   ×</code></pre><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//common.js</span><br><span class="line">/*</span><br><span class="line">	目录结构：</span><br><span class="line">		name.js</span><br><span class="line">		index.js</span><br><span class="line">*/</span><br><span class="line">//模块的定义 name.js</span><br><span class="line">	const nameObj = {</span><br><span class="line">        name: 'Gabriel Yan '</span><br><span class="line">	}</span><br><span class="line">//模块的导出  name.js</span><br><span class="line">	module.exports = nameObj</span><br><span class="line">//模块的引用</span><br><span class="line">	const nameObj = require('./name.js')</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<p>Node.js中Common.js规范的使用有三种类型：</p>
+<ol>
+<li><p>内置模块（ 内置模块指的是挂载在Node.js全局对象身上的api ）</p>
+</li>
+<li><p>自定义模块</p>
+<ol>
+<li><p>模块的定义</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//举例</span><br><span class="line">const student = {</span><br><span class="line">    id: 1,</span><br><span class="line">    name: 'Gabriel Yan'</span><br><span class="line">}</span><br><span class="line">const fn = function(){}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+</li>
+</ol>
+<ol start="2">
+<li><p>模块的导出</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 第一种导出</span><br><span class="line">module.exports = student // 安全性不高  默认导出一个</span><br><span class="line">//第二种导出</span><br><span class="line">module.exports = { //批量导出，按需引用</span><br><span class="line">    student,fn</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>模块的引用</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 这种引用对应第一种导出</span><br><span class="line">const student = require('./xxx.js')</span><br><span class="line">// 这种引用对应第二种导出</span><br><span class="line">const { student , fn } = require( './xxx.js ' )</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>注意：</strong></p>
+<p><strong>在自定义模块引用时，require一定要写好路径</strong></p>
+</li>
+</ol>
+<ol start="3">
+<li><p>第三方模块</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 别人已经封装好的模块</span><br><span class="line">2. 这个模块具备一些特定的功能</span><br><span class="line">3. 这些模块存放在  www.npmjs.com 这个网站中</span><br><span class="line">这些模块的文档也记录在内</span><br><span class="line"></span><br><span class="line">格式： var/let/const 变量名 = require( 模块名称 )</span><br><span class="line"></span><br><span class="line">  总结： </span><br><span class="line">      第一步，使用npm/cnpm 安装</span><br><span class="line">      第二部，在文件中引入</span><br><span class="line">      第三部，在www.npmjs.com这个网站中找到这个模块的文档，根据文档来使用</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ol>
+<p>思考： 我们是不是能将自己封装的自定义模块变成第三方模块？</p>
+<p>分析： </p>
+<pre><code>第三方模块具备的特性：</code></pre><ol>
+<li>有一定的功能<pre><code>2. 存储在: http://www.npmjs.com 中</code></pre></li>
+</ol>
+<p>解决： 自定义模块的上传（ <a href="http://www.npmjs.com" target="_blank" rel="noopener">http://www.npmjs.com</a> ）</p>
+<ol>
+<li><p>创建package.json文件</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm init -y</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>在<a href="http://www.npmjs.com" target="_blank" rel="noopener">http://www.npmjs.com</a> 这个网站注册一个账号</p>
+<p>注意：第一次登陆会发送一个邮件给你的邮箱（ 这个发送是手动的  ），然后大家登陆邮箱激活</p>
+</li>
+<li><p>检查你的电脑的源是不是npm源</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nrm ls</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果是，就不会理会</p>
+<p>如果不是，那么切换到npm源</p>
+</li>
+<li><p>命令行登录npmjs仓库</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm adduser</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>创建模块并导出模块</p>
+</li>
+<li><p>查看你的包名称是否已经被使用</p>
+</li>
+<li><p>发布包</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm publish</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ol>
+<p><strong>犯错点：</strong> </p>
+<ol>
+<li>邮箱没有激活 （ 最多的 ）</li>
+<li>npm源没有切换</li>
+<li>整个电脑的npm就不能使用</li>
+</ol>
+<p>-D  === –save-dev</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//举例</span><br><span class="line"></span><br><span class="line">cnpm  i  jquery -D  === cnpm i jquery --save-dev  // 开发环境下使用</span><br><span class="line">cnpm i jquery -S ===  cnpm i jquery --save // 生产环境下使用</span><br></pre></td></tr></tbody></table></figure>
+
+<p>​    </p>
+<p>Node.js跨域</p>
+<p>跨域； </p>
+<pre><code>前端跨域
+
+    jsonp
+
+    反向代理（ 创建一个虚拟后端服务器，让这个后端服务器帮助我们请求数据）
+
+后端跨域
+
+    node  php  java</code></pre><ol>
+<li><p>设置请求头</p>
+</li>
+<li><p>使用第三方的中间件（ cors ）</p>
+<p>中间件： 就是具有一定功能的一个函数</p>
+</li>
+</ol>
+<h2 id="前端模块化"><a href="#前端模块化" class="headerlink" title="前端模块化"></a>前端模块化</h2><h3 id="1-amd"><a href="#1-amd" class="headerlink" title="1. amd"></a>1. amd</h3><ul>
+<li><p>AMD规范采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。这里介绍用require.js实现AMD规范的模块化：用<code>require.config()</code>指定引用路径等，用<code>define()</code>定义模块，用<code>require()</code>加载模块。</p>
+<p>首先我们需要引入require.js文件和一个入口文件main.js。main.js中配置<code>require.config()</code>并规定项目中用到的基础模块。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/** 网页中引入require.js及main.js **/</span><br><span class="line"><script src="js/require.js" data-main="js/main"></script></span><br><span class="line"></span><br><span class="line">/** main.js 入口文件/主模块 **/</span><br><span class="line">// 首先用config()指定各模块路径和引用名</span><br><span class="line">require.config({</span><br><span class="line">  baseUrl: "js/lib",</span><br><span class="line">  paths: {</span><br><span class="line">    "jquery": "jquery.min",  //实际路径为js/lib/jquery.min.js</span><br><span class="line">    "underscore": "underscore.min",</span><br><span class="line">  }</span><br><span class="line">});</span><br><span class="line">// 执行基本操作</span><br><span class="line">require(["jquery","underscore"],function($,_){</span><br><span class="line">  // some code here</span><br><span class="line">});</span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+
+<p>引用模块的时候，我们将模块名放在<code>[]</code>中作为<code>reqiure()</code>的第一参数；如果我们定义的模块本身也依赖其他模块,那就需要将它们放在<code>[]</code>中作为<code>define()</code>的第一参数。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 定义math.js模块</span><br><span class="line">define(function () {</span><br><span class="line">    var basicNum = 0;</span><br><span class="line">    var add = function (x, y) {</span><br><span class="line">        return x + y;</span><br><span class="line">    };</span><br><span class="line">    return {</span><br><span class="line">        add: add,</span><br><span class="line">        basicNum :basicNum</span><br><span class="line">    };</span><br><span class="line">});</span><br><span class="line">// 定义一个依赖underscore.js的模块</span><br><span class="line">define(['underscore'],function(_){</span><br><span class="line">  var classify = function(list){</span><br><span class="line">    _.countBy(list,function(num){</span><br><span class="line">      return num > 30 ? 'old' : 'young';</span><br><span class="line">    })</span><br><span class="line">  };</span><br><span class="line">  return {</span><br><span class="line">    classify :classify</span><br><span class="line">  };</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">// 引用模块，将模块放在[]内</span><br><span class="line">require(['jquery', 'math'],function($, math){</span><br><span class="line">  var sum = math.add(10,20);</span><br><span class="line">  $("#sum").html(sum);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<p>​        </p>
+<h3 id="2-cmd"><a href="#2-cmd" class="headerlink" title="2. cmd"></a>2. cmd</h3><pre><code>- require.js在申明依赖的模块时会在第一之间加载并执行模块内的代码：
+
+  <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">define(["a", "b", "c", "d", "e", "f"], function(a, b, c, d, e, f) { </span><br><span class="line">    // 等于在最前面声明并初始化了要用到的所有模块</span><br><span class="line">    if (false) {</span><br><span class="line">      // 即便没用到某个模块 b，但 b 还是提前执行了</span><br><span class="line">      b.foo()</span><br><span class="line">    } </span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+
+  CMD是另一种js模块化方案，它与AMD很类似，不同点在于：AMD 推崇依赖前置、提前执行，CMD推崇依赖就近、延迟执行。此规范其实是在sea.js推广过程中产生的。
+
+  <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/** AMD写法 **/</span><br><span class="line">define(["a", "b", "c", "d", "e", "f"], function(a, b, c, d, e, f) { </span><br><span class="line">     // 等于在最前面声明并初始化了要用到的所有模块</span><br><span class="line">    a.doSomething();</span><br><span class="line">    if (false) {</span><br><span class="line">        // 即便没用到某个模块 b，但 b 还是提前执行了</span><br><span class="line">        b.doSomething()</span><br><span class="line">    } </span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">/** CMD写法 **/</span><br><span class="line">define(function(require, exports, module) {</span><br><span class="line">    var a = require('./a'); //在需要时申明</span><br><span class="line">    a.doSomething();</span><br><span class="line">    if (false) {</span><br><span class="line">        var b = require('./b');</span><br><span class="line">        b.doSomething();</span><br><span class="line">    }</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">/** sea.js **/</span><br><span class="line">// 定义模块 math.js</span><br><span class="line">define(function(require, exports, module) {</span><br><span class="line">    var $ = require('jquery.js');</span><br><span class="line">    var add = function(a,b){</span><br><span class="line">        return a+b;</span><br><span class="line">    }</span><br><span class="line">    exports.add = add;</span><br><span class="line">});</span><br><span class="line">// 加载模块</span><br><span class="line">seajs.use(['math.js'], function(math){</span><br><span class="line">    var sum = math.add(1+2);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure></code></pre><h3 id="3-ES6-Module"><a href="#3-ES6-Module" class="headerlink" title="3.ES6 Module"></a>3.ES6 Module</h3><pre><code>-     ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，旨在成为浏览器和服务器通用的模块解决方案。其模块功能主要由两个命令构成：`export`和`import`。`export`命令用于规定模块的对外接口，`import`命令用于输入其他模块提供的功能。
+
+  <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/** 定义模块 math.js **/</span><br><span class="line">var basicNum = 0;</span><br><span class="line">var add = function (a, b) {</span><br><span class="line">    return a + b;</span><br><span class="line">};</span><br><span class="line">export { basicNum, add };</span><br><span class="line"></span><br><span class="line">/** 引用模块 **/</span><br><span class="line">import { basicNum, add } from './math';</span><br><span class="line">function test(ele) {</span><br><span class="line">    ele.textContent = add(99 + basicNum);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></code></pre><p>​           
+​       </p>
+<p>   如上例所示，使用<code>import</code>命令的时候，用户需要知道所要加载的变量名或函数名。其实ES6还提供了<code>export default</code>命令，为模块指定默认输出，对应的<code>import</code>语句不需要使用大括号。这也更趋近于ADM的引用写法。</p>
+<pre><code><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/** export default **/</span><br><span class="line">//定义输出</span><br><span class="line">export default { basicNum, add };</span><br><span class="line">//引入</span><br><span class="line">import math from './math';</span><br><span class="line">function test(ele) {</span><br><span class="line">    ele.textContent = math.add(99 + math.basicNum);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></code></pre><p>   ES6的模块不是对象，<code>import</code>命令会被 JavaScript 引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。也正因为这个，使得静态分析成为可能。</p>
+<h3 id="4-ES6-模块与-CommonJS-模块的差异"><a href="#4-ES6-模块与-CommonJS-模块的差异" class="headerlink" title="4.ES6 模块与 CommonJS 模块的差异"></a>4.ES6 模块与 CommonJS 模块的差异</h3><ul>
+<li><ol>
+<li>CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。</li>
+</ol>
+<ul>
+<li>CommonJS 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。</li>
+<li>ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令<code>import</code>，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的<code>import</code>有点像 Unix 系统的“符号连接”，原始值变了，<code>import</code>加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。</li>
+</ul>
+<ol start="2">
+<li>CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。</li>
+</ol>
+<ul>
+<li>运行时加载: CommonJS 模块就是对象；即在输入时是先加载整个模块，生成一个对象，然后再从这个对象上面读取方法，这种加载称为“运行时加载”。</li>
+<li>编译时加载: ES6 模块不是对象，而是通过 <code>export</code> 命令显式指定输出的代码，<code>import</code>时采用静态命令的形式。即在<code>import</code>时可以指定加载某个输出值，而不是加载整个模块，这种加载称为“编译时加载”。</li>
+</ul>
+<p>CommonJS 加载的是一个对象（即<code>module.exports</code>属性），该对象只有在脚本运行完才会生成。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成</p>
+</li>
+</ul>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新：<time datetime="2019-06-21T12:25:07.437Z" itemprop="dateUpdated">2019-06-21 20:25:07</time>
+</span>
+
+
+        
+        原文链接：<a href="/posts/4a117b12/" target="_blank" rel="external">https://yhk15978.github.io/posts/4a117b12/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://yhk15978.github.io'">
+            <img src="/img/avatar.jpg" alt="姚恒康">
+            <a>姚恒康</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/4a117b12/&title=《http爬虫和模块化》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/4a117b12/&title=《http爬虫和模块化》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/4a117b12/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《http爬虫和模块化》 — yhkhome&url=https://yhk15978.github.io/posts/4a117b12/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/4a117b12/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/4a17b109/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：Node.js 常用模块
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/0/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：MongoDB">下一篇：MongoDB</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2019
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://yhk15978.github.io">https://yhk15978.github.io/</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+
+        </span>
+        <br/>
+
+        <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/4a117b12/&title=《http爬虫和模块化》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/4a117b12/&title=《http爬虫和模块化》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/4a117b12/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《http爬虫和模块化》 — yhkhome&url=https://yhk15978.github.io/posts/4a117b12/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/4a117b12/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByElEQVR42u3aQWoDMQwF0Nz/0lPIKtBm8iV5nKE8r8q02M9dCEnW4xGv47mS769fjpf1+8u7PRcsXFzcMfc4Xe8Orl7j3Ym5ARcXdz/3/Mj8gCqxfG1cXNybcfNrJFfCxcX9f9z8MufpFC4u7p25vaCTtzzyBsqyWg0XF3fArTZMr/j5wv4uLi5ukXsUVx6Y5mf9cTouLu4Wbq8gqaYp548xeYMVFxd3Dzdvd/aGM/L/WbQDLi7uRm7e1EgaFuffkzD3IbnBxcW9mLs29CRJ0uS3uLi4e7j50+n53/Sg5d1wcXG3cCfBZT5+0SufcHFx93Dzhkj+WDIJjtGJuLi4W7jJ40qvzTHZuTmWgYuLO+Dmyc08PcofZQu1Gi4u7gXc6uPHpCha9nCLi4t7Mbc6PjUJVb3LRINZuLi4l3GTciUJW9VQVQh2uLi4W7h5elEdopo/lhTQuLi4S7lHcVXbIr3m6YcJU1xc3Iu5vWmHXnjqzZPi4uJ+i5unLL3RiqQJUtgZFxd3I7eXvvQaqaNaDRcX92bcVXnTqOjCxcW9JXeSBlUfcpp1GC4u7iJuTpmMXlVLIFxc3G9x17Y7kxHPPNFp0nFxcfvcH6A8XJu936IjAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=3.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=3.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=3.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2019/6/11");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "姚恒康");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 敢问路在何方 %c  © Timer  https://yhk15978.github.io \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+
+</body>
+</html>

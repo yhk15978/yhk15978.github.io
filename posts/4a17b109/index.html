@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Node.js 常用模块 | yhkhome | 姚恒康的博客</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="yhk,姚恒康,姚恒康的博客,yhkhome">
+   
+    <meta name="Robots" content="All">
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="Node.js 常用模块URL url.parse(urlString[, parseQueryString[, slashesDenoteHost]]) 将url字符转成url对象   urlString 要解析的 URL 字符串。 parseQueryString 如果设为 true，则返回的 URL 对象的 query 属性会是一个使用 querystring 模块的 parse() 生成的">
+<meta name="keywords" content="前端,js,nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 常用模块">
+<meta property="og:url" content="https://yhk15978.github.io/posts/4a17b109/index.html">
+<meta property="og:site_name" content="yhkhome">
+<meta property="og:description" content="Node.js 常用模块URL url.parse(urlString[, parseQueryString[, slashesDenoteHost]]) 将url字符转成url对象   urlString 要解析的 URL 字符串。 parseQueryString 如果设为 true，则返回的 URL 对象的 query 属性会是一个使用 querystring 模块的 parse() 生成的">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-06-21T12:28:59.511Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js 常用模块">
+<meta name="twitter:description" content="Node.js 常用模块URL url.parse(urlString[, parseQueryString[, slashesDenoteHost]]) 将url字符转成url对象   urlString 要解析的 URL 字符串。 parseQueryString 如果设为 true，则返回的 URL 对象的 query 属性会是一个使用 querystring 模块的 parse() 生成的">
+    
+        <link rel="alternate" type="application/atom+xml" title="yhkhome" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon-20190619114346159.ico">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=3.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">姚恒康</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:954123860@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/yhk15978" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Node.js 常用模块</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Node-js-常用模块"><span class="post-toc-number">1.</span> <span class="post-toc-text">Node.js 常用模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#URL"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">URL</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#querystring（查询字符串）"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">querystring（查询字符串）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#http模块"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">http模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#fs（文件系统）"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">fs（文件系统）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件描述符"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">文件描述符</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-Node.js 常用模块"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Node.js 常用模块</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2019-06-21 20:26:48" datetime="2019-06-21T12:26:48.145Z"  itemprop="datePublished">2019-06-21</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/nodejs/">nodejs</a></li></ul></li></ul>
+
+
+            <i>·</i>
+            
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">16</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Node-js-常用模块"><a href="#Node-js-常用模块" class="headerlink" title="Node.js 常用模块"></a>Node.js 常用模块</h2><h3 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h3><ol>
+<li>url.parse(urlString[, parseQueryString[, slashesDenoteHost]]) 将url字符转成url对象</li>
+</ol>
+<ul>
+<li><code>urlString</code> 要解析的 URL 字符串。</li>
+<li><code>parseQueryString</code> 如果设为 <code>true</code>，则返回的 URL 对象的 <code>query</code> 属性会是一个使用 <a href="http://nodejs.cn/s/i23Gdh" target="_blank" rel="noopener"><code>querystring</code></a> 模块的 <code>parse()</code> 生成的对象。 如果设为 <code>false</code>，则 <code>query</code> 会是一个未解析未解码的字符串。 默认为 <code>false</code>。</li>
+<li><code>slashesDenoteHost</code> 如果设为 <code>true</code>，则 <code>//</code> 之后至下一个 <code>/</code> 之前的字符串会解析作为 <code>host</code>。 例如， <code>//foo/bar</code> 会解析为 <code>{host: 'foo', pathname: '/bar'}</code> 而不是 <code>{pathname: '//foo/bar'}</code>。 默认为 <code>false</code>。</li>
+</ul>
+<ol start="2">
+<li>url.format(URL[, options])将url对象转成url字符</li>
+</ol>
+<ul>
+<li><code>URL</code> 一个对象</li>
+<li><code>options</code></li>
+<li><code>auth</code> 如果序列化的URL字符串应该包含用户名和密码为<code>true</code>，否则为<code>false</code>。默认为<code>true</code>。</li>
+<li><code>fragment</code> 如果序列化的URL字符串应该包含分段为<code>true</code>，否则为<code>false</code>。默认为<code>true</code>。</li>
+<li><code>search</code>如果序列化的URL字符串应该包含搜索查询为<code>true</code>，否则为<code>false</code>。默认为<code>true</code>。</li>
+<li><code>unicode</code> <code>true</code> 如果出现在URL字符串主机元素里的Unicode字符应该被直接编码而不是使用Punycode编码为<code>true</code>，默认为<code>false</code>。</li>
+</ul>
+<p>3.url.resolve(from, to)url路径的拼接，替换</p>
+<ul>
+<li><code>from</code> 解析时相对的基本 URL。</li>
+<li><code>to</code>要解析的超链接 URL。</li>
+<li>例子：<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line">url.resolve(<span class="string">'/one/two/three'</span>, <span class="string">'four'</span>); <span class="comment">// '/one/two/four'</span></span><br><span class="line">url.resolve(<span class="string">'http://example.com/'</span>, <span class="string">'/one'</span>); <span class="comment">// 'http://example.com/one'</span></span><br><span class="line">url.resolve(<span class="string">'http://example.com/one'</span>, <span class="string">'/two'</span>); <span class="comment">// 'http://example.com/two'</span></span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<h3 id="querystring（查询字符串）"><a href="#querystring（查询字符串）" class="headerlink" title="querystring（查询字符串）"></a>querystring（查询字符串）</h3><ol>
+<li>querystring.stringify(obj[, sep[, eq[, options]]])解析对象部分转成URLsearch</li>
+</ol>
+<ul>
+<li><code>obj</code> 要序列化为 URL 查询字符串的对象。</li>
+<li><code>sep</code>用于在查询字符串中分隔键值对的子字符串。<strong>默认值:</strong> <code>'&'</code>。</li>
+<li><code>eq</code> 用于在查询字符串中分隔键和值的子字符串。<strong>默认值:</strong> <code>'='</code>。</li>
+<li><code>options</code></li>
+<li><code>encodeURIComponent</code> 在查询字符串中将 URL 不安全字符转换为百分比编码时使用的函数。<strong>默认值:</strong> <code>querystring.escape()</code>。
+<code>querystring.stringify()</code> 方法通过迭代对象的自身属性从给定的 <code>obj</code> 生成 URL 查询字符串<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">querystring.stringify({ <span class="attr">foo</span>: <span class="string">'bar'</span>, <span class="attr">baz</span>: [<span class="string">'qux'</span>, <span class="string">'quux'</span>], <span class="attr">corge</span>: <span class="string">''</span> });</span><br><span class="line"><span class="comment">// 返回 'foo=bar&baz=qux&baz=quux&corge='</span></span><br><span class="line">querystring.stringify({ <span class="attr">foo</span>: <span class="string">'bar'</span>, <span class="attr">baz</span>: <span class="string">'qux'</span> }, <span class="string">';'</span>, <span class="string">':'</span>);</span><br><span class="line"><span class="comment">// 返回 'foo:bar;baz:qux'</span></span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<p>默认情况下，查询字符串中需要百分比编码的字符将编码为 UTF-8。 如果需要其他编码，则需要指定其他 <code>encodeURIComponent</code> 选项：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设 gbkEncodeURIComponent 函数已存在。</span></span><br><span class="line">querystring.stringify({ <span class="attr">w</span>: <span class="string">'中文'</span>, <span class="attr">foo</span>: <span class="string">'bar'</span> }, <span class="literal">null</span>, <span class="literal">null</span>,</span><br><span class="line">{ <span class="attr">encodeURIComponent</span>: gbkEncodeURIComponent });</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>querystring.parse(str[, sep[, eq[, options]]]) 解析URLsearch部分转成对象</li>
+</ol>
+<ul>
+<li><code>str</code> 要解析的 URL 查询字符串。</li>
+<li><code>sep</code> 用于在查询字符串中分隔键值对的子字符串。<strong>默认值:</strong> <code>'&'</code>。</li>
+<li><code>eq</code>用于在查询字符串中分隔键和值的子字符串。<strong>默认值:</strong> <code>'='</code>。</li>
+<li><code>options</code></li>
+<li><code>decodeURIComponent</code>解码查询字符串中的百分比编码字符时使用的函数。<strong>默认值:</strong> <code>querystring.unescape()</code>。</li>
+<li><code>maxKeys</code> 指定要解析的键的最大数量。指定 <code>0</code> 可移除键的计数限制。<strong>默认值:</strong> <code>1000</code>。
+<code>querystring.parse()</code> 方法将 URL 查询字符串 <code>str</code> 解析为键值对的集合。<br>例如，查询字符串 <code>'foo=bar&abc=xyz&abc=123'</code> 被解析为：<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">foo: <span class="string">'bar'</span>,</span><br><span class="line">abc: [<span class="string">'xyz'</span>, <span class="string">'123'</span>]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<p><code>querystring.parse()</code> 方法返回的对象不是原型继承自 JavaScript <code>Object</code>。 这意味着典型的 <code>Object</code> 方法如 <code>obj.toString()</code>、 <code>obj.hasOwnProperty()</code> 等都没有定义并且不起作用。<br>默认情况下，将假定查询字符串中的百分比编码字符使用 UTF-8 编码。 如果使用其他字符编码，则需要指定其他 <code>decodeURIComponent</code> 选项：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设 gbkDecodeURIComponent 函数已存在。</span></span><br><span class="line">querystring.parse(<span class="string">'w=%D6%D0%CE%C4&foo=bar'</span>, <span class="literal">null</span>, <span class="literal">null</span>,</span><br><span class="line">{ <span class="attr">decodeURIComponent</span>: gbkDecodeURIComponent });</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="3">
+<li>querystring.escape(str) 可以将中文转成url百分比编码</li>
+</ol>
+<ul>
+<li><code>str</code><br><code>querystring.escape()</code> 方法以对 URL 查询字符串的特定要求进行了优化的方式对给定的 <code>str</code> 执行 URL 百分比编码。<br><code>querystring.escape()</code> 方法由 <code>querystring.stringify()</code> 使用，通常不会直接使用。 它的导出主要是为了允许应用程序代码在必要时通过将 <code>querystring.escape</code> 指定给替代函数来提供替换的百分比编码实现。</li>
+</ul>
+<ol start="4">
+<li>querystring.unescape(str)可以将url百分比编码解码</li>
+</ol>
+<ul>
+<li><code>str</code><br><code>querystring.unescape()</code> 方法在给定的 <code>str</code> 上执行 URL 百分比编码字符的解码。<br><code>querystring.unescape()</code> 方法由 <code>querystring.parse()</code> 使用，通常不会直接使用它。 它的导出主要是为了允许应用程序代码在必要时通过将 <code>querystring.unescape</code> 分配给替代函数来提供替换的解码实现。<br>默认情况下， <code>querystring.unescape()</code> 方法将尝试使用 JavaScript 内置的 <code>decodeURIComponent()</code> 方法进行解码。 如果失败，将使用更安全的不会丢失格式错误的 URL 的等价方法。<h3 id="http模块"><a href="#http模块" class="headerlink" title="http模块"></a>http模块</h3></li>
+</ul>
+<ol>
+<li>http.get(options[, callback])http.get(url[,options][, callback])</li>
+</ol>
+<ul>
+<li><code>url</code> string| url</li>
+<li><code>options</code> 接受与 <a href="http://nodejs.cn/s/d1myoL" target="_blank" rel="noopener"><code>http.request()</code></a> 相同的 <code>options</code>，且 <code>method</code> 始终设置为 <code>GET</code>。从原型继承的属性将被忽略。</li>
+<li><code>callback</code>Function</li>
+<li>返回:http.ClientRequest<br>由于大多数请求都是没有主体的 GET 请求，因此 Node.js 提供了这个便捷的方法。 这个方法与 <a href="http://nodejs.cn/s/d1myoL" target="_blank" rel="noopener"><code>http.request()</code></a> 的唯一区别是它将方法设置为 GET 并自动调用 <code>req.end()</code>。 注意，由于 <a href="http://nodejs.cn/s/2F5RHd" target="_blank" rel="noopener"><code>http.ClientRequest</code></a> 章节中所述的原因，回调必须注意消费响应数据。<br><code>callback</code> 调用时只有一个参数，该参数是 <a href="http://nodejs.cn/s/2RqpEw" target="_blank" rel="noopener"><code>http.IncomingMessage</code></a> 的实例。<br>获取 JSON 的示例：<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">http.get(<span class="string">'http://nodejs.cn/index.json'</span>, (res) => {</span><br><span class="line"><span class="keyword">const</span> { statusCode } = res;</span><br><span class="line"><span class="keyword">const</span> contentType = res.headers[<span class="string">'content-type'</span>];</span><br><span class="line"><span class="keyword">let</span> error;</span><br><span class="line"><span class="keyword">if</span> (statusCode !== <span class="number">200</span>) {</span><br><span class="line">error = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'请求失败\n'</span> +</span><br><span class="line"><span class="string">`状态码: <span class="subst">${statusCode}</span>`</span>);</span><br><span class="line">} <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="regexp">/^application\/json/</span>.test(contentType)) {</span><br><span class="line">error = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'无效的 content-type.\n'</span> +</span><br><span class="line"><span class="string">`期望的是 application/json 但接收到的是 <span class="subst">${contentType}</span>`</span>);</span><br><span class="line">}</span><br><span class="line"><span class="keyword">if</span> (error) {</span><br><span class="line"><span class="built_in">console</span>.error(error.message);</span><br><span class="line"><span class="comment">// 消费响应数据来释放内存。</span></span><br><span class="line">res.resume();</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">}</span><br><span class="line">res.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line"><span class="keyword">let</span> rawData = <span class="string">''</span>;</span><br><span class="line">res.on(<span class="string">'data'</span>, (chunk) => { rawData += chunk; });</span><br><span class="line">res.on(<span class="string">'end'</span>, () => {</span><br><span class="line"><span class="keyword">try</span> {</span><br><span class="line"><span class="keyword">const</span> parsedData = <span class="built_in">JSON</span>.parse(rawData);</span><br><span class="line"><span class="built_in">console</span>.log(parsedData);</span><br><span class="line">} <span class="keyword">catch</span> (e) {</span><br><span class="line"><span class="built_in">console</span>.error(e.message);</span><br><span class="line">}</span><br><span class="line">});</span><br><span class="line">}).on(<span class="string">'error'</span>, (e) => {</span><br><span class="line"><span class="built_in">console</span>.error(<span class="string">`出现错误: <span class="subst">${e.message}</span>`</span>);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li>http.request(options[, callback]) http.request(url[, options][, callback])</li>
+</ol>
+<ul>
+<li><code>url</code><string> |url</string></li>
+<li><code>options</code> Object</li>
+<li><code>protocol</code> <string>使用的协议。<strong>默认值:</strong> <code>'http:'</code>。</string></li>
+<li><code>host</code> <string>请求发送至的服务器的域名或 IP 地址。<strong>默认值:</strong> <code>'localhost'</code>。</string></li>
+<li><code>hostname</code><string> <code>host</code> 的别名。为了支持 <a href="http://nodejs.cn/s/b28B2A" target="_blank" rel="noopener"><code>url.parse()</code></a>，如果同时指定 <code>host</code> 和 <code>hostname</code>，则使用 <code>hostname</code>。</string></li>
+<li><code>family</code> number当解析 <code>host</code> 或 <code>hostname</code> 时使用的 IP 地址族。有效值为 <code>4</code> 或 <code>6</code>。如果没有指定，则同时使用 IP v4 和 v6。</li>
+<li><code>port</code> number远程服务器的端口。<strong>默认值:</strong> <code>80</code>。</li>
+<li><code>localAddress</code> <string>为网络连接绑定的本地接口。</string></li>
+<li><code>socketPath</code> <string>Unix 域套接字。如果指定了 <code>host</code> 或 <code>port</code> 之一（它们指定了 TCP 套接字），则不能使用此选项。</string></li>
+<li><code>method</code><string> 一个字符串，指定 HTTP 请求的方法。<strong>默认值:</strong> <code>'GET'</code>。</string></li>
+<li><code>path</code> <string>请求的路径。应包括查询字符串（如果有）。例如 <code>'/index.html?page=12'</code>。当请求的路径包含非法的字符时，则抛出异常。目前只有空格被拒绝，但未来可能会有所变化。<strong>默认值:</strong> <code>'/'</code>。</string></li>
+<li><code>headers</code>Object 包含请求头的对象。</li>
+<li><code>auth</code> <string>基本的身份验证，即 <code>'user:password'</code>，用于计算授权请求头。</string></li>
+<li><code>agent</code> <http.Agent>| <boolean>控制 <a href="http://nodejs.cn/s/HRCnER" target="_blank" rel="noopener"><code>Agent</code></a> 的行为。可能的值有：</boolean></li>
+<li><code>undefined</code> (默认): 对此主机和端口使用 <a href="http://nodejs.cn/s/g7BhW2" target="_blank" rel="noopener"><code>http.globalAgent</code></a>。</li>
+<li><code>Agent</code> 对象: 显式地使用传入的 <code>Agent</code>。</li>
+<li><code>false</code>: 使用新建的具有默认值的 <code>Agent</code>。</li>
+<li><code>createConnection</code> <function>当 <code>agent</code> 选项未被使用时，用来为请求生成套接字或流的函数。这可用于避免创建自定义的 <code>Agent</code> 类以覆盖默认的 <code>createConnection</code> 函数。详见 <a href="http://nodejs.cn/s/nH3X12" target="_blank" rel="noopener"><code>agent.createConnection()</code></a>。任何<a href="http://nodejs.cn/s/2iRabr" target="_blank" rel="noopener">双工流</a>都是有效的返回值。</function></li>
+<li><code>timeout</code><number>: 指定套接字超时的数值，以毫秒为单位。这会在套接字被连接之前设置超时。</number></li>
+<li><code>setHost</code> <boolean>: 指定是否自动添加 <code>Host</code> 请求头。<strong>默认值:</strong> <code>true</code>。</boolean></li>
+<li><code>callback</code> <function></function></li>
+<li>返回: <http.ClientRequest><br>Node.js 为每个服务器维护多个连接以发出 HTTP 请求。 此函数允许显式地发出请求。<br><code>url</code> 可以是字符串或 <a href="http://nodejs.cn/s/5dwq7G" target="_blank" rel="noopener"><code>URL</code></a> 对象。 如果 <code>url</code> 是一个字符串，则会自动使用 <a href="http://nodejs.cn/s/b28B2A" target="_blank" rel="noopener"><code>url.parse()</code></a> 解析它。 如果它是一个 <a href="http://nodejs.cn/s/5dwq7G" target="_blank" rel="noopener"><code>URL</code></a> 对象，则会自动转换为普通的 <code>options</code> 对象。<br>如果同时指定了 <code>url</code> 和 <code>options</code>，则对象会被合并，其中 <code>options</code> 属性优先。<br>可选的 <code>callback</code> 参数会作为单次监听器被添加到 <a href="http://nodejs.cn/s/qwaiK8" target="_blank" rel="noopener"><code>'response'</code></a> 事件。<br><code>http.request()</code> 返回 <a href="http://nodejs.cn/s/2F5RHd" target="_blank" rel="noopener"><code>http.ClientRequest</code></a> 类的实例。 <code>ClientRequest</code> 实例是一个可写流。 如果需要使用 POST 请求上传文件，则写入到 <code>ClientRequest</code> 对象。<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> postData = querystring.stringify({</span><br><span class="line"><span class="string">'msg'</span>: <span class="string">'你好世界'</span></span><br><span class="line">});</span><br><span class="line"><span class="keyword">const</span> options = {</span><br><span class="line">hostname: <span class="string">'nodejs.cn'</span>,</span><br><span class="line">port: <span class="number">80</span>,</span><br><span class="line">path: <span class="string">'/upload'</span>,</span><br><span class="line">method: <span class="string">'POST'</span>,</span><br><span class="line">headers: {</span><br><span class="line"><span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line"><span class="string">'Content-Length'</span>: Buffer.byteLength(postData)</span><br><span class="line">}</span><br><span class="line">};</span><br><span class="line"><span class="keyword">const</span> req = http.request(options, (res) => {</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`状态码: <span class="subst">${res.statusCode}</span>`</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`响应头: <span class="subst">${<span class="built_in">JSON</span>.stringify(res.headers)}</span>`</span>);</span><br><span class="line">res.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line">res.on(<span class="string">'data'</span>, (chunk) => {</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`响应主体: <span class="subst">${chunk}</span>`</span>);</span><br><span class="line">});</span><br><span class="line">res.on(<span class="string">'end'</span>, () => {</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'响应中已无数据'</span>);</span><br><span class="line">});</span><br><span class="line">});</span><br><span class="line">req.on(<span class="string">'error'</span>, (e) => {</span><br><span class="line"><span class="built_in">console</span>.error(<span class="string">`请求遇到问题: <span class="subst">${e.message}</span>`</span>);</span><br><span class="line">});</span><br><span class="line"><span class="comment">// 将数据写入请求主体。</span></span><br><span class="line">req.write(postData);</span><br><span class="line">req.end();</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<p>注意，在示例中调用了 <code>req.end()</code>。 使用 <code>http.request()</code> 时，必须始终调用 <code>req.end()</code> 来表示请求的结束，即使没有数据被写入请求主体。<br>如果在请求期间遇到任何错误（DNS 解析错误、TCP 层的错误、或实际的 HTTP 解析错误），则会在返回的请求对象上触发 <code>'error'</code> 事件。 与所有 <code>'error'</code> 事件一样，如果没有注册监听器，则会抛出错误。<br>以下是需要注意的一些特殊的请求头。</p>
+<ul>
+<li>发送 <code>'Connection: keep-alive'</code> 会通知 Node.js 与服务器的连接应该持续到下一个请求。</li>
+<li>发送 <code>'Content-Length'</code> 请求头会禁用默认的分块编码。</li>
+<li>发送 <code>'Expect'</code> 请求头会立即发送请求头。通常情况下，当发送 <code>'Expect: 100-continue'</code> 时，应设置超时时间和 <code>'continue'</code> 事件的监听器。详见 RFC2616 的第 8.2.3 节。</li>
+<li>发送授权请求头会使用 <code>auth</code> 选项覆盖以计算基本的身份验证。<br>使用 <a href="http://nodejs.cn/s/5dwq7G" target="_blank" rel="noopener"><code>URL</code></a> 作为 <code>options</code> 的示例：<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> options = <span class="keyword">new</span> URL(<span class="string">'http://abc:xyz@nodejs.cn'</span>);</span><br><span class="line"><span class="keyword">const</span> req = http.request(options, (res) => {</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<p>在成功的请求中，会按以下顺序触发以下事件：</p>
+<ul>
+<li><code>'socket'</code> 事件</li>
+<li><code>'response'</code> 事件</li>
+<li><code>res</code> 对象上任意次数的 <code>'data'</code> 事件（如果响应主体为空，则根本不会触发 <code>'data'</code> 事件，例如在大多数重定向中）</li>
+<li><code>res</code> 对象上的 <code>'end'</code> 事件</li>
+<li><code>'close'</code> 事件<br>如果出现连接错误，则触发以下事件：</li>
+<li><code>'socket'</code> 事件</li>
+<li><code>'error'</code> 事件</li>
+<li><code>'close'</code> 事件<br>如果在连接成功之前调用 <code>req.abort()</code>，则按以下顺序触发以下事件：</li>
+<li><code>'socket'</code> 事件</li>
+<li>(在这里调用 <code>req.abort()</code>)</li>
+<li><code>'abort'</code> 事件</li>
+<li><code>'error'</code> 事件并带上错误信息 <code>'Error: socket hang up'</code> 和错误码 <code>'ECONNRESET'</code></li>
+<li><code>'close'</code> 事件<br>如果在响应被接收之后调用 <code>req.abort()</code>，则按以下顺序触发以下事件：</li>
+<li><code>'socket'</code> 事件</li>
+<li><code>'response'</code> 事件</li>
+<li><code>res</code> 对象上任意次数的 <code>'data'</code> 事件</li>
+<li>(在这里调用 <code>req.abort()</code>)</li>
+<li><code>'abort'</code> 事件</li>
+<li><code>res</code> 对象上的 <code>'aborted'</code> 事件</li>
+<li><code>'close'</code> 事件</li>
+<li><code>res</code> 对象上的 <code>'end'</code> 事件</li>
+<li><code>res</code> 对象上的 <code>'close'</code> 事件<br>注意，设置 <code>timeout</code> 选项或使用 <code>setTimeout()</code> 函数不会中止请求或执行除添加 <code>'timeout'</code> 事件之外的任何操作。</li>
+</ul>
+<ol start="3">
+<li>http.createServer([options][, requestlistener]) 创建服务</li>
+</ol>
+<ul>
+<li><code>options</code> <object></object></li>
+<li><code>IncomingMessage</code> <http.IncomingMessage> 指定要使用的 <code>IncomingMessage</code> 类。用于扩展原始的 <code>IncomingMessage</code>。<strong>默认值:</strong><code>IncomingMessage</code>。</li>
+<li><code>ServerResponse</code> <http.ServerResponse > 指定要使用的 <code>ServerResponse</code> 类。用于扩展原始 <code>ServerResponse</code>。<strong>默认值:</strong> <code>ServerResponse</code>。</li>
+<li><code>requestListener</code><function></function></li>
+<li>返回: <http.Server><br>返回新建的 <a href="http://nodejs.cn/s/jLiRTh" target="_blank" rel="noopener"><code>http.Server</code></a> 实例。<br><code>requestListener</code> 是一个自动添加到 <a href="http://nodejs.cn/s/2qCn57" target="_blank" rel="noopener"><code>'request'</code></a> 事件的函数。<br>// server.listen 是开启监听<br>// 第一个参数是port<br>// 第二个参数可选 是回调<br>server.listen(port, () => {<br>console.log(<code>server is running on ${port}</code>);<br>});</li>
+</ul>
+<ol start="4">
+<li>阿萨<h3 id="fs（文件系统）"><a href="#fs（文件系统）" class="headerlink" title="fs（文件系统）"></a>fs（文件系统）</h3></li>
+<li>fs.readFile(path[, options], callback) 读取文件</li>
+</ol>
+<ul>
+<li><code>path</code>文件名或文件描述符。</li>
+<li><code>options</code></li>
+<li><code>encoding</code> <strong>默认值:</strong> <code>null</code>。</li>
+<li><code>flag</code> 参阅<a href="http://nodejs.cn/s/JjbY8n" target="_blank" rel="noopener">支持的文件系统标志</a>。<strong>默认值:</strong> <code>'r'</code>。</li>
+<li><code>callback</code></li>
+<li><code>err</code></li>
+<li><code>data</code><br>异步地读取文件的全部内容。<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs.readFile(<span class="string">'/etc/passwd'</span>, (err, data) => {</span><br><span class="line"><span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line"><span class="built_in">console</span>.log(data);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<p>回调会传入两个参数 <code>(err, data)</code>，其中 <code>data</code> 是文件的内容。<br>如果没有指定 <code>encoding</code>，则返回原始的 buffer。<br>如果 <code>options</code> 是字符串，则它指定字符编码：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.readFile(<span class="string">'/etc/passwd'</span>, <span class="string">'utf8'</span>, callback);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>当 <code>path</code> 是目录时， <code>fs.readFile()</code> 与 <a href="http://nodejs.cn/s/LxKo1q" target="_blank" rel="noopener"><code>fs.readFileSync()</code></a> 的行为是特定于平台的。 在 macOS、Linux 和 Windows 上，将返回错误。 在 FreeBSD 上，将返回目录内容的表示。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 macOS、Linux 和 Windows 上：</span></span><br><span class="line">fs.readFile(<span class="string">'<目录>'</span>, (err, data) => {</span><br><span class="line"><span class="comment">// => [Error: EISDIR: illegal operation on a directory, read <目录>]</span></span><br><span class="line">});</span><br><span class="line"><span class="comment">// 在 FreeBSD 上：</span></span><br><span class="line">fs.readFile(<span class="string">'<目录>'</span>, (err, data) => {</span><br><span class="line"><span class="comment">// => null, <data></span></span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>fs.readFile()</code> 函数会缓冲整个文件。 为了最小化内存成本，尽可能通过 <code>fs.createReadStream()</code> 进行流式传输。</p>
+<ol start="2">
+<li>fs.writeFile(file, data[, options], callback) 写入文件</li>
+</ol>
+<ul>
+<li><code>file</code> <a href="http://nodejs.cn/s/9Tw2bK" target="_blank" rel="noopener"></a> | <a href="http://nodejs.cn/s/6x1hD3" target="_blank" rel="noopener"></a> | <a href="http://nodejs.cn/s/5dwq7G" target="_blank" rel="noopener"></a> | <a href="http://nodejs.cn/s/SXbo1v" target="_blank" rel="noopener"></a> 文件名或文件描述符。</li>
+<li><code>data</code> <a href="http://nodejs.cn/s/9Tw2bK" target="_blank" rel="noopener"></a> | <a href="http://nodejs.cn/s/6x1hD3" target="_blank" rel="noopener"></a> | <a href="http://nodejs.cn/s/oh3CkV" target="_blank" rel="noopener"></a> | <a href="http://nodejs.cn/s/yCdVkD" target="_blank" rel="noopener"></a></li>
+<li><code>options</code> <a href="http://nodejs.cn/s/jzn6Ao" target="_blank" rel="noopener"></a> | <a href="http://nodejs.cn/s/9Tw2bK" target="_blank" rel="noopener"></a></li>
+<li><code>encoding</code> <a href="http://nodejs.cn/s/9Tw2bK" target="_blank" rel="noopener"></a> | <a href="http://nodejs.cn/s/334hvC" target="_blank" rel="noopener"></a> <strong>默认值:</strong> <code>'utf8'</code>。</li>
+<li><code>mode</code> <a href="http://nodejs.cn/s/SXbo1v" target="_blank" rel="noopener"></a> <strong>默认值:</strong> <code>0o666</code>。</li>
+<li><code>flag</code> <a href="http://nodejs.cn/s/9Tw2bK" target="_blank" rel="noopener"></a> 参阅<a href="http://nodejs.cn/s/JjbY8n" target="_blank" rel="noopener">支持的文件系统标志</a>。<strong>默认值:</strong> <code>'w'</code>。</li>
+<li><code>callback</code> <a href="http://nodejs.cn/s/ceTQa6" target="_blank" rel="noopener"></a></li>
+<li><code>err</code> <a href="http://nodejs.cn/s/qZ873x" target="_blank" rel="noopener"></a><br>异步地将数据写入到一个文件，如果文件已存在则覆盖该文件。 <code>data</code> 可以是字符串或 buffer。<br>如果 <code>data</code> 是一个 buffer，则 <code>encoding</code> 选项会被忽略。<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(Buffer.from(<span class="string">'Node.js中文网'</span>));</span><br><span class="line">fs.writeFile(<span class="string">'文件.txt'</span>, data, (err) => {</span><br><span class="line"><span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'文件已被保存'</span>);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<p>如果 <code>options</code> 是一个字符串，则它指定字符编码：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.writeFile(<span class="string">'文件.txt'</span>, <span class="string">'Node.js中文网'</span>, <span class="string">'utf8'</span>, callback);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在同一个文件上多次使用 <code>fs.writeFile()</code> 且不等待回调是不安全的。 对于这种情况，建议使用 <a href="http://nodejs.cn/s/VdSJQa" target="_blank" rel="noopener"><code>fs.createWriteStream()</code></a>。</p>
+<h3 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h3><p><a href="http://nodejs.cn/api/fs/file_descriptors_2.html" target="_blank" rel="noopener">中英对照</a><a href="http://nodejs.cn/s/4CExjP" target="_blank" rel="noopener">提交修改</a></p>
+<ol>
+<li>任何指定的文件描述符都必须支持写入。</li>
+<li>如果将文件描述符指定为 <code>file</code>，则不会自动关闭它。</li>
+<li>写入将从文件的开头开始。例如，如果文件已经有内容 <code>'Hello World</code>‘ 并且新写入的内容是 <code>'Aloha'</code>，则该文件的内容将是 <code>'Aloha World'</code> 而不仅仅是 <code>'Aloha'</code>。</li>
+<li>fs.rename(oldPath, newPath, callback)</li>
+</ol>
+<ul>
+<li><code>oldPath</code></li>
+<li><code>newPath</code></li>
+<li><code>callback</code></li>
+<li><code>err</code><br>异步地将 <code>oldPath</code> 上的文件重命名为 <code>newPath</code> 提供的路径名。 如果 <code>newPath</code> 已存在，则覆盖它。 除了可能的异常，完成回调没有其他参数。<br>也可参阅 <a href="http://nodejs.cn/s/YbqghQ" target="_blank" rel="noopener"><code>rename(2)</code></a>。<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs.rename(<span class="string">'旧文件.txt'</span>, <span class="string">'新文件.txt'</span>, (err) => {</span><br><span class="line"><span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'重命名完成'</span>);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<ol start="4">
+<li>fs.readdir(path[, options], callback)</li>
+</ol>
+<ul>
+<li><code>path</code></li>
+<li><code>options</code></li>
+<li><code>encoding</code><strong>默认值:</strong> <code>'utf8'</code>。</li>
+<li><code>withFileTypes</code>) <strong>默认值:</strong> <code>false</code>。</li>
+<li><code>callback</code></li>
+<li><code>err</code></li>
+<li><code>files</code><br>异步的 <a href="http://nodejs.cn/s/QvrbKw" target="_blank" rel="noopener"><code>readdir(3)</code></a>。 读取目录的内容。 回调有两个参数 <code>(err, files)</code>，其中 <code>files</code> 是目录中的文件名的数组（不包括 <code>'.'</code> 和 <code>'..'</code>）。<br>可选的 <code>options</code> 参数可以是指定编码的字符串，也可以是具有 <code>encoding</code> 属性的对象，该属性指定用于传给回调的文件名的字符编码。 如果 <code>encoding</code> 设置为 <code>'buffer'</code>，则返回的文件名是 <code>Buffer</code> 对象。<br>如果 <code>options.withFileTypes</code> 设置为 <code>true</code>，则 <code>files</code> 数组将包含 <a href="http://nodejs.cn/s/mNLVJ7" target="_blank" rel="noopener"><code>fs.Dirent</code></a> 对象。</li>
+</ul>
+<ol start="5">
+<li>fs.mkdir(path[, options], callback)</li>
+</ol>
+<ul>
+<li><code>path</code></li>
+<li><code>options</code></li>
+<li><code>recursive</code> <strong>默认值:</strong> <code>false</code>。</li>
+<li><code>mode</code> Windows 上不支持。<strong>默认值:</strong> <code>0o777</code>。</li>
+<li><code>callback</code></li>
+<li><code>err</code><br>异步地创建目录。 除了可能的异常，完成回调没有其他参数。<br>可选的 <code>options</code> 参数可以是指定模式（权限和粘滞位）的整数，也可以是具有 <code>mode</code> 属性和 <code>recursive</code> 属性（指示是否应创建父文件夹）的对象。<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建 /tmp/a/apple 目录，无论是否存在 /tmp 和 /tmp/a 目录。</span></span><br><span class="line">fs.mkdir(<span class="string">'/tmp/a/apple'</span>, { <span class="attr">recursive</span>: <span class="literal">true</span> }, (err) => {</span><br><span class="line"><span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<ol start="6">
+<li>fs.copyFile(src, dest[, flags], callback)</li>
+</ol>
+<ul>
+<li><code>src</code>要拷贝的源文件名。</li>
+<li><code>dest</code>拷贝操作的目标文件名。</li>
+<li><code>flags</code>用于拷贝操作的修饰符。<strong>默认值:</strong> <code>0</code>。</li>
+<li><code>callback</code><br>异步地将 <code>src</code> 拷贝到 <code>dest</code>。 默认情况下，如果 <code>dest</code> 已经存在，则覆盖它。 除了可能的异常，回调函数没有其他参数。 Node.js 不保证拷贝操作的原子性。 如果在打开目标文件用于写入后发生错误，则 Node.js 将尝试删除目标文件。<br><code>flags</code> 是一个可选的整数，指定拷贝操作的行为。 可以创建由两个或更多个值按位或组成的掩码（比如 <code>fs.constants.COPYFILE_EXCL | fs.constants.COPYFILE_FICLONE</code>）。</li>
+<li><code>fs.constants.COPYFILE_EXCL</code> - 如果 <code>dest</code> 已存在，则拷贝操作将失败。</li>
+<li><code>fs.constants.COPYFILE_FICLONE</code> - 拷贝操作将尝试创建写时拷贝（copy-on-write）链接。如果平台不支持写时拷贝，则使用后备的拷贝机制。</li>
+<li><code>fs.constants.COPYFILE_FICLONE_FORCE</code> - 拷贝操作将尝试创建写时拷贝链接。如果平台不支持写时拷贝，则拷贝操作将失败。<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="comment">// 默认情况下将创建或覆盖目标文件。</span></span><br><span class="line">fs.copyFile(<span class="string">'源文件.txt'</span>, <span class="string">'目标文件.txt'</span>, (err) => {</span><br><span class="line"><span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'源文件已拷贝到目标文件'</span>);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<p>如果第三个参数是数字，则它指定 <code>flags</code>:</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> { COPYFILE_EXCL } = fs.constants;</span><br><span class="line"><span class="comment">// 通过使用 COPYFILE_EXCL，如果目标文件存在，则操作将失败。</span></span><br><span class="line">fs.copyFile(<span class="string">'源文件.txt'</span>, <span class="string">'目标文件.txt'</span>, COPYFILE_EXCL, callback);</span><br></pre></td></tr></tbody></table></figure><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新：<time datetime="2019-06-21T12:28:59.511Z" itemprop="dateUpdated">2019-06-21 20:28:59</time>
+</span>
+
+
+        
+        原文链接：<a href="/posts/4a17b109/" target="_blank" rel="external">https://yhk15978.github.io/posts/4a17b109/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://yhk15978.github.io'">
+            <img src="/img/avatar.jpg" alt="姚恒康">
+            <a>姚恒康</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/4a17b109/&title=《Node.js 常用模块》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/4a17b109/&title=《Node.js 常用模块》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/4a17b109/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js 常用模块》 — yhkhome&url=https://yhk15978.github.io/posts/4a17b109/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/4a17b109/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/4a17b158/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：npm scripts  npm脚本
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/4a117b12/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：http爬虫和模块化">下一篇：http爬虫和模块化</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2019
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://yhk15978.github.io">https://yhk15978.github.io/</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+
+        </span>
+        <br/>
+
+        <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/4a17b109/&title=《Node.js 常用模块》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/4a17b109/&title=《Node.js 常用模块》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/4a17b109/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js 常用模块》 — yhkhome&url=https://yhk15978.github.io/posts/4a17b109/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/4a17b109/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByUlEQVR42u3ay27DIBQE0Pz/T7tSd1VidwYM8eKwqvwghy6uYK5fr3gcv+P9yvs4u5vMedvAxcWd5h6X433qM1ZyJV/e6VJxcXE3cq8LTb6A5N1khtPruLi4D+PO76TaOXFxcZ/PvX4yOSAlZREXF/c53LGY4whGsrwlZzVcXNwJ7l1bk5m/F+a7uLi4JfcoRzLDXUHqh5lxcXG3cJO4M2m1to3VmeMQLi7uau5MVDrWGsl/JSphuLi4W7gJ6K7PMpIPvP7MjIuL+wBu3kTJtzJjiUexF8PFxb2Vez1pW5jaRmz0z8LFxf0SNw9M51uz+ZKiDAYXF3cZNyko7TLy4lgku7i4uIu5bSu0LXzHxPgQi+Di4i7mFtuLdjsSFLU8cMHFxd3JHftgov3kYiYWwcXF3c+dP9gkEerY5ul0Tlxc3MXce3FtMJp/sIWLi7ufO1N02k+s2oGLi/stbhtfJoeZsci1sOPi4i7jtgWljUGTxu3YXVxc3NXcts2ZH29mwtbTu7i4uBu5RTxRPtM2cf95BhcX92Hc67fGilq9PFxc3Mdzx0KTvBTi4uJ+lzvWUh2LX8eCGFxc3J3c+ZfzuLM9LOHi4m7n/gDxEEP6Bc4z8AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=3.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=3.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=3.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2019/6/11");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "姚恒康");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 敢问路在何方 %c  © Timer  https://yhk15978.github.io \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+
+</body>
+</html>
