@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>框架级的数据请求 | yhkhome | 姚恒康的博客</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="yhk,姚恒康,姚恒康的博客,yhkhome">
+   
+    <meta name="Robots" content="All">
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="框架级的数据请求1. axios(第三方库)axios get: 12345678&amp;lt;script src=&quot;https://cdn.bootcss.com/vue/2.6.10/vue.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js&quot;&amp;gt;&amp;lt;/">
+<meta name="keywords" content="Vue,前端,数据请求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="框架级的数据请求">
+<meta property="og:url" content="https://yhk15978.github.io/posts/1/index.html">
+<meta property="og:site_name" content="yhkhome">
+<meta property="og:description" content="框架级的数据请求1. axios(第三方库)axios get: 12345678&amp;lt;script src=&quot;https://cdn.bootcss.com/vue/2.6.10/vue.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js&quot;&amp;gt;&amp;lt;/">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-06-22T02:14:14.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="框架级的数据请求">
+<meta name="twitter:description" content="框架级的数据请求1. axios(第三方库)axios get: 12345678&amp;lt;script src=&quot;https://cdn.bootcss.com/vue/2.6.10/vue.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js&quot;&amp;gt;&amp;lt;/">
+    
+        <link rel="alternate" type="application/atom+xml" title="yhkhome" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon-20190619114346159.ico">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=3.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">姚恒康</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:954123860@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/yhk15978" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">框架级的数据请求</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#框架级的数据请求"><span class="post-toc-number">1.</span> <span class="post-toc-text">框架级的数据请求</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-axios-第三方库"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1. axios(第三方库)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#axios-get"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">axios get:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#axios-post"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">axios post:</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-fetch-javascript-原生提供"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2. fetch ( javascript 原生提供 )</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-vue这边的数据请求的发展"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3. vue这边的数据请求的发展</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#axios-下载安装引入"><span class="post-toc-number">2.</span> <span class="post-toc-text">axios    下载安装引入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-axios-和-fetch-没有jsonp-数据请求类型的"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">4. axios 和 fetch 没有jsonp 数据请求类型的</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-框架级的数据请求"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">框架级的数据请求</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2019-06-22 09:44:14" datetime="2019-06-22T01:44:14.166Z"  itemprop="datePublished">2019-06-22</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+            <i>·</i>
+            
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">6</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="框架级的数据请求"><a href="#框架级的数据请求" class="headerlink" title="框架级的数据请求"></a>框架级的数据请求</h2><h3 id="1-axios-第三方库"><a href="#1-axios-第三方库" class="headerlink" title="1. axios(第三方库)"></a>1. axios(第三方库)</h3><h4 id="axios-get"><a href="#axios-get" class="headerlink" title="axios get:"></a>axios get:</h4> <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;div id="app"&gt;</span><br><span class="line">    &lt;button @click="getMData"&gt;get - mock - json&lt;/button&gt;</span><br><span class="line">    &lt;button @click="getOnLineData"&gt;get - backend online- api&lt;/button&gt;</span><br><span class="line">    &lt;button @click="getMPhpData"&gt;get - myself - php -api&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+  <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue({</span><br><span class="line">    el: <span class="string">"#app"</span>,</span><br><span class="line">    methods: {</span><br><span class="line">        getMData() {</span><br><span class="line">            axios({</span><br><span class="line">                url: <span class="string">"../data/data.json"</span>,</span><br><span class="line">                method: <span class="string">"GET"</span></span><br><span class="line">            })</span><br><span class="line">            .then(<span class="function"><span class="params">res</span> =></span> {</span><br><span class="line">                  <span class="built_in">console</span>.log(res)</span><br><span class="line">            })</span><br><span class="line">            .catch(<span class="function"><span class="params">error</span> =></span> conosle.log(error))</span><br><span class="line">        },</span><br><span class="line">        getOnLineData() {</span><br><span class="line">            axios({</span><br><span class="line">                url: <span class="string">"https://m.maizuo.com/gateway"</span>,</span><br><span class="line">                method: <span class="string">"GET"</span>,</span><br><span class="line">                params: {</span><br><span class="line">                    <span class="string">'cityId'</span>: <span class="number">440100</span>,</span><br><span class="line">                    <span class="string">'pageNum'</span>: <span class="number">1</span>,</span><br><span class="line">                    <span class="string">'pageSize'</span>: <span class="number">20</span>,</span><br><span class="line">                    <span class="string">'type'</span>: <span class="number">1</span>,</span><br><span class="line">                    <span class="string">'k'</span>: <span class="number">6848113</span>,</span><br><span class="line">                },</span><br><span class="line">                headers: {</span><br><span class="line">                    <span class="string">'X-Client-Info'</span>: <span class="string">'{"a":"3000","ch":"1002","v":"5.0.4","e":"15610873798997956485756"}'</span>,</span><br><span class="line">                    <span class="string">'X-Host'</span>: <span class="string">'mall.film-ticket.film.list'</span></span><br><span class="line">                }</span><br><span class="line">            })</span><br><span class="line">            .then(<span class="function"><span class="params">res</span> =></span> {</span><br><span class="line">                   <span class="built_in">console</span>.log(res)</span><br><span class="line">            })</span><br><span class="line">            .catch(<span class="function"><span class="params">error</span> =></span> conosle.log(error))</span><br><span class="line">        },</span><br><span class="line">        getMPhpData() {</span><br><span class="line">        axios({</span><br><span class="line">            url: <span class="string">'http://localhost:8080/get.php'</span>,</span><br><span class="line">            method: <span class="string">'GET'</span>,</span><br><span class="line">            params: {</span><br><span class="line">                a: <span class="number">1</span>,</span><br><span class="line">                b: <span class="number">2</span></span><br><span class="line">            }</span><br><span class="line">            })</span><br><span class="line">            .then(<span class="function"><span class="params">res</span> =></span> {</span><br><span class="line">                   <span class="built_in">console</span>.log(res)</span><br><span class="line">            })</span><br><span class="line">            .catch(<span class="function"><span class="params">error</span> =></span> conosle.log(error))</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="axios-post"><a href="#axios-post" class="headerlink" title="axios post:"></a>axios post:</h4><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue({</span><br><span class="line">    el: <span class="string">"#app"</span>,</span><br><span class="line">    methods: {</span><br><span class="line">        postData() {</span><br><span class="line">            <span class="keyword">var</span> params = <span class="keyword">new</span> URLSearchParams() <span class="comment">//得到params对象，用来接收参数</span></span><br><span class="line">            <span class="comment">// params.append( key, value ) key就是参数名，value就是参数值</span></span><br><span class="line">            params.append(<span class="string">'a'</span>, <span class="number">2</span>)</span><br><span class="line">            params.append(<span class="string">'b'</span>, <span class="number">2</span>)</span><br><span class="line">            axios({</span><br><span class="line">                url: <span class="string">"http://localhost:8080/post.php"</span>,</span><br><span class="line">                method: <span class="string">"POST"</span>,</span><br><span class="line">                <span class="comment">// data:{</span></span><br><span class="line">                    <span class="comment">// a:2,</span></span><br><span class="line">                    <span class="comment">// b:2</span></span><br><span class="line">                <span class="comment">// }后台不能正常接收数据，要处理未处理的数据才能返回</span></span><br><span class="line">                data: params,</span><br><span class="line">                headers: {</span><br><span class="line">                <span class="string">'Content-Type'</span>: <span class="string">"application/x-www-form-urlencoded"</span> <span class="comment">//请求头设置为表单提交的请求头</span></span><br><span class="line">                }</span><br><span class="line">            })</span><br><span class="line">            .then(<span class="function"><span class="params">res</span> =></span> {</span><br><span class="line">                <span class="built_in">console</span>.log(res)</span><br><span class="line">            })</span><br><span class="line">            .catch(<span class="function"><span class="params">err</span> =></span> {</span><br><span class="line">                 <span class="built_in">console</span>.log(err)</span><br><span class="line">            })</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-fetch-javascript-原生提供"><a href="#2-fetch-javascript-原生提供" class="headerlink" title="2. fetch ( javascript 原生提供 )"></a>2. fetch ( javascript 原生提供 )</h3><p>fetch是原生javascript提供的 ， 所以它 可以当做全局变量使用 ，它是挂载在window对象身上的</p>
+<p>fetch get&post:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">    &lt;button @click="getData"&gt; get &lt;/button&gt;</span><br><span class="line">    &lt;button @click="postData"&gt; post &lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue({</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    methods: {</span><br><span class="line">        getData() {</span><br><span class="line">            fetch(<span class="string">'http://localhost:8080/get.php?a=1&b=2'</span>, {</span><br><span class="line">                    method: <span class="string">'GET'</span>,</span><br><span class="line">            }).then(<span class="function"><span class="params">res</span> =></span> res.json())<span class="comment">//对数据进行格式化</span></span><br><span class="line">                  .then(<span class="function">(<span class="params">data</span>) =></span> {</span><br><span class="line">                      <span class="built_in">console</span>.log(data)</span><br><span class="line">                     })</span><br><span class="line">                    .catch(<span class="function"><span class="params">err</span> =></span> {</span><br><span class="line">                        <span class="built_in">console</span>.log(err)</span><br><span class="line">                    })</span><br><span class="line">        },</span><br><span class="line">        postData() {</span><br><span class="line">            fetch(<span class="string">'http://localhost:8080/post.php'</span>, {</span><br><span class="line">                      method: <span class="string">'POST'</span>,</span><br><span class="line">                    <span class="comment">// mode: 'cors',</span></span><br><span class="line">                    <span class="comment">// headers: {</span></span><br><span class="line">                    <span class="comment">// 'content-type': 'application/json'</span></span><br><span class="line">                    <span class="comment">// },</span></span><br><span class="line">                    <span class="comment">// body:JSON.stringify({a:1,b:2})//MDN中案例，无效</span></span><br><span class="line">                headers: <span class="keyword">new</span> Headers({</span><br><span class="line">                          <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded'</span> <span class="comment">// 指定提交方式为表单提交</span></span><br><span class="line">                }),</span><br><span class="line">                body: <span class="keyword">new</span> URLSearchParams([</span><br><span class="line">                        [<span class="string">"a"</span>, <span class="number">1</span>],</span><br><span class="line">                        [<span class="string">"b"</span>, <span class="number">2</span>]</span><br><span class="line">                        ]).toString()</span><br><span class="line">                }).then(<span class="function"><span class="params">res</span> =></span> res.json())</span><br><span class="line">                    .then(<span class="function">(<span class="params">data</span>) =></span> {</span><br><span class="line">                             <span class="built_in">console</span>.log(data)</span><br><span class="line">                    })</span><br><span class="line">                    .catch(<span class="function"><span class="params">err</span> =></span> {</span><br><span class="line">                              <span class="built_in">console</span>.log(err)</span><br><span class="line">                    })</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>fetch要手动进行一次数据格式化，但是axios是内部进行了数据的格式化</li>
+<li>fetch get 方法请求数据，参数要直接连接在url上</li>
+<li>fetch 格式化数据 有三种 处理方法</li>
+<li>.json() 格式化 json 类型数据， 将 json类型 string 转换成 json 对象</li>
+<li>.text() 格式化文本</li>
+<li>.blob() 格式化二进制数据</li>
+<li>fetch 如果按照官网文档书写post请求，也有坑， 携带数据出现了问题</li>
+<li>fetch post处理</li>
+<li>设置请求头</li>
+<li>通过 new URLSearchPrams 来携带参数</li>
+</ul>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener">查看更多在MDN</a></p>
+<h3 id="3-vue这边的数据请求的发展"><a href="#3-vue这边的数据请求的发展" class="headerlink" title="3. vue这边的数据请求的发展"></a>3. vue这边的数据请求的发展</h3><ul>
+<li>vue-resource ( Vue 以前自己封装使用的请求类库 ) ，但是 vue-resource作者已经放弃更新了</li>
+<li>vue-resource 作者推荐我们使用 axios</li>
+<li>vue-resource 用法 和 axios 相似度 90% +</li>
+<li>vue2.0我们基本上使用的都是 fetch / axios</li>
+<li>vue-resource 是有<code>jsonp</code>的</li>
+<li>vue-resource 如果在vue中使用，是挂载当前的 实例（ 组件 ） 的$http属性身上的</li>
+<li>举例 <code>this.$http( options )</code> <code>this.$http.get()</code> <code>this.$http.post</code><br>  vue-resource   下载安装引入   vue1.x 推荐    支持jsonp<pre><code>使用:    返回的是promise对象
+this.$http.get('url地址?key=value&key=value').then(succFN,errorFn)
+this.$http.get('url地址',{配置}).then(succFN,errorFn)
+this.$http.post('url地址',{数据},{配置}).then(succFN,errorFn)
+this.$http.jsonp('url地址',{配置}).then(succFN,errorFn)
+    params:{ //携带参数
+        wd:'bulala'
+      },
+    jsonp:'cb', //约束回调函数的key,
+    jsonpCallback:'show',//回调函数名</code></pre></li>
+</ul>
+<p>请求:<br>    body: post需要携带的数据<br>        支持string  a=1&b=2<br>        对象<需要设置emulateJSON：true><br>        URLSearchParams 类型 new Xxx() -> x.set(key,value)<br>    params: {key:value}  携带数据  get<br>    headers: {}  携带请求头<br>    method：’get’ get/post/…..   string<br>    timeout: number  超时<br>    progress：fn   进度<br>    credentials: false  是否携带跨源凭证<br>    emulateJSON：true post请求是需要携带的请求头<br>    jsonp:’回调函数键’ 默认是callback<br>响应：<br>    body      返回的数据  对象  (JSONP.parse)<br>    bodyText  返回的数据  文本格式  toString</p>
+<p>axios    下载安装引入    vue2.x只有推荐        支持jsonp ??</p>
+<p>axios({<br>    url: 地址<br>    method: 提交方法   get/post/put……..<br>    params: get提交参数<br>    data: post提交参数  参数==URLSearchParams  new URLSearchParams().set(key,value)<br>    timeout:超时间<br>    headers： 请求头<br>})<br>拦截器  interceptor<br>在  then   和 catch 之前我们想做的事</p>
+<h2 id="axios-下载安装引入"><a href="#axios-下载安装引入" class="headerlink" title="axios    下载安装引入"></a>axios    下载安装引入</h2><p>   vue2.x推荐<br>希望可以this.$http 去使用axios，需要 配置: Vue.prototype.$http=axios;</p>
+<p>this.$http|axios({配置}).then(成功回调(res)).catch(失败回调(res))<br>this.$http|axios.get(url,{配置}).then(成功回调(res)).catch(失败回调(res))<br>this.$http|axios.post(url,pollfill).then(成功回调(res)).catch(失败回调(res))</p>
+<p>post请求:<br>    pollfill = new URLSearchParams() -> params.append(‘a’, 111);<br>    this.$http|axios.post(url,pollfill).then(成功回调(res)).catch(失败回调(res))</p>
+<pre><code>this.$http|axios({
+    url:'',
+    method:'post',
+    data:pollfill
+})</code></pre><p>配置:<br>    url:’’ 地址<br>    method: ‘’ 提交姿势<br>    params：{} get提交的数据<br>    data:{} post提交数据<br>res:<br>    data:  数据</p>
+<h3 id="4-axios-和-fetch-没有jsonp-数据请求类型的"><a href="#4-axios-和-fetch-没有jsonp-数据请求类型的" class="headerlink" title="4. axios 和 fetch 没有jsonp 数据请求类型的"></a>4. axios 和 fetch 没有jsonp 数据请求类型的</h3><ul>
+<li>axios 和 fetch 都是promise</li>
+<li>axios会对我们请求来的结果进行再一次的封装（ 让安全性提高 ）</li>
+</ul>
+<p><a href="https://www.jianshu.com/p/8bc48f8fde75" target="_blank" rel="noopener">ajax和axios、fetch的区别</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新：<time datetime="2019-06-22T02:14:14.527Z" itemprop="dateUpdated">2019-06-22 10:14:14</time>
+</span>
+
+
+        
+        原文链接：<a href="/posts/1/" target="_blank" rel="external">https://yhk15978.github.io/posts/1/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://yhk15978.github.io'">
+            <img src="/img/avatar.jpg" alt="姚恒康">
+            <a>姚恒康</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据请求/">数据请求</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/1/&title=《框架级的数据请求》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/1/&title=《框架级的数据请求》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《框架级的数据请求》 — yhkhome&url=https://yhk15978.github.io/posts/1/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/1a123/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：浅谈vue原理
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/234w1/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：vue和其他框架对比">下一篇：vue和其他框架对比</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2019
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://yhk15978.github.io">https://yhk15978.github.io/</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+
+        </span>
+        <br/>
+
+        <span class="license">This blog is licensed under a <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/1/&title=《框架级的数据请求》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/1/&title=《框架级的数据请求》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《框架级的数据请求》 — yhkhome&url=https://yhk15978.github.io/posts/1/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByklEQVR42u3aQY7CMAwFUO5/aWaLxBC+7SYq0ssKpcz0lYUVf/fxiNfzZb3uvF993X//ZrJ/wcLFxR1zn8s1/84nYvX/4+LinueuC83Jz19suLi4N+Z+KlKTQoaLi/vr3KSBya/i4uLek5s0NuugpJdmbOzVcHFxB9z8ZmcansvyXVxc3Bb3WVz54KQXjH65Oy4u7hFuXlCSY8c6OkmClWS4i4uLu5vbK1jNAtQKZP/5XXFxcY9z1yFIspOMT/JD0pdChouLu4E7uX01VO01UYX5Dy4u7kXcXhSS7/TKXLn5wcXFvZSbF7Lq2GNL84OLi3uEmweak/ij9wAf6y4uLu4Rbi+kqA5ZJ4NVXFzck9xeJJpfrY5jL2h+cHFxj3DzFmUyZC0ku7i4uEe48xv0AtPkQFN4CQMXF3cbt1ewJq9Z5ONYXFzc89ykVCUlrDpkrZZLXFzc3dxefNlrYPIjTuFXwcXF3cCdv04xKV5JAW0+DC4u7pjbG3Ou25682JULHC4u7kFuXmjWN5i8mBU9MC4u7i251dFIPsotdGy4uLg/xW2Wp1yIi4t7kJs0P714tBeMRjNhXFzcbdz5H1eHrPnBaJTv4uLidrh/ufVI50C+8AgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=3.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=3.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=3.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2019/6/11");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "姚恒康");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 敢问路在何方 %c  © Timer  https://yhk15978.github.io \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+
+</body>
+</html>
