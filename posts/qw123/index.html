@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>虚拟dom &amp;&amp; diff算法 &amp;&amp; key | yhkhome | 姚恒康的博客</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="yhk,姚恒康,姚恒康的博客,yhkhome">
+   
+    <meta name="Robots" content="All">
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="虚拟dom &amp;&amp; diff算法 &amp;&amp; key什么是虚拟dom,为什么要使用虚拟dom?1、它是一个Object对象模型，用来模拟真实dom节点结构的树形结构 DOM: 12345&amp;lt;div class=&quot;box&quot;&amp;gt;    &amp;lt;ul&amp;gt;      &amp;lt;li&amp;gt; yhk &amp;lt;/li&amp;gt;    &amp;lt;/ul&amp;gt;&amp;lt;/div&amp;gt;  vdom: 1234567">
+<meta name="keywords" content="前端,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟dom &amp;&amp; diff算法 &amp;&amp; key">
+<meta property="og:url" content="https://yhk15978.github.io/posts/qw123/index.html">
+<meta property="og:site_name" content="yhkhome">
+<meta property="og:description" content="虚拟dom &amp;&amp; diff算法 &amp;&amp; key什么是虚拟dom,为什么要使用虚拟dom?1、它是一个Object对象模型，用来模拟真实dom节点结构的树形结构 DOM: 12345&amp;lt;div class=&quot;box&quot;&amp;gt;    &amp;lt;ul&amp;gt;      &amp;lt;li&amp;gt; yhk &amp;lt;/li&amp;gt;    &amp;lt;/ul&amp;gt;&amp;lt;/div&amp;gt;  vdom: 1234567">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-06-24T11:26:53.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="虚拟dom &amp;&amp; diff算法 &amp;&amp; key">
+<meta name="twitter:description" content="虚拟dom &amp;&amp; diff算法 &amp;&amp; key什么是虚拟dom,为什么要使用虚拟dom?1、它是一个Object对象模型，用来模拟真实dom节点结构的树形结构 DOM: 12345&amp;lt;div class=&quot;box&quot;&amp;gt;    &amp;lt;ul&amp;gt;      &amp;lt;li&amp;gt; yhk &amp;lt;/li&amp;gt;    &amp;lt;/ul&amp;gt;&amp;lt;/div&amp;gt;  vdom: 1234567">
+    
+        <link rel="alternate" type="application/atom+xml" title="yhkhome" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon-20190619114346159.ico">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=3.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">姚恒康</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:954123860@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/yhk15978" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">虚拟dom &amp;&amp; diff算法 &amp;&amp; key</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#虚拟dom-amp-amp-diff算法-amp-amp-key"><span class="post-toc-number">1.</span> <span class="post-toc-text">虚拟dom &amp;&amp; diff算法 &amp;&amp; key</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是虚拟dom-为什么要使用虚拟dom"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">什么是虚拟dom,为什么要使用虚拟dom?</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#虚拟dom的使用基本流程"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">虚拟dom的使用基本流程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是diff算法"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">什么是diff算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#key"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">key</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-虚拟dom &amp;&amp; diff算法&amp;&amp;key"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">虚拟dom && diff算法 && key</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2019-06-24 19:18:34" datetime="2019-06-24T11:18:34.861Z"  itemprop="datePublished">2019-06-24</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+            <i>·</i>
+            
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">5</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="虚拟dom-amp-amp-diff算法-amp-amp-key"><a href="#虚拟dom-amp-amp-diff算法-amp-amp-key" class="headerlink" title="虚拟dom && diff算法 && key"></a>虚拟dom && diff算法 && key</h1><h2 id="什么是虚拟dom-为什么要使用虚拟dom"><a href="#什么是虚拟dom-为什么要使用虚拟dom" class="headerlink" title="什么是虚拟dom,为什么要使用虚拟dom?"></a>什么是虚拟dom,为什么要使用虚拟dom?</h2><p>1、它是一个Object对象模型，用来模拟真实dom节点结构的树形结构</p>
+<p>DOM:</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="box"&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;li&gt; yhk &lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>vdom:</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vdom = {</span><br><span class="line">      tag: <span class="string">'div'</span>,</span><br><span class="line">      attr: {</span><br><span class="line">        className: <span class="string">'box'</span></span><br><span class="line">      },</span><br><span class="line">      content: [</span><br><span class="line">        {</span><br><span class="line">          tag: <span class="string">'ul'</span>,</span><br><span class="line">          content: [</span><br><span class="line">            {</span><br><span class="line">              tag: <span class="string">'li'</span>,</span><br><span class="line">              content: <span class="string">'yhk'</span></span><br><span class="line">            }</span><br><span class="line">          ]</span><br><span class="line">        }</span><br><span class="line">      ]</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+
+<p>可见DOM结构中的内容都对应在vdom中；</p>
+<p>2、为什么要使用虚拟dom</p>
+<p>因为直接去操作dom节点是非常耗费性能的；</p>
+<p>这里可以参考：<a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html" target="_blank" rel="noopener">网页性能管理详解</a></p>
+<h2 id="虚拟dom的使用基本流程"><a href="#虚拟dom的使用基本流程" class="headerlink" title="虚拟dom的使用基本流程"></a>虚拟dom的使用基本流程</h2><p>1、获取数据（ajax,fetch,axios）</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = {</span><br><span class="line">     id: <span class="number">1</span>,</span><br><span class="line">     name: <span class="string">'yhk'</span></span><br><span class="line">   }</span><br></pre></td></tr></tbody></table></figure>
+
+<p>2、创建vdom</p>
+<p>vue通过jsx + render函数来创建vdom</p>
+<p>jsx即JavaScript + xml </p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class = "box"&gt;</span><br><span class="line">       &lt;ul&gt;</span><br><span class="line">         &lt;li&gt; {{ data.name }} &lt;/li&gt;</span><br><span class="line">       &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>3、通过render函数解析jsx，将其转化成vdom结构</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var vdom = {</span><br><span class="line">      tag: 'div',</span><br><span class="line">      attr: {</span><br><span class="line">        className: 'box'</span><br><span class="line">      },</span><br><span class="line">      content: [</span><br><span class="line">        {</span><br><span class="line">          tag: 'ul',</span><br><span class="line">          content: [</span><br><span class="line">            {</span><br><span class="line">              tag: 'li',</span><br><span class="line">              content: data.name</span><br><span class="line">            }</span><br><span class="line">          ]</span><br><span class="line">        }</span><br><span class="line">      ]</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+
+<p>4、将vdom渲染成真实dom</p>
+<p>render函数</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">render: function (createElement) {</span><br><span class="line">  return createElement('div',{</span><br><span class="line">          'class': {</span><br><span class="line">            box: true</span><br><span class="line">          },</span><br><span class="line">  		},</span><br><span class="line">  		[</span><br><span class="line">  		   createElement('ul',[createElement('li', </span><br><span class="line">  		   domProps: {</span><br><span class="line">                        innerHTML: data.name</span><br><span class="line">                },)])</span><br><span class="line">  		]</span><br><span class="line">  )</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>​        createElement函数参数：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">> <span class="comment">// @returns {VNode}</span></span><br><span class="line">> createElement(</span><br><span class="line">>   <span class="comment">// {String | Object | Function}</span></span><br><span class="line">>   <span class="comment">// 一个 HTML 标签名、组件选项对象，或者</span></span><br><span class="line">>   <span class="comment">// resolve 了上述任何一种的一个 async 函数。必填项。</span></span><br><span class="line">>   <span class="string">'div'</span>,</span><br><span class="line">> </span><br><span class="line">>   <span class="comment">// {Object}</span></span><br><span class="line">>   <span class="comment">// 一个与模板中属性对应的数据对象。可选。</span></span><br><span class="line">>   {</span><br><span class="line">>     <span class="comment">//// 与 `v-bind:class` 的 API 相同，</span></span><br><span class="line">>   <span class="comment">// 接受一个字符串、对象或字符串和对象组成的数组</span></span><br><span class="line">>   <span class="string">'class'</span>: {</span><br><span class="line">>     foo: <span class="literal">true</span>,</span><br><span class="line">>     bar: <span class="literal">false</span></span><br><span class="line">>   },</span><br><span class="line">>   <span class="comment">// 与 `v-bind:style` 的 API 相同，</span></span><br><span class="line">>   <span class="comment">// 接受一个字符串、对象，或对象组成的数组</span></span><br><span class="line">>   style: {</span><br><span class="line">>     color: <span class="string">'red'</span>,</span><br><span class="line">>     fontSize: <span class="string">'14px'</span></span><br><span class="line">>   },</span><br><span class="line">>   <span class="comment">// 普通的 HTML 特性</span></span><br><span class="line">>   attrs: {</span><br><span class="line">>     id: <span class="string">'foo'</span></span><br><span class="line">>   },</span><br><span class="line">>   <span class="comment">// 组件 prop</span></span><br><span class="line">>   props: {</span><br><span class="line">>     myProp: <span class="string">'bar'</span></span><br><span class="line">>   },</span><br><span class="line">>   <span class="comment">// DOM 属性</span></span><br><span class="line">>   domProps: {</span><br><span class="line">>     innerHTML: <span class="string">'baz'</span></span><br><span class="line">>   },</span><br><span class="line">>   <span class="comment">// 事件监听器在 `on` 属性内，</span></span><br><span class="line">>   <span class="comment">// 但不再支持如 `v-on:keyup.enter` 这样的修饰器。</span></span><br><span class="line">>   <span class="comment">// 需要在处理函数中手动检查 keyCode。</span></span><br><span class="line">>   on: {</span><br><span class="line">>     click: <span class="keyword">this</span>.clickHandler</span><br><span class="line">>   },</span><br><span class="line">>   <span class="comment">// 仅用于组件，用于监听原生事件，而不是组件内部使用</span></span><br><span class="line">>   <span class="comment">// `vm.$emit` 触发的事件。</span></span><br><span class="line">>   nativeOn: {</span><br><span class="line">>     click: <span class="keyword">this</span>.nativeClickHandler</span><br><span class="line">>   },</span><br><span class="line">>   <span class="comment">// 自定义指令。注意，你无法对 `binding` 中的 `oldValue`</span></span><br><span class="line">>   <span class="comment">// 赋值，因为 Vue 已经自动为你进行了同步。</span></span><br><span class="line">>   directives: [</span><br><span class="line">>     {</span><br><span class="line">>       name: <span class="string">'my-custom-directive'</span>,</span><br><span class="line">>       value: <span class="string">'2'</span>,</span><br><span class="line">>       expression: <span class="string">'1 + 1'</span>,</span><br><span class="line">>       arg: <span class="string">'foo'</span>,</span><br><span class="line">>       modifiers: {</span><br><span class="line">>         bar: <span class="literal">true</span></span><br><span class="line">>       }</span><br><span class="line">>     }</span><br><span class="line">>   ],</span><br><span class="line">>   <span class="comment">// 作用域插槽的格式为</span></span><br><span class="line">>   <span class="comment">// { name: props => VNode | Array<VNode> }</span></span><br><span class="line">>   scopedSlots: {</span><br><span class="line">>     <span class="keyword">default</span>: <span class="function"><span class="params">props</span> =></span> createElement(<span class="string">'span'</span>, props.text)</span><br><span class="line">>   },</span><br><span class="line">>   <span class="comment">// 如果组件是其它组件的子组件，需为插槽指定名称</span></span><br><span class="line">>   slot: <span class="string">'name-of-slot'</span>,</span><br><span class="line">>   <span class="comment">// 其它特殊顶层属性</span></span><br><span class="line">>   key: <span class="string">'myKey'</span>,</span><br><span class="line">>   ref: <span class="string">'myRef'</span>,</span><br><span class="line">>   <span class="comment">// 如果你在渲染函数中给多个元素都应用了相同的 ref 名，</span></span><br><span class="line">>   <span class="comment">// 那么 `$refs.myRef` 会变成一个数组。</span></span><br><span class="line">>   refInFor: <span class="literal">true</span></span><br><span class="line">>   },</span><br><span class="line">> </span><br><span class="line">>   <span class="comment">// {String | Array}</span></span><br><span class="line">>   <span class="comment">// 子级虚拟节点 (VNodes)，由 `createElement()` 构建而成，</span></span><br><span class="line">>   <span class="comment">// 也可以使用字符串来生成“文本虚拟节点”。可选。</span></span><br><span class="line">>   [</span><br><span class="line">>     <span class="string">'先写一些文字'</span>,</span><br><span class="line">>     createElement(<span class="string">'h1'</span>, <span class="string">'一则头条'</span>),</span><br><span class="line">>     createElement(MyComponent, {</span><br><span class="line">>       props: {</span><br><span class="line">>         someProp: <span class="string">'foobar'</span></span><br><span class="line">>       }</span><br><span class="line">>     })</span><br><span class="line">>   ]</span><br><span class="line">> )</span><br><span class="line">></span><br></pre></td></tr></tbody></table></figure>
+</blockquote>
+<p>5、 数据更改了</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.name = 'xiaoming'</span><br></pre></td></tr></tbody></table></figure>
+
+<p>生成新的vdom</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vdom = {</span><br><span class="line">  tag: 'div',</span><br><span class="line">  attr: {</span><br><span class="line">    className: 'box'</span><br><span class="line">  },</span><br><span class="line">  content: [</span><br><span class="line">    {</span><br><span class="line">      tag: 'ul',</span><br><span class="line">      content: [</span><br><span class="line">        {</span><br><span class="line">          tag: 'li',</span><br><span class="line">          content: data.name</span><br><span class="line">        }</span><br><span class="line">      ]</span><br><span class="line">    }</span><br><span class="line">  ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>6、使用diff算法比对两次vdom,生成patch对象</p>
+<p>  diff算法是同级比较</p>
+<p>​        给每一个层级打一个标记，这个标记是一个数字（ 这个数字就是 key  ）</p>
+<p>7、根据key将patch对象渲染到页面中改变的结构上，而其他没有改变的地方是不做任何修改的（ 虚拟dom的惰性原则 ）</p>
+<h2 id="什么是diff算法"><a href="#什么是diff算法" class="headerlink" title="什么是diff算法"></a>什么是diff算法</h2><p>diff算法是比较两个文件的差异，并将两个文件不同之处，将这个不同之处生成一个补丁对象（patch） </p>
+<p>​      diff算法来源后端</p>
+<p>​      前端将其应用于虚拟dom的diff算法</p>
+<p>​      vue中将 虚拟dom的diff算法放在了   patch.js文件中 </p>
+<p>​        使用js来进行两个对象的比较（ vdom 对象模型）</p>
+<p>​      diff算法是同级比较</p>
+<p>​        给每一个层级打一个标记，这个标记是一个数字（ 这个数字就是 key  ）</p>
+<p><strong>vue是一是MVVM框架，Vue高性能的原因之一就是vdom</strong></p>
+<h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><p><code>key</code> 的特殊属性主要用在 Vue 的虚拟 DOM 算法，在新旧 nodes 对比时辨识 VNodes。如果不使用 key，Vue 会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用 key，它会基于 key 的变化重新排列元素顺序，并且会移除 key 不存在的元素。</p>
+<p>有相同父元素的子元素必须有<strong>独特的 key</strong>。重复的 key 会造成渲染错误。</p>
+<p> 验证  key  </p>
+<p>  - 列表循环一定加key</p>
+<p>  - key最好是使用具有唯一标识性的  id  </p>
+<p>案例： 以一个案例来说明key是用来做标识的（ 同级比较 ）</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;li v-for = " (item,index) in list" :key = "item.id"&gt;</span><br><span class="line">        &lt;p&gt; {{ item.text }} &lt;/p&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;button @click = "changeStyle"&gt; 修改样式 &lt;/button&gt;</span><br><span class="line">          &lt;button @click = "remove( index )"&gt;删除 &lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue({</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    data: {</span><br><span class="line">      list: [</span><br><span class="line">        {</span><br><span class="line">          id: <span class="number">1</span>,</span><br><span class="line">          text: <span class="string">'敲代码1'</span></span><br><span class="line">        },</span><br><span class="line">        {</span><br><span class="line">          id: <span class="number">2</span>,</span><br><span class="line">          text: <span class="string">'敲代码2'</span></span><br><span class="line">        }</span><br><span class="line">      ]</span><br><span class="line">    },</span><br><span class="line">    methods: {</span><br><span class="line">      changeStyle ( e ) {</span><br><span class="line">        <span class="comment">//这里是为了看key的作用，但是真实操作中不会用到，</span></span><br><span class="line">        <span class="comment">// 理由： 我们应该避免操作真实dom</span></span><br><span class="line">        e.target.parentNode.parentNode.style.background = <span class="string">'red'</span></span><br><span class="line">      },</span><br><span class="line">      remove ( index ) {</span><br><span class="line">        <span class="keyword">this</span>.list.splice( index, <span class="number">1</span> )</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  })</span><br></pre></td></tr></tbody></table></figure>
+
+<p>尝试将key改为index或者不写，在将<code>敲代码1</code>改变样式并删除后，<code>敲代码2</code>的背景色变为了红色；</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新：<time datetime="2019-06-24T11:26:53.380Z" itemprop="dateUpdated">2019-06-24 19:26:53</time>
+</span>
+
+
+        
+        原文链接：<a href="/posts/qw123/" target="_blank" rel="external">https://yhk15978.github.io/posts/qw123/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://yhk15978.github.io'">
+            <img src="/img/avatar.jpg" alt="姚恒康">
+            <a>姚恒康</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/qw123/&title=《虚拟dom && diff算法 && key》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/qw123/&title=《虚拟dom && diff算法 && key》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/qw123/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《虚拟dom && diff算法 && key》 — yhkhome&url=https://yhk15978.github.io/posts/qw123/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/qw123/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/posts/yhk10000/" id="post-prev" class="post-nav-link">
+        <h4 class="title" >
+          上一篇：vue组件
+        </h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/1a123/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：浅谈vue原理">下一篇：浅谈vue原理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2019
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://yhk15978.github.io">https://yhk15978.github.io/</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+
+        </span>
+        <br/>
+
+        <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/qw123/&title=《虚拟dom && diff算法 && key》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/qw123/&title=《虚拟dom && diff算法 && key》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/qw123/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《虚拟dom && diff算法 && key》 — yhkhome&url=https://yhk15978.github.io/posts/qw123/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/qw123/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3aS47DIBAFwNz/0p7tjCLb70EgHqlYWVEM5U2rP7xe8Tp+rfffz57P3nr//4cXLi7uNPe4XNf/aRH5552egouLu5Gbb53ElrPwlzzf2HBxcR/JzROdmT1xcXH/FzdHj9FxcXGfw02Kn2S763+2xRUuLu63uHmXct3zkv4uLi7uEPcoV57QjDVGb07HxcXdws0DSp765KVUey4uLu5zuG0J1FLqqxu4uLiLuW0bIkl38o+53q3IyHBxcRdzxwqb+uD43T/PuLi427ltqCpyqHjn6w/GxcXdw22DUd4oWV6r4eLiLubOXKXKB6Xt/jdv4eLiLuO2hU0+SvnsYBUXF3c/tx2Xti2PtoV6E8hwcXEXc/NAM3OjMk9oorEuLi7uRm673XzDdGyQg4uLu5ObHNMe2Y5RoxILFxd3I3csuORpzdiIpb7nhYuLO82dal+WA9SxxAgXF3c/N19j7ZK2bToT/nBxcT/LbYNXjsgpRYDDxcXdyM0DTdtgnSl+Bvu7uLi427kzCdD1BYuiYsPFxX0Y9zrQzKc+N+/i4uJu5ObD1LEm6dg1L1xc3G9xZ14eG7LmTZCp/i4uLu4I9wdIYVLBz8nUrgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=3.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=3.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=3.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2019/6/11");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "姚恒康");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 敢问路在何方 %c  © Timer  https://yhk15978.github.io \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+
+</body>
+</html>

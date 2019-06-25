@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+    <meta charset="utf-8">
+    
+    
+    
+    <title>vue组件 | yhkhome | 姚恒康的博客</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    
+    <meta name="theme-color" content="#77AAFF">
+    
+    
+    <meta name="keywords" content="yhk,姚恒康,姚恒康的博客,yhkhome">
+   
+    <meta name="Robots" content="All">
+    
+
+    
+
+    <!-- Baidu Push -->
+<script>
+	(function(){
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		}
+		else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+
+	var _hmt = _hmt || [];
+</script>
+
+
+
+    
+    <meta name="description" content="vue组件组件是什么​    组件是html  css  js 等的一个聚合体 为什么要使用组件？ 组件化  ​          1. 将一个具备完整功能的项目的一部分进行多处使用 ​          2. 加快项目的进度 3. 可以进行项目的复用 要想实现组件化，那么我们使用的这一部分就必须是完整的，我们把这个完整的整体就称之为组件  插件：  index.html  img  css">
+<meta name="keywords" content="前端,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue组件">
+<meta property="og:url" content="https://yhk15978.github.io/posts/yhk10000/index.html">
+<meta property="og:site_name" content="yhkhome">
+<meta property="og:description" content="vue组件组件是什么​    组件是html  css  js 等的一个聚合体 为什么要使用组件？ 组件化  ​          1. 将一个具备完整功能的项目的一部分进行多处使用 ​          2. 加快项目的进度 3. 可以进行项目的复用 要想实现组件化，那么我们使用的这一部分就必须是完整的，我们把这个完整的整体就称之为组件  插件：  index.html  img  css">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-06-25T12:48:29.471Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue组件">
+<meta name="twitter:description" content="vue组件组件是什么​    组件是html  css  js 等的一个聚合体 为什么要使用组件？ 组件化  ​          1. 将一个具备完整功能的项目的一部分进行多处使用 ​          2. 加快项目的进度 3. 可以进行项目的复用 要想实现组件化，那么我们使用的这一部分就必须是完整的，我们把这个完整的整体就称之为组件  插件：  index.html  img  css">
+    
+        <link rel="alternate" type="application/atom+xml" title="yhkhome" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon-20190619114346159.ico">
+    <link id="style" rel="stylesheet" href="/css/style.css?v=3.0">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+            
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+    <aside id="menu"  class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" >
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg" alt="avatar">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname" id="name">姚恒康</h5>
+          
+            <div id="yiyanmotto" class="motto">&nbsp;</div>
+          
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+              <li class="waves-block waves-effect">
+                  <a href="/"  >
+                    <i class="icon icon-lg icon-home"></i>
+                    <span>主 页</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/archives"  >
+                    <i class="icon icon-lg icon-archives"></i>
+                    <span>归 档</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/categories"  >
+                    <i class="icon icon-lg icon-th-list"></i>
+                    <span>分 类</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/tags"  >
+                    <i class="icon icon-lg icon-tags"></i>
+                    <span>标 签</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+              <li class="waves-block waves-effect">
+                  <a href="/about"  >
+                    <i class="icon icon-lg icon-smile-o"></i>
+                    <span>关 于</span><i class="icon icon-lg icon-caret-left"></i>
+                  </a>
+              </li>
+            
+      <div class="nav2">
+          
+              <a class="nav2item" data-title="Email" href="mailto:954123860@qq.com" target="_parent"title="Email" >
+                <i class="icon icon-lg icon-envelope-o envelope-o"></i>
+              </a>
+          
+              <a class="nav2item" data-title="Github" href="https://github.com/yhk15978" target="_blank"title="Github" >
+                <i class="icon icon-lg icon-github github"></i>
+              </a>
+          
+              <a class="nav2item" data-title="微博" href="https://weibo.com" target="_blank"title="微博" >
+                <i class="icon icon-lg icon-weibo weibo"></i>
+              </a>
+          
+
+            </div>
+        
+      </ul>
+        
+    </div>
+  </div>
+ 
+</aside>
+
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">vue组件</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Búsqueda">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        <a href="../../atom.xml" target="_blank" class="header-icon waves-effect waves-circle waves-light" id="Rss">
+            <i class="icon icon-lg icon-rss"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    
+    <div class="container fade-scale">
+        <div id="myheader">
+            <h1 class="title">
+                
+            </h1>
+            <h5 class="subtitle">
+                
+                
+            </h5>
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#vue组件"><span class="post-toc-number">1.</span> <span class="post-toc-text">vue组件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件是什么"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">组件是什么</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#为什么要使用组件？"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">为什么要使用组件？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Vue-是构造器函数"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">Vue 是构造器函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基础的组件创建"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">基础的组件创建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、全局注册"><span class="post-toc-number">1.0.4.1.</span> <span class="post-toc-text">1、全局注册</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、局部注册"><span class="post-toc-number">1.0.4.2.</span> <span class="post-toc-text">2、局部注册</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、简写："><span class="post-toc-number">1.0.4.3.</span> <span class="post-toc-text">3、简写：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、组件的嵌套"><span class="post-toc-number">1.0.4.4.</span> <span class="post-toc-text">4、组件的嵌套</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5、is规则"><span class="post-toc-number">1.0.4.5.</span> <span class="post-toc-text">5、is规则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6、template使用："><span class="post-toc-number">1.0.4.6.</span> <span class="post-toc-text">6、template使用：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件通信"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">组件通信</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么要进行通信"><span class="post-toc-number">1.0.5.1.</span> <span class="post-toc-text">为什么要进行通信</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#组件通信的方式有以下几种"><span class="post-toc-number">1.0.5.2.</span> <span class="post-toc-text">组件通信的方式有以下几种</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-父子组件通信"><span class="post-toc-number">1.0.5.2.1.</span> <span class="post-toc-text">1.父子组件通信</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#null"><span class="post-toc-number">1.0.6.</span> <span class="post-toc-text"> 这里是子组件 </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#null"><span class="post-toc-number">1.0.7.</span> <span class="post-toc-text">这里是父组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#null"><span class="post-toc-number">1.0.8.</span> <span class="post-toc-text"> 这里是子组件 </span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-子父组件通信"><span class="post-toc-number">1.0.8.0.1.</span> <span class="post-toc-text">2.子父组件通信</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-非父子组件通信"><span class="post-toc-number">1.0.8.0.2.</span> <span class="post-toc-text">3.非父子组件通信</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#非常规通信："><span class="post-toc-number">1.0.8.0.3.</span> <span class="post-toc-text">非常规通信：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#mounted"><span class="post-toc-number">1.0.9.</span> <span class="post-toc-text">mounted</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-多组件状态共享（-多个组件共用同一个数据-）-（-vuex-）"><span class="post-toc-number">1.0.9.0.1.</span> <span class="post-toc-text">4.多组件状态共享（ 多个组件共用同一个数据 ） （ vuex ）</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义事件"><span class="post-toc-number">1.0.10.</span> <span class="post-toc-text">自定义事件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#动态组件"><span class="post-toc-number">1.0.11.</span> <span class="post-toc-text">动态组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#slot-插槽"><span class="post-toc-number">1.0.12.</span> <span class="post-toc-text">slot 插槽</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#v-slot"><span class="post-toc-number">1.0.12.1.</span> <span class="post-toc-text">v-slot:</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+   
+<article id="post-Vue组件"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">vue组件</h1>
+        <div class="post-meta">
+            <i class="icon icon-lg icon-calendar-o"></i>
+            发表于
+            <time class="post-time" title="2019-06-24 19:33:14" datetime="2019-06-24T11:33:14.878Z"  itemprop="datePublished">2019-06-24</time>
+
+            <br id="mybreak"/>
+            
+	<i class="icon icon-lg icon-folder-o"></i>
+	分类：<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+            <i>·</i>
+            
+
+        </div>
+        <div class="post-count-custom">
+            <i class="icon icon-lg icon-comment-o"></i>
+            阅读本文可能花费您&nbsp;<span class="post-count">16</span>&nbsp;分钟
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="vue组件"><a href="#vue组件" class="headerlink" title="vue组件"></a>vue组件</h1><h3 id="组件是什么"><a href="#组件是什么" class="headerlink" title="组件是什么"></a>组件是什么</h3><p>​    组件是html  css  js 等的一个聚合体</p>
+<h3 id="为什么要使用组件？"><a href="#为什么要使用组件？" class="headerlink" title="为什么要使用组件？"></a>为什么要使用组件？</h3><ol>
+<li>组件化</li>
+</ol>
+<p>​          1. 将一个具备完整功能的项目的一部分进行多处使用</p>
+<p>​          2. 加快项目的进度</p>
+<pre><code>3. 可以进行项目的复用</code></pre><ol start="2">
+<li><p>要想实现组件化，那么我们使用的这一部分就必须是完整的，我们把这个完整的整体就称之为组件</p>
+</li>
+<li><p>插件：  index.html  img  css   js  </p>
+</li>
+<li><p>如果能将 html  css  js  img 等多个部分放在一起，vue将这个聚合体的文件称之为，单文件组件（ xx.vue ）</p>
+</li>
+</ol>
+<h3 id="Vue-是构造器函数"><a href="#Vue-是构造器函数" class="headerlink" title="Vue 是构造器函数"></a>Vue 是构造器函数</h3><p>   Vue.extend() 是  vue用来扩展  vue功能（ 组件 ）的</p>
+<p>   使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象。</p>
+<p><code>data</code> 选项是特例，需要注意 - 在 <code>Vue.extend()</code> 中它必须是函数</p>
+  <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="mount-point"&gt;&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建构造器</span></span><br><span class="line"><span class="keyword">var</span> Profile = Vue.extend({</span><br><span class="line">  template: <span class="string">'<p>{{firstName}} {{lastName}} aka {{alias}}</p>'</span>,</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      firstName: <span class="string">'Walter'</span>,</span><br><span class="line">      lastName: <span class="string">'White'</span>,</span><br><span class="line">      alias: <span class="string">'Heisenberg'</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">})</span><br><span class="line"><span class="comment">// 创建 Profile 实例，并挂载到一个元素上。</span></span><br><span class="line"><span class="keyword">new</span> Profile().$mount(<span class="string">'#mount-point'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;Walter White aka Heisenberg&lt;/p&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Vue决定不进行  实例化  Vue.extend(),vue借鉴了react，react中组件是以标签的形式使用的，</p>
+<p> vue 决定组件要以标签的形式呈现</p>
+<h3 id="基础的组件创建"><a href="#基础的组件创建" class="headerlink" title="基础的组件创建"></a>基础的组件创建</h3><p>为了能在模板中使用，这些组件必须先注册以便 Vue 能够识别。</p>
+<p>为了符合 html / html5的规则，所以组件的标签化使用必须注册，</p>
+<p>注册就是用来解析这个标签化的组件html未能识别的标签</p>
+<p>组件使用前必须进行注册</p>
+<p><strong>一个组件的 data 选项必须是一个函数</strong>，因此每个实例可以维护一份被返回对象的独立的拷贝</p>
+<p><strong>命名：</strong> </p>
+<p>​      一个单词的大写： 注意不要和原生的h5标签重名，比如  header   footer   Header Footer</p>
+<p>​      小写带- ， 比如   header-title</p>
+<p>​      大驼峰：  YaoHengkang   使用 ：   yao-hengkang</p>
+<h4 id="1、全局注册"><a href="#1、全局注册" class="headerlink" title="1、全局注册"></a>1、全局注册</h4><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Hello = Vue.extend({</span><br><span class="line">    template: <span class="string">'<div> 这里是father组件 </div>'</span></span><br><span class="line">  })             <span class="comment">//VueComponent( option )</span></span><br><span class="line"></span><br><span class="line">Vue.component( <span class="string">'Father'</span>, Hello )</span><br></pre></td></tr></tbody></table></figure>
+
+<p>因为组件是可复用的 Vue 实例，所以它们与 <code>new Vue</code> 接收相同的选项，例如 <code>data</code>、<code>computed</code>、<code>watch</code>、<code>methods</code> 以及生命周期钩子等。仅有的例外是像 <code>el</code> 这样根实例特有的选项。</p>
+<h4 id="2、局部注册"><a href="#2、局部注册" class="headerlink" title="2、局部注册"></a>2、局部注册</h4><p>在组件中用一个components的配置项目来表示</p>
+<p> 只能在注册的范围内使用，其他地方是不能使用的</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">    &lt;yao-hengkang&gt;&lt;/yao-hengkang&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Hello = Vue.extend({</span><br><span class="line">    template: <span class="string">'<div> Hello world </div>'</span></span><br><span class="line">  })</span><br><span class="line"></span><br><span class="line">  <span class="keyword">new</span> Vue({</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    components: {</span><br><span class="line">      <span class="comment">// key: value  key是组件名称   value是组件配置项</span></span><br><span class="line">       <span class="string">'yao-hengkang'</span>: Hello</span><br><span class="line">    }</span><br><span class="line">  })</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="3、简写："><a href="#3、简写：" class="headerlink" title="3、简写："></a>3、简写：</h4><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">    &lt;Father&gt;&lt;/Father&gt;</span><br><span class="line">    &lt;yao-hengkang&gt;&lt;/yao-hengkang&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'Father'</span>,{</span><br><span class="line">   template: <span class="string">'<div> 这里是全局注册 </div>'</span></span><br><span class="line"> })</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="keyword">new</span> Vue({</span><br><span class="line">   el: <span class="string">'#app'</span>,</span><br><span class="line">   components: {</span><br><span class="line">     <span class="string">'YaoHengkang'</span>: {</span><br><span class="line">       template: <span class="string">'<div> 这里是局部注册 </div>'</span></span><br><span class="line">     }</span><br><span class="line">   }</span><br><span class="line"> })</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="4、组件的嵌套"><a href="#4、组件的嵌套" class="headerlink" title="4、组件的嵌套"></a>4、组件的嵌套</h4><p>​     父组件里面放子组件 —-》 类似于dom结构的父子级结构</p>
+<p>​      将子组件以标签的形式放在父组件的模板中使用</p>
+<p>​      切记，不要放在父组件的内容中</p>
+<p>​      组件不仅可以用双标签表示，也可以使用单标签表示</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">   &lt;!-- 下面这种写法是错误的 --&gt;</span><br><span class="line">   &lt;Father&gt;</span><br><span class="line">     &lt;Son&gt;&lt;/Son&gt;</span><br><span class="line">   &lt;/Father&gt;</span><br><span class="line">   &lt;!-- 正确的应该是 --&gt;</span><br><span class="line">   &lt;Father&gt;&lt;/Father&gt;</span><br><span class="line"> &lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'Father'</span>,{</span><br><span class="line">   template: <span class="string">'<div> Father <Son></Son></div>'</span></span><br><span class="line"> })</span><br><span class="line"></span><br><span class="line"> Vue.component(<span class="string">'Son'</span>,{</span><br><span class="line">   template: <span class="string">'<div> son </div>'</span></span><br><span class="line"> })</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">new</span> Vue({</span><br><span class="line">   el: <span class="string">'#app'</span>,</span><br><span class="line"> })</span><br></pre></td></tr></tbody></table></figure>
+
+<p>或</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue({</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: {</span><br><span class="line">    <span class="string">'Father'</span>: {</span><br><span class="line">      template: <span class="string">'<div> father组件 <Son /></div>'</span>,</span><br><span class="line">      components: {</span><br><span class="line">        <span class="string">'Son'</span>: {</span><br><span class="line">          template: <span class="string">'<div> son组件 </div>'</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="5、is规则"><a href="#5、is规则" class="headerlink" title="5、is规则"></a>5、is规则</h4><p> ul>li  ol>li   table>tr>td      select>option</p>
+<p>​    如上直属父子级如果直接组件以标签化形式使用，那么就会出现bug</p>
+<p>​    解决： 使用is规则: 通过is属性来绑定一个组件</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'Hello'</span>,{</span><br><span class="line">    template: <span class="string">'<tr> <td> 4 </td> <td> 2 </td><td> 3 </td></tr>'</span></span><br><span class="line">  })</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue({</span><br><span class="line">  el: <span class="string">'#app'</span></span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">  &lt;table&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">      &lt;td&gt;1&lt;/td&gt;</span><br><span class="line">      &lt;td&gt;2&lt;/td&gt;</span><br><span class="line">      &lt;td&gt;3&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;!--  会出bug ↓ --&gt;</span><br><span class="line">    &lt;hello&gt;&lt;/hello&gt;</span><br><span class="line">    &lt;!-- 通过is属性来绑定 ↓ --&gt;</span><br><span class="line">    &lt;tr is = "Hello"&gt;&lt;/tr&gt;</span><br><span class="line">  &lt;/table&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="6、template使用："><a href="#6、template使用：" class="headerlink" title="6、template使用："></a>6、template使用：</h4><ol>
+<li>实例范围内使用</li>
+</ol>
+<p>​          template中的内容被当做一个整体了，并且template标签是不会解析到html结构中的</p>
+<ol start="2">
+<li>实例范围外使用</li>
+</ol>
+<p>​          实例范围外template标签是不会被直接解析的</p>
+<p>​    组件要想使用template使用，我们采用第二种</p>
+<p>​    但是使用第二种template使用后，有个弊端，template标签结构会在html文件中显示</p>
+<p>​    解决： 使用webpack、gulp等工具编译，要用vue提供的单文件组件</p>
+<h3 id="组件通信"><a href="#组件通信" class="headerlink" title="组件通信"></a>组件通信</h3><h4 id="为什么要进行通信"><a href="#为什么要进行通信" class="headerlink" title="为什么要进行通信"></a>为什么要进行通信</h4><p>组件可以是一个具有独立功能的整体，但是当我们要将这些组件拼接在一起时，这些组件要建立联系，这个联系我们就称之为通信</p>
+<h4 id="组件通信的方式有以下几种"><a href="#组件通信的方式有以下几种" class="headerlink" title="组件通信的方式有以下几种"></a>组件通信的方式有以下几种</h4><h5 id="1-父子组件通信"><a href="#1-父子组件通信" class="headerlink" title="1.父子组件通信"></a>1.父子组件通信</h5><p>使用props实现</p>
+<ol>
+<li><p>在父组件的模板中用单项数据绑定的形式，绑定在子组件身上<br> <code><Son :money = "money"/></code></p>
+</li>
+<li><p>在子组件的配置项中可以使用一个props配置项来接收这个数据，接收时props可以是一个数组；</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> Vue.component(<span class="string">'Son'</span>,{</span><br><span class="line">       template: <span class="string">`<div></span></span><br><span class="line"><span class="string">                     <h3> 这里是子组件 </h3></span></span><br><span class="line"><span class="string">                 </div>`</span></span><br><span class="line">       props:[<span class="string">'money'</span>]</span><br><span class="line">     })</span><br><span class="line">​</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>在子组件模板中，接收到的属性可以像全局对象一样直接使用<br><code><p> 父亲给了我    钱  </p></code><br>问题：自定义属性的书写<br>HTML 中的特性名是大小写不敏感的，所以浏览器会把所有大写字符解释为小写字符。这意味着当你使用 DOM 中的模板时，camelCase (驼峰命名法) 的 prop 名需要使用其等价的 kebab-case (短横线分隔命名) 命名：<br>money   —-> money<br>mask-flag —-> maskFlag<br>问题：data为什么要定义为一个函数</p>
+<ol>
+<li>组件是一个独立的个体，那么它应该拥有自己的数据，这个数据应该是一个独立的数据</li>
+<li>也就是说这个数据应该有独立作用域，也就是有一个独立的使用范围，这个范围就是这个组件内</li>
+<li>js的最大特征是：函数式编程 ， 而函数恰好提供了独立作用域<br>问题： 为什么data要有返回值？返回值还是一个对象？</li>
+<li>因为Vue是通过observer来观察data选项的，所有必须要有返回值</li>
+<li>因为Vue要通过es5的Object.defineProperty属性对对象进行getter和setter设置</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">    &lt;Father&gt;&lt;/Father&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> Vue.component(<span class="string">'Father'</span>,{</span><br><span class="line">   template: <span class="string">`<div></span></span><br><span class="line"><span class="string">               <h3>这里是父组件</h3></span></span><br><span class="line"><span class="string">               <hr></span></span><br><span class="line"><span class="string">               <son :money = "money"></son></span></span><br><span class="line"><span class="string">              </div>`</span>,</span><br><span class="line">   data(){</span><br><span class="line">     <span class="keyword">return</span> {</span><br><span class="line">          money:<span class="number">1000</span></span><br><span class="line">     }</span><br><span class="line">   }</span><br><span class="line"> })</span><br><span class="line"> Vue.component(<span class="string">'Son'</span>,{</span><br><span class="line">   template: <span class="string">`<div></span></span><br><span class="line"><span class="string">                 <h3> 这里是子组件 </h3></span></span><br><span class="line"><span class="string">                 <p> 父亲给了我  {{ money }}  钱  </p> </span></span><br><span class="line"><span class="string">             </div>`</span></span><br><span class="line">props:[<span class="string">'money'</span>]</span><br><span class="line"> })</span><br><span class="line"> <span class="keyword">new</span> Vue({</span><br><span class="line">el: <span class="string">"#app"</span>,</span><br><span class="line"></span><br><span class="line"> })</span><br></pre></td></tr></tbody></table></figure>
+
+<h5 id="2-子父组件通信"><a href="#2-子父组件通信" class="headerlink" title="2.子父组件通信"></a>2.子父组件通信</h5><p>自定义事件<br>子父通信流程</p>
+<ol>
+<li><p>在父组件的模板中，通过事件绑定的形式，绑定一个自定义事件在子组件身上<br> <code><son @give='getHongBao'></son></code></p>
+</li>
+<li><p>在子组件的配置项methods中写一个事件处理程序，在事件处理程序中触发父组件绑定的自定义事件</p>
+ <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'Son'</span>,{</span><br><span class="line">    template: <span class="string">'#son'</span>,</span><br><span class="line">    data:<span class="function"><span class="params">()</span>=></span>{</span><br><span class="line">        <span class="keyword">return</span> {</span><br><span class="line">            money : <span class="number">1000</span></span><br><span class="line">        }</span><br><span class="line">    },</span><br><span class="line">    methods:{</span><br><span class="line">        giveHongBao(){</span><br><span class="line">            <span class="keyword">this</span>.money++</span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">'give'</span>,<span class="keyword">this</span>.money)</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">  })</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>将子组件定义的事件处理程序  giveFather,绑定在子组件的按钮身上</p>
+ <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template id="son"&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">          &lt;h3&gt;这里是子组件&lt;/h3&gt;</span><br><span class="line">          &lt;button @click='giveHongBao'&gt;发红包&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ol>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> &lt;div id="app"&gt;</span><br><span class="line">      &lt;father&gt;&lt;/father&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&lt;template id="father"&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;这里是父组件&lt;/h3&gt;</span><br><span class="line">        &lt;p&gt;儿子给了我{{ money }}&lt;/p&gt;</span><br><span class="line">        &lt;son @give='getHongBao'&gt;&lt;/son&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;template id="son"&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;这里是子组件&lt;/h3&gt;</span><br><span class="line">        &lt;button @click='giveHongBao'&gt;发红包&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">  Vue.component(<span class="string">'Father'</span>,{</span><br><span class="line">    template:<span class="string">'#father'</span>,</span><br><span class="line">    data:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line">        <span class="keyword">return</span> {</span><br><span class="line">            money:<span class="number">0</span></span><br><span class="line">        }</span><br><span class="line">    },</span><br><span class="line">    methods:{</span><br><span class="line">        getHongBao(val){</span><br><span class="line">            <span class="keyword">this</span>.money = val ;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">})</span><br><span class="line">Vue.component(<span class="string">'Son'</span>,{</span><br><span class="line">    template: <span class="string">'#son'</span>,</span><br><span class="line">    data:<span class="function"><span class="params">()</span>=></span>{</span><br><span class="line">        <span class="keyword">return</span> {</span><br><span class="line">            money : <span class="number">1000</span></span><br><span class="line">        }</span><br><span class="line">    },</span><br><span class="line">    methods:{</span><br><span class="line">        giveHongBao(){</span><br><span class="line">            <span class="keyword">this</span>.money++</span><br><span class="line">            <span class="keyword">this</span>.$emit(<span class="string">'give'</span>,<span class="keyword">this</span>.money)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">})</span><br><span class="line"><span class="keyword">new</span> Vue({</span><br><span class="line">    el:<span class="string">"#app"</span></span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+<h5 id="3-非父子组件通信"><a href="#3-非父子组件通信" class="headerlink" title="3.非父子组件通信"></a>3.非父子组件通信</h5><p>​    ref链:可以实现非父子组件间的通信，但是如果层级太深，就比较繁琐了</p>
+<p><code>ref</code> 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 <code>$refs</code> 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例</p>
+<ol>
+<li><p>先给子组件注册引用信息</p>
+<p><code><boy ref='boy'></boy></code></p>
+</li>
+<li><p>父组件通过<code>$refs</code>获得子组件信息</p>
+<p><code>this.n = this.$refs.boy.money</code></p>
+</li>
+<li><p>父组件通过属性将数据传递给子组件</p>
+<p><code><girl ref='girl' :money="n"></girl></code></p>
+</li>
+<li><p>子组件通过<code>$attr</code>或<code>props</code>获得值</p>
+<p><code>this.$attrs.money</code></p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">       &lt;father&gt;&lt;/father&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line">   &lt;template id="father"&gt;</span><br><span class="line">       &lt;div&gt;</span><br><span class="line">           这里是father</span><br><span class="line">           &lt;button @click="look"&gt;得到boy的money&lt;/button&gt;</span><br><span class="line">           &lt;hr&gt;</span><br><span class="line">           &lt;boy ref='boy'&gt;&lt;/boy&gt;</span><br><span class="line">           &lt;hr&gt;</span><br><span class="line">           &lt;girl ref='girl' :money="n"&gt;&lt;/girl&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">   &lt;/template&gt;</span><br><span class="line">   &lt;template id="boy"&gt;</span><br><span class="line">       &lt;div&gt;</span><br><span class="line">           这里是boy---</span><br><span class="line">           {{ money }}</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">   &lt;/template&gt;</span><br><span class="line">   &lt;template id="girl"&gt;</span><br><span class="line">       &lt;div&gt;</span><br><span class="line">           这里是girl</span><br><span class="line">           &lt;button @click="out"&gt; 输出girl的money &lt;/button&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">   &lt;/template&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'Father'</span>, {</span><br><span class="line">        template: <span class="string">'#father'</span>,</span><br><span class="line">        data() {</span><br><span class="line">            <span class="keyword">return</span> {</span><br><span class="line">                n: <span class="number">0</span></span><br><span class="line">            }</span><br><span class="line">        },</span><br><span class="line">        methods: {</span><br><span class="line">            look() {</span><br><span class="line">                <span class="keyword">this</span>.n = <span class="keyword">this</span>.$refs.boy.money</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line">    Vue.component(<span class="string">'Boy'</span>, {</span><br><span class="line">        template: <span class="string">'#boy'</span>,</span><br><span class="line">        data() {</span><br><span class="line">            <span class="keyword">return</span> {</span><br><span class="line">                money: <span class="number">1000</span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line">    Vue.component(<span class="string">'Girl'</span>, {</span><br><span class="line">        template: <span class="string">'#girl'</span>,</span><br><span class="line">        methods: {</span><br><span class="line">            out() {</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="keyword">this</span>.$attrs.money)</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line">    <span class="keyword">new</span> Vue({</span><br><span class="line">        el: <span class="string">"#app"</span></span><br><span class="line">    })</span><br></pre></td></tr></tbody></table></figure>
+
+<p>​    bus事件总线</p>
+<ol>
+<li><p>新建vue实例bus</p>
+<p>​    <code>var bus = new Vue();</code></p>
+</li>
+<li><p>在接收组件<code>mounted()</code>中声明事件</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var _this = this</span><br><span class="line">   bus.$on('da', function () {</span><br><span class="line">       _this.flag = true</span><br><span class="line">       console.log(this) //这里是this指的是bus， 但是我们需要的this应该是brother这个组件</span><br><span class="line">   })</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>在发送消息中定义<code>$emit</code>触发事件</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods: {</span><br><span class="line">           hick() {</span><br><span class="line">               bus.$emit('da')</span><br><span class="line">           }</span><br><span class="line">       }</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ol>
+<p>案例：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">       &lt;old-sister&gt;&lt;/old-sister&gt;</span><br><span class="line">       &lt;brother&gt;&lt;/brother&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line">   &lt;template id="old-sister"&gt;</span><br><span class="line">       &lt;div&gt;</span><br><span class="line">           &lt;h3&gt; 这里是姐姐组件 &lt;/h3&gt;</span><br><span class="line">           &lt;button @click="hick"&gt; 揍弟弟 &lt;/button&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">   &lt;/template&gt;</span><br><span class="line">   &lt;template id="brother"&gt;</span><br><span class="line">       &lt;div&gt;</span><br><span class="line">           &lt;h3&gt; 这里是弟弟组件 &lt;/h3&gt;</span><br><span class="line">           &lt;p v-show="flag"&gt; 呜呜呜呜呜呜呜呜呜uwuwuwuwu &lt;/p&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">   &lt;/template&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bus = <span class="keyword">new</span> Vue();</span><br><span class="line">   Vue.component(<span class="string">'old-sister'</span>, {</span><br><span class="line">       template: <span class="string">'#old-sister'</span>,</span><br><span class="line">       methods: {</span><br><span class="line">           hick() {</span><br><span class="line">               bus.$emit(<span class="string">'da'</span>)</span><br><span class="line">           }</span><br><span class="line">       }</span><br><span class="line">   })</span><br><span class="line">   Vue.component(<span class="string">'Brother'</span>, {</span><br><span class="line">       template: <span class="string">'#brother'</span>,</span><br><span class="line">       data() {</span><br><span class="line">           <span class="keyword">return</span> {</span><br><span class="line">               flag: <span class="literal">false</span></span><br><span class="line">           }</span><br><span class="line">       },</span><br><span class="line">       mounted() { <span class="comment">//当前组件挂载结束，也就是我们可以在页面当中看到真实dom</span></span><br><span class="line">           <span class="comment">// mounted这个钩子函数的触发条件是组件创建时会自动触发</span></span><br><span class="line">           <span class="comment">// 事件的声明</span></span><br><span class="line">           <span class="keyword">var</span> _this = <span class="keyword">this</span></span><br><span class="line">           bus.$on(<span class="string">'da'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">               _this.flag = <span class="literal">true</span></span><br><span class="line">               <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">//这里是this指的是bus， 但是我们需要的this应该是brother这个组件</span></span><br><span class="line">           })</span><br><span class="line">       }</span><br><span class="line">   })</span><br><span class="line">   <span class="keyword">new</span> Vue({</span><br><span class="line">       el: <span class="string">"#app"</span></span><br><span class="line">   })</span><br></pre></td></tr></tbody></table></figure>
+
+<h5 id="非常规通信："><a href="#非常规通信：" class="headerlink" title="非常规通信："></a>非常规通信：</h5><ol>
+<li><p>父组件将一个方法通过属性绑定的形式给了子组件，子组件先是通过props接收这个方法，再执行这个方法</p>
+<p>MVVM框架是单向数据流，但是上面的方法违背了单项数据流</p>
+</li>
+<li><p>父组件传递一个 引用类型  给 子组件</p>
+<p>子组件通过 props 接收</p>
+<p>就会发现： 子组件修改这个数据的时候，父组件的数据也随之改变了</p>
+<p>不推荐使用  ， 违背了单向数据流</p>
+</li>
+</ol>
+<h3 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h3><ul>
+<li><p><strong>类型</strong>：<code>Function</code></p>
+</li>
+<li><p><strong>详细</strong>：</p>
+<p><code>el</code> 被新创建的 <code>vm.$el</code> 替换，并挂载到实例上去之后调用该钩子。如果 root 实例挂载了一个文档内元素，当 <code>mounted</code> 被调用时 <code>vm.$el</code> 也在文档内。</p>
+<p>注意 <code>mounted</code> <strong>不会</strong>承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用 <a href="https://cn.vuejs.org/v2/api/#vm-nextTick" target="_blank" rel="noopener">vm.$nextTick</a> 替换掉 <code>mounted</code></p>
+</li>
+</ul>
+<h5 id="4-多组件状态共享（-多个组件共用同一个数据-）-（-vuex-）"><a href="#4-多组件状态共享（-多个组件共用同一个数据-）-（-vuex-）" class="headerlink" title="4.多组件状态共享（ 多个组件共用同一个数据 ） （ vuex ）"></a>4.多组件状态共享（ 多个组件共用同一个数据 ） （ vuex ）</h5><p>​    vuex</p>
+<h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><ol>
+<li>自定义的   通过  $on  定义    $emit触发<br><code>vm.$on( event, callback )</code><br>参数：<ul>
+<li><code>{string | Array<string>} event</code> </li>
+<li><code>{Function} callback</code><br>用法：</li>
+</ul>
+</li>
+</ol>
+<p>监听当前实例上的自定义事件。事件可以由<code>vm.$emit</code>触发。回调函数会接收所有传入事件触发函数的额外参数。<br><code>vm.$emit( eventName, […args] )</code><br>参数：</p>
+<ul>
+<li><code>{string} eventName</code></li>
+<li><code>[...args]</code><br>示例：<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vm.$on(<span class="string">'test'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(msg)</span><br><span class="line">})</span><br><span class="line">vm.$emit(<span class="string">'test'</span>, <span class="string">'hi'</span>)</span><br><span class="line"><span class="comment">// => "hi"</span></span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<ol start="2">
+<li><p>通过绑定在组件身上定义，通过 $emit触发<br> <code><Son @aa = "fn"/></code></p>
+<p> 使用： 子父通信</p>
+</li>
+</ol>
+<h3 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a><strong>动态组件</strong></h3><ol>
+<li><p>什么是动态组件？</p>
+<p>可以改变的组件</p>
+</li>
+<li><p>使用</p>
+<p>通过 Vue 提供了一个  component  +  is  属性</p>
+</li>
+<li><p>动态组件指的就是 component这个组件</p>
+</li>
+<li><p>案例</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">   &lt;button @click = "change"&gt; 切换 &lt;/button&gt;</span><br><span class="line">   &lt;keep-alive include=""&gt;</span><br><span class="line">      &lt;component :is = "type"&gt;&lt;/component&gt;</span><br><span class="line">   &lt;/keep-alive&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ol>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'Aa'</span>,{</span><br><span class="line">       template: <span class="string">'<div> Aa </div>'</span></span><br><span class="line">    })</span><br><span class="line"></span><br><span class="line">    Vue.component(<span class="string">'Bb'</span>,{</span><br><span class="line">       template: <span class="string">'<div> Bb </div>'</span></span><br><span class="line">    })</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> Vue({</span><br><span class="line">       data: {</span><br><span class="line">          type: <span class="string">'Aa'</span></span><br><span class="line">       },</span><br><span class="line">       methods: {</span><br><span class="line">          change () {</span><br><span class="line">          <span class="keyword">this</span>.type = (<span class="keyword">this</span>.type === <span class="string">'Aa'</span>?<span class="string">'Bb'</span>:<span class="string">'Aa'</span>)</span><br><span class="line">          }</span><br><span class="line">       }</span><br><span class="line">    }).$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<ol start="5">
+<li><p>Vue提供了一个叫做 keep-alive 的组件可以将我们的组件进行浏览器缓存，这样当我们切换组件时，就可以大大提高使用效率</p>
+</li>
+<li><p>keep-alive也可以以属性的形式呈现，但是我们如果搭配component的话，建议使用组件的形式</p>
+</li>
+</ol>
+<h3 id="slot-插槽"><a href="#slot-插槽" class="headerlink" title="slot 插槽"></a><strong>slot 插槽</strong></h3><ol>
+<li><p>作用/概念: 预先将将来要使用的内容进行保留</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">    &lt;Hello&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        这里是杭州</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/Hello&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;template id="hello"&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      &lt;h3&gt;这里是hello&lt;/h3&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/template&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'Hello'</span>,{</span><br><span class="line">       template: <span class="string">'#hello'</span></span><br><span class="line">     })</span><br><span class="line">   </span><br><span class="line">     <span class="keyword">new</span> Vue({</span><br><span class="line">       el: <span class="string">'#app'</span></span><br><span class="line">     })</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>具名插槽： 给slot起个名字</p>
+<p>通过<code>solt</code>属性和<code>name</code>对应插槽位置</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id="app"&gt;</span><br><span class="line">  &lt;Hello&gt;</span><br><span class="line">    &lt;header slot = 'header'&gt; 这里是头部 &lt;/header&gt;</span><br><span class="line">    &lt;footer slot = 'footer'&gt; 这里是底部 &lt;/footer&gt;</span><br><span class="line">  &lt;/Hello&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;template id="hello"&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;slot name = "header"&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;h3&gt;这里是hello&lt;/h3&gt;</span><br><span class="line">    &lt;slot name = "footer"&gt;&lt;/slot&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'Hello'</span>,{</span><br><span class="line">   template: <span class="string">'#hello'</span></span><br><span class="line"> })</span><br><span class="line">   </span><br><span class="line"> <span class="keyword">new</span> Vue({</span><br><span class="line">   el: <span class="string">'#app'</span></span><br><span class="line"> })</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+</li>
+</ol>
+<ul>
+<li><p>注意： 以上两种形式在 vue2.6以上被废弃</p>
+</li>
+<li><p>为什么要 用  v-slot指令来代替呢？</p>
+<ul>
+<li>经具名插槽和作用域插槽进行统一</li>
+<li>要将这两个属性带有 vue的标志，并且符合vue两个最大的特性之一： 指令的概念</li>
+</ul>
+</li>
+</ul>
+<h4 id="v-slot"><a href="#v-slot" class="headerlink" title="v-slot:"></a>v-slot:</h4><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> &lt;div id="app"&gt;</span><br><span class="line">  &lt;Hello&gt;</span><br><span class="line">    &lt;template v-slot:header&gt;</span><br><span class="line">      &lt;h1&gt;Here might be a page title&lt;/h1&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  </span><br><span class="line">    &lt;p&gt;A paragraph for the main content.&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;And another one.&lt;/p&gt;</span><br><span class="line">  </span><br><span class="line">    &lt;template v-slot:footer&gt;</span><br><span class="line">      &lt;p&gt;Here's some contact info&lt;/p&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  &lt;/Hello&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;template id ='hello'&gt;</span><br><span class="line">  &lt;div class="container"&gt;</span><br><span class="line">    &lt;header&gt;</span><br><span class="line">      &lt;!-- 我们希望把页头放这里 --&gt;</span><br><span class="line">      &lt;slot name = "header"&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;/header&gt;</span><br><span class="line">    &lt;main&gt;</span><br><span class="line">      &lt;!-- 我们希望把主要内容放这里 --&gt;</span><br><span class="line">      &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;/main&gt;</span><br><span class="line">    &lt;footer&gt;</span><br><span class="line">      &lt;!-- 我们希望把页脚放这里 --&gt;</span><br><span class="line">      &lt;slot name = 'footer'&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;/footer&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'Hello'</span>,{</span><br><span class="line">      template: <span class="string">'#hello'</span></span><br><span class="line">    })</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> Vue({</span><br><span class="line">      el: <span class="string">'#app'</span></span><br><span class="line">    })</span><br></pre></td></tr></tbody></table></figure>
+
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新：<time datetime="2019-06-25T12:48:29.471Z" itemprop="dateUpdated">2019-06-25 20:48:29</time>
+</span>
+
+
+        
+        原文链接：<a href="/posts/yhk10000/" target="_blank" rel="external">https://yhk15978.github.io/posts/yhk10000/</a>
+        
+    </div>
+    <footer>
+        <div onclick="location.href='https://yhk15978.github.io'">
+            <img src="/img/avatar.jpg" alt="姚恒康">
+            <a>姚恒康</a>
+        </div>
+    </footer>
+</blockquote>
+
+        
+    <div class="page-reward">
+        <nav class="myreward">
+            <a id="rewardBtn" href="javascript:;"><span>打&nbsp;赏</span><span>装成好像很多人打赏的样子</span></a>
+        </nav>
+    </div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/yhk10000/&title=《vue组件》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/yhk10000/&title=《vue组件》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/yhk10000/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue组件》 — yhkhome&url=https://yhk15978.github.io/posts/yhk10000/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/yhk10000/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/posts/qw123/" id="post-next" class="post-nav-link">
+        <h4 class="title" data-hover="下一篇：虚拟dom &amp;&amp; diff算法 &amp;&amp; key">下一篇：虚拟dom &amp;&amp; diff算法 &amp;&amp; key</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+
+    
+
+    
+
+
+</article>
+
+</div>
+
+        <footer class="footer">
+    <div class="footer-content">
+        <span class="power">
+            <i class="icon icon-lg icon-copyright"></i>
+            2019
+            <i class="icon icon-lg icon-heart"></i>
+            <a href="https://yhk15978.github.io">https://yhk15978.github.io/</a>
+            <br/>
+            Power by
+            <a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>&nbsp;·&nbsp;
+            Theme
+            <a class="tomotoeslink" href="https://github.com/tomotoes/hexo-theme-tomotoes/" target="_blank" rel="external nofollow">tomotoes</a>
+        </span>
+
+        <br/>
+
+        <span id="RunTime" style="color:#a7a7a2;"></span>
+        <br/>
+
+        <span>
+            
+
+        </span>
+        <br/>
+
+        <span class="license">Este blog está licenciado bajo una <a rel="license" rel="external nofollow" href="https://creativecommons.org/licenses/by/4.0/">licencia internacional Creative Commons Attribution 4.0</a>.</span>
+    </div>
+</footer>
+
+    </main>
+    
+        
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        <span>感谢您的鼓励支持！</span>
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" data-img="/img/dog.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechatPay">&nbsp;&nbsp;微信&nbsp;&nbsp;</span>
+                <span class="reward-toggle-item alipayPay">支付宝</span>
+            </div>
+        </label>
+        
+        <i class="icon icon-caret-up"></i>
+    </div>
+</div>
+
+
+    
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://yhk15978.github.io/posts/yhk10000/&title=《vue组件》 — yhkhome&pic=https://yhk15978.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://yhk15978.github.io/posts/yhk10000/&title=《vue组件》 — yhkhome&source=姚恒康的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://yhk15978.github.io/posts/yhk10000/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue组件》 — yhkhome&url=https://yhk15978.github.io/posts/yhk10000/&via=https://yhk15978.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://yhk15978.github.io/posts/yhk10000/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p class="wechatshare">扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3ay46DMAwF0P7/TzPbkTqF6xiHjnSyQn2EAwvLj7xe8Tp+rfdPkm8/7fmaWLi4uG3ucbqS2ye4d2Ly8H/shouLu5G7tvX57z899vn1hQ0XF/crudXUJ38FuLi4/5fbeby114GLi/sUNyl++glNXlzdUKvh4uI2uHmXcu56pL+Li4u7xD2Kq1rwVAPWxd1xcXG3cKuFSj46zdOd6nAXFxd3mpsPSNbKoU7adPFecXFxx7hrh6XyhKbaHKkGTVxc3Dlup61ZHbj2x7G4uLh7uEkIy8uY/GES1sX8BxcXd4zbb5huLX5wcXEf4t4134wi6GkwjQIZLi7uGPc8ZcmPeE4MVnFxcfdzc2gSkvKgttZqwcXF3cldK4QSRHVCWiiicHFxx7j51ufBrlr8LO6Ji4v7KLeTpuTHLPJxLC4u7n5udeCaIKqZSSELw8XFHeN2BiRrBzIKw1RcXNyHuPnKD2F0kqRO+MPFxb2XuzbmrDZE1oay5eiLi4t7KzcPNJ02ykithouL+zXc/sGLVsWGi4v7ZdxOm7UQsD79EhcXdyM3KX7yoFM91FV4Wbi4uFu4/T/3j3atFVS4uLgD3B+Jy3GwUeJEJwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <!-- waves按钮特效 -->
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<!-- 主题配置脚本 -->
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+</script>
+
+<!-- jquery -->
+<script src="/js/jquery.min.js?v=3.0"></script>
+
+<!-- 搜索 -->
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item waves-block waves-effect" onclick="location.href='{path}'">
+    <div class="title ellipsis" title="{title}">{title}</div>
+</li>
+</template>
+
+
+<!-- main博客脚本 -->
+<script src="/js/main.min.js?v=3.0" ></script>
+
+<!-- 动画&配置 -->
+<script src="/js/script.min.js?v=3.0" ></script>
+
+<!-- 脚本管理 -->
+<script>
+
+if(window.innerWidth > 800){
+	/* 3D标题 */
+	$(".content-header").on("mousemove", threedee);
+
+	/* 底部追随鼠标 */
+	$(".footer").hover(2);
+
+	/* gotop键的涟漪 */
+	$("#gotop").hover(1);
+
+	/* 赞赏的粒子雨 */
+	$("#reward").hover(3);
+
+	/* 微信公众号的底部渲染 */
+	$("#wechat").hover(4);
+
+    /* 标题跳动 */
+    $(".archivestitle").bumpyText();
+
+	/* 图片点击放大 */
+	const postimg = jQuery(".post-content img:not(.github-emoji)");
+	postimg.on("click",function(){
+
+		mask.classList.add("in");
+		main.classList.add("Mask");
+		menu.classList.add("Mask");
+		var myimg = this.cloneNode(true);
+		myimg.classList.add("imgShow");
+
+		setTimeout(function(){
+			jQuery(myimg).animate({
+				opacity:"1"
+			},1000);
+		},0);
+
+		document.body.appendChild(myimg);
+
+		myimg.onclick=function(){
+			document.body.removeChild(myimg);
+			mask.classList.remove("in");
+			main.classList.remove("Mask");
+			menu.classList.remove("Mask");
+		};
+
+	});
+
+}
+
+/* 名字跳动 */
+$("#name").bumpyText();
+
+
+/* 网站运行时间 */
+setInterval(function () {
+	setTime("2019/6/11");
+}, 1000);
+
+/* 文章块的淡出 */
+postshow();
+
+/* 座右铭 */
+
+   getHitokoto();
+
+
+
+/* 粘贴提示 */
+G($(".post-content"), location.href, "姚恒康");
+
+
+/* 控制台 */
+if (window.console && window.console.log) {
+	setTimeout(function () {
+		console.log("\n %c 敢问路在何方 %c  © Timer  https://yhk15978.github.io \n\n", "color:#FFFFFB;background:#1abc9c;padding:5px 0;border-radius:.5rem 0 0 .5rem;", "color:#FFFFFB;background:#080808;padding:5px 0;border-radius:0 .5rem .5rem 0;");
+	}, 0);
+}
+
+</script>
+
+
+
+
+<!-- 公式渲染 -->
+
+
+
+<!-- 不蒜子 -->
+
+
+</body>
+</html>
